@@ -31,20 +31,9 @@ const client = (module.exports = {
             return interaction.reply({ content: "No results were returned.", ephemeral: true })
           }
 
-          console.log(json.articles)
+          console.log(json)
 
         })
-
-        const newsEmbed = new EmbedBuilder()
-        .setTitle(`${story.title}`)
-        .setColor("White")
-        .setURL(`${story.link}`)
-        .setDescription(`${story.content}`)
-        .setFooter({ text: "The New York Times", iconURL: `https://theme.zdassets.com/theme_assets/968999/d8a347b41db1ddee634e2d67d08798c102ef09ac.jpg`})
-        .setTimestamp(date.getTime());
-
-        interaction.reply({ embeds: [newsEmbed] })
-
     },
 });
   
