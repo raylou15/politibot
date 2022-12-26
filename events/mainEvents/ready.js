@@ -15,6 +15,6 @@ module.exports = {
     const guild = client.guilds.cache.get("760275642150420520");
     guild.channels.fetch();
     guild.members.fetch();
-    guild.channels.cache.get("895052490574270484").send(`The bot is online and ready to go!!`)
+    guild.channels.cache.get("895052490574270484").send(`The bot is online and ready to go!!!`)
   },
 };
