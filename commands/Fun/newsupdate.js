@@ -19,13 +19,21 @@ const client = (module.exports = {
      */
     async execute(interaction, client) {
       
-        const NYTURL = `https://rss.nytimes.com/services/xml/rss/nyt/Politics.xml`;
+        const mainURL = `https://api.newscatcherapi.com/v2/search?countries=US&topic=politics&lang=en&sources=cnn.com,nytimes.com,foxnews.com,nbcnews.com,politico.com,npr.org,apnews.com,reuters.com,thehill.com,usatoday.com,washingtonpost.com,cbsnews.com`;
+        const mainHeader = {
+          "X-API-Key": "Cw83tzJ0P9ibqqTMhXJPXWDcKhZGoW6tKjeWer74oBc",
+        }
 
-        let NYTfeed = await parser.parseURL(NYTURL);
+        fetch(mainURL, { method: "GET", headers: mainHeader }).then((res) => {
+          return res.json()
+        }).then((json) => {
+          if (!json.articles[0]) {
+            return interaction.reply({ content: "No results were returned.", ephemeral: true })
+          }
 
-        const story = NYTfeed.items[0]
-        const isoString = story.isoDate
-        const date = new Date(isoString)
+          console.log(json.articles)
+
+        })
 
         const newsEmbed = new EmbedBuilder()
         .setTitle(`${story.title}`)
