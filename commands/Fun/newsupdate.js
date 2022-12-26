@@ -27,10 +27,6 @@ const client = (module.exports = {
         fetch(mainURL, { method: "GET", headers: mainHeader }).then((res) => {
           return res.json()
         }).then((json) => {
-          if (!json.articles[0]) {
-            return interaction.reply({ content: "No results were returned.", ephemeral: true })
-          }
-
           console.log(json)
 
         })
