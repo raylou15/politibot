@@ -90,6 +90,9 @@ const client = (module.exports = {
                         }
                     })
 
+                    console.log(chosenNews)
+                    console.log(chosenNews.length)
+
                     if (chosenNews.length = 0) {
                         return interaction.update({ content: "You didn't choose anything.", embeds: [], components: [], fetchReply: false })
                     }
