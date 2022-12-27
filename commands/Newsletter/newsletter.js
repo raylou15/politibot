@@ -81,7 +81,7 @@ const client = (module.exports = {
 
                 prompt.reactions.cache.forEach(async (reaction) => {
                     if (reaction.count > 1) {
-                        chosenNews.push(reaction)
+                        chosenNews.push(reaction.emoji.name)
                     }
                 })
 
