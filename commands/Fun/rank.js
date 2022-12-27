@@ -29,7 +29,7 @@ const xp = require('simply-xp')
             lvlbarBg: "#FF7D33",
         }).then(img => {
             return interaction.followUp({ files: [img] })
-        })
+        }) 
     },
   });
   
