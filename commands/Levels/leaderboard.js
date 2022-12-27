@@ -17,12 +17,12 @@ const xp = require('simply-xp')
      */
     async execute(interaction, client) {
         
-        const data = await xp.leaderboard(client, interaction.guild.id, 25);
+        const data = await xp.leaderboard(client, interaction.guild.id, 24);
 
         const ldb = new EmbedBuilder()
             .setTitle("XP Leaderboard")
             .setColor("White")
-            .setDescription("We give xp for leveling up based on how much time you spend in VC, how many messages you send, and more! Below is a list of the top 25.")
+            .setDescription("We give xp for leveling up based on how much time you spend in VC, how many messages you send, and more! Below is a list of the top 24.")
             .setFooter({ text: "Use /rank to see your individual xp/rank data."})
             .setTimestamp();
 
