@@ -148,6 +148,7 @@ const client = (module.exports = {
                                 } else {
                                     
                                     const existingData = newsletterData.findOne({ GuildID: `${interaction.guild.id}`, UserID: `${interaction.user.id}` })
+                                    console.log(existingData)
                                     if (existingData) {
                                         console.log("Existing data found!")
                                         newsletterData.findOneAndDelete({ UserID: `${interaction.user.id}` })
