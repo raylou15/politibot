@@ -160,8 +160,6 @@ const client = (module.exports = {
                                         }
                                     })
 
-                                    console.log(evemorArray)
-
                                     let cnnValue;
                                     let foxValue;
                                     let nytValue;
