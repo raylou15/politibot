@@ -71,7 +71,7 @@ data: new SlashCommandBuilder()
 
         const mainURL = `https://api.propublica.org/congress/v1/${congressChosen}/${chamberChosen}/members.json`
         const mainHeader = {
-            "X-API-Key": "bOa3BIGWU1XLgXenk35nftpOCVpjcM1ESkWktufp",
+            "X-API-Key": config.proPublicaAPI,
         }
 
         console.log(mainURL)

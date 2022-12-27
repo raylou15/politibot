@@ -1,5 +1,6 @@
 const { ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder, Embed, } = require("discord.js");
 const fetch = require("node-fetch")
+const config = require("../../config.json")
 const client = (module.exports = {
 data: new SlashCommandBuilder()
     .setName("funfact")
@@ -12,7 +13,7 @@ data: new SlashCommandBuilder()
         try {
             const mainURL = `https://api.api-ninjas.com/v1/facts?limit=1`
             const mainHeader = {
-                "X-API-Key": "K96rlwa3ADK+tE1Laou4cA==O0EQ2ZlR151E8n0r",
+                "X-API-Key": config.funfactAPI,
             }
             
             fetch (mainURL, { method: "GET", headers: mainHeader }).then((res) => {

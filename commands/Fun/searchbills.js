@@ -121,7 +121,7 @@ const client = (module.exports = {
             const query = interaction.options.getString("query")
             const mainURL = `https://api.propublica.org/congress/v1/bills/search.json?query="${query}"`
             const mainHeader = {
-                "X-API-Key": "bOa3BIGWU1XLgXenk35nftpOCVpjcM1ESkWktufp",
+                "X-API-Key": config.proPublicaAPI,
             }
 
             fetch (mainURL, { method: "GET", headers: mainHeader }).then((res) => {

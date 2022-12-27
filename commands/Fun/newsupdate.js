@@ -24,7 +24,7 @@ const client = (module.exports = {
       
         const mainURL = `https://api.newscatcherapi.com/v2/latest_headlines?page_size=25&when=24h&countries=US&topic=politics&lang=en&sources=cnn.com,nytimes.com,foxnews.com,nbcnews.com,politico.com,npr.org,apnews.com,reuters.com,thehill.com,usatoday.com,washingtonpost.com,cbsnews.com`;
         const mainHeader = {
-          "X-API-Key": "Cw83tzJ0P9ibqqTMhXJPXWDcKhZGoW6tKjeWer74oBc",
+          "X-API-Key": config.newscatcherAPI,
         }
 
         fetch(mainURL, { method: "GET", headers: mainHeader }).then((res) => {
