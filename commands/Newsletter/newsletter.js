@@ -99,8 +99,8 @@ const client = (module.exports = {
 
                     const listed = new EmbedBuilder()
                     .setColor("White")
-                    .setTitle("🗞️  Daily Newsletter Subscription: Please confirm your selection")
-                    .setDescription(chosenNews.join(" \n"))
+                    .setTitle("🗞️  Daily Newsletter Subscription")
+                    .setDescription(`Please confirm your selections:\n\n` + chosenNews.join(" \n"))
                     .setFooter({ text: "All newsletter data provided courtesy of NewsCatcherAPI • Prompt Expires in 180 Seconds"})
                     .setTimestamp();
 
