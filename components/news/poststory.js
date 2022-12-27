@@ -27,6 +27,8 @@ const {
 
         newsChannel.send({ embeds: [interaction.message.embeds[0]] })
 
+        interaction.reply("News Story Submitted!")
+
     },
   };
   
