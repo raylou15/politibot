@@ -8,7 +8,7 @@ module.exports = {
   async execute(message, data, role) {
 
     if (!message.author.bot) {
-        message.reply("TEMPORARY DEBUG: You have leveled up!")
+        console.log("TEMPORARY DEBUG: You have leveled up!")
     }
 
   }
