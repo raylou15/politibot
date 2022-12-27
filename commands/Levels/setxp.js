@@ -11,6 +11,11 @@ const xp = require('simply-xp')
         .setName("setxp")
         .setDescription("setxp.")
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
+        .addUserOption(options => options
+            .setName('target')
+            .setDescription('whom')
+            .setRequired(true)    
+        )
         .addNumberOption(options => options
             .setName("xp")
             .setDescription("Which xp?")
