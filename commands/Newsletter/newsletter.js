@@ -147,10 +147,10 @@ const client = (module.exports = {
                                     return interaction.update({ content: "Prompt cancelled.", embeds: [], components: [], fetchReply: false })
                                 } else {
                                     
-                                    const existingData = newsletterData.findOne({ GuildID: interaction.guild.id, UserID: interaction.user.id })
+                                    const existingData = newsletterData.findOne({ GuildID: `${interaction.guild.id}`, UserID: `${interaction.user.id}` })
                                     if (existingData) {
                                         console.log("Existing data found!")
-                                        newsletterData.findOneAndDelete({ UserID: interaction.user.id })
+                                        newsletterData.findOneAndDelete({ UserID: `${interaction.user.id}` })
                                     }
 
                                     let evemorArray = [];
