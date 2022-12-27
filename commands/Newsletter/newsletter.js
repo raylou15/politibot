@@ -149,7 +149,7 @@ const client = (module.exports = {
                                     
                                     const existingData = newsletterData.findOne({ GuildID: interaction.guild.id, UserID: interaction.user.id })
                                     if (existingData) {
-                                        newsletterData.deleteOne({ GuildID: interaction.guild.id, UserID: interaction.user.id })
+                                        console.log("Existing data found!")
                                     }
 
                                     let evemorArray = [];
