@@ -174,7 +174,7 @@ const client = (module.exports = {
                                     let reutersValue;
                                     let washpostValue;
                                     let usatodayValue;
-                                    let morningValue;
+                                    let morningValue; 
                                     let eveningValue;
 
                                     if (chosenNews.includes('CNN')) { cnnValue = true } else { cnnValue = false }
@@ -189,8 +189,8 @@ const client = (module.exports = {
                                     if (chosenNews.includes('Reuters')) { reutersValue = true } else { reutersValue = false }
                                     if (chosenNews.includes('TheWashingtonPost')) { washpostValue = true } else { washpostValue = false }
                                     if (chosenNews.includes('USAToday')) { usatodayValue = true } else { usatodayValue = false }
-                                    if (evemorArray.includes(`sunrise`)) { morningValue = true } else { morningValue = false }
-                                    if (evemorArray.includes(`bed`)) { eveningValue = true } else { eveningValue = false }
+                                    if (evemorArray.includes('🌅')) { morningValue = true } else { morningValue = false }
+                                    if (evemorArray.includes('🛏️')) { eveningValue = true } else { eveningValue = false }
 
                                     let newData = new newsletterData({
                                         GuildID: interaction.guild.id,
