@@ -1,6 +1,7 @@
 const { EmbedBuilder } = require("discord.js");
 const { execute } = require("./ready");
 const messagecountData = require("../../schemas/messagecount");
+const xp = require('simply-xp');
 
 module.exports = {
   name: "messageCreate",
@@ -12,6 +13,9 @@ module.exports = {
     if (message.author.bot) {
       return;
     }
+
+    // New XP System:
+    xp.addXP(message, message.author.id, message.guild.id, 10)
 
     //Activity Tiers!
 
