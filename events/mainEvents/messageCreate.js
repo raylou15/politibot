@@ -9,6 +9,13 @@ module.exports = {
       user = message.author;
     member = message.guild.members.cache.get(message.author.id);
 
+    //News
+    if (message.channel.type === ChannelType.GuildAnnouncement) {
+      message.crosspost()
+        .then(() => console.log('Crossposted message'))
+        .catch(console.error);
+    }
+
     if (message.author.bot) {
       return;
     }
