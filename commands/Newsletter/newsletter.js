@@ -108,7 +108,7 @@ const client = (module.exports = {
                     )
 
                     prompt.reactions.removeAll()
-                    prompt.edit({ embeds: [listed], components: [confirmdeny], fetchReply: false })
+                    interaction.update({ embeds: [listed], components: [confirmdeny], fetchReply: false })
 
                     prompt.awaitMessageComponent({ time: 180_000 }).then(async (interaction) => {
                         newButtonClicked = interaction.customId;
@@ -119,7 +119,7 @@ const client = (module.exports = {
                             prompt.edit({ content: "Selection confirmed!", embeds: [], components: [], fetchReply: false })
                         }
 
-                        
+
                     })
                 }
 
