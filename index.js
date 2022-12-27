@@ -28,9 +28,9 @@ client.commands = new Collection();
 client.components = new Collection();
 
 // SimplyXP Connection
-xp.connect(client.config.DatabaseURL, {
-  notify: true
-})
+xp.connect(client.config.DatabaseURL, {}).then(() =>
+  console.log("Connected to XP system.")
+)
 
 // MongoDB Connection
 connect(client.config.DatabaseURL, {}).then(() =>
