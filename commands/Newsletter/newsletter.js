@@ -150,6 +150,7 @@ const client = (module.exports = {
                                     const existingData = newsletterData.findOne({ GuildID: interaction.guild.id, UserID: interaction.user.id })
                                     if (existingData) {
                                         console.log("Existing data found!")
+                                        newsletterData.findOneAndDelete({ UserID: interaction.user.id })
                                     }
 
                                     let evemorArray = [];
@@ -228,7 +229,8 @@ const client = (module.exports = {
 
 
         if (interaction.options.getSubcommand() === 'unsubscribe') {
-
+            const newsletterProfile = newsletterData.findOneAndDelete({ UserID: interaction.user.id })
+            interaction.reply({ content: "You have unsubscribed from your daily newsletter.", ephemeral: true})
         }
         
     },
