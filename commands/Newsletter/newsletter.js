@@ -57,7 +57,7 @@ const client = (module.exports = {
 
             const prompt = interaction.reply({ embeds: [firstPrompt], components: [doneButton], fetchReply: true })
 
-            prompt.react(interaction.guild.emojis.cache.get('1057383664524210216'))
+            await prompt.react(interaction.guild.emojis.cache.get('1057383664524210216'))
             prompt.react(interaction.guild.emojis.cache.get('1057383666139017306')) // Fox
             prompt.react(interaction.guild.emojis.cache.get('1057383667565088819')) // NBC
             prompt.react(interaction.guild.emojis.cache.get('1057383663463055530')) // CBS
