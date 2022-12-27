@@ -97,7 +97,7 @@ const client = (module.exports = {
                         return interaction.update({ content: "You didn't choose anything.", embeds: [], components: [], fetchReply: false })
                     }
 
-                    const listed = new EmbedBuilder()
+                    let listed = new EmbedBuilder()
                     .setColor("White")
                     .setTitle("🗞️  Daily Newsletter Subscription")
                     .setDescription(`Please confirm your selections:\n\n` + chosenNews.join(" \n"))
