@@ -29,6 +29,8 @@ const xp = require('simply-xp')
             lvlbarBg: "#FF7D33",
         })
 
+        console.log(memberRank.url)
+
         interaction.followUp({ files: [memberRank] })
 
     },
