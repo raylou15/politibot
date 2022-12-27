@@ -27,10 +27,11 @@ const xp = require('simply-xp')
      */
     async execute(interaction, client) {
         const level = interaction.options.getNumber("xp")
+        const target = interaction.options.getUser("target")
 
-        xp.setXP(interaction.user.id, interaction.guild.id, level)
+        xp.setXP(target.id, interaction.guild.id, level)
 
-        interaction.reply({ content: "Done!", ephemeral: true })
+        interaction.reply({ content: `Done! Set ${target}'s XP to ${level}!`})
 
     },
 });
