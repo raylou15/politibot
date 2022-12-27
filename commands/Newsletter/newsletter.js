@@ -147,11 +147,15 @@ const client = (module.exports = {
                                     return interaction.update({ content: "Prompt cancelled.", embeds: [], components: [], fetchReply: false })
                                 } else {
                                     
-                                    const existingData = newsletterData.findOne({ GuildID: `${interaction.guild.id}`, UserID: `${interaction.user.id}` })
-                                    console.log(existingData)
-                                    if (existingData) {
-                                        console.log("Existing data found!")
-                                        newsletterData.findOneAndDelete({ UserID: `${interaction.user.id}` })
+                                    newsletterData.findOne({ UserID: `${interaction.user.id}` }), async (err, data) => {
+                                        if (err) {
+                                            console.log(`❌Looks like there's an error: ${err}`);
+                                        }
+                                        if (data) {
+                                            console.log('yup')
+                                        } else {
+                                            console.log('nope')
+                                        }
                                     }
 
                                     let evemorArray = [];
