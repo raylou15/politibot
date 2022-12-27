@@ -4,10 +4,12 @@ const messagecountData = require("../../schemas/messagecount");
 const xp = require('simply-xp');
 
 module.exports = {
-  name: "messageCreate",
+  name: "levelUp",
   async execute(message, data, role) {
 
-    console.log('oh no')
+    if (!message.author.bot) {
+        message.reply("TEMPORARY DEBUG: You have leveled up!")
+    }
 
   }
 }
