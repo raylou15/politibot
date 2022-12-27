@@ -1,6 +1,5 @@
 const { EmbedBuilder } = require("discord.js");
 const { execute } = require("./ready");
-const messagecountData = require("../../schemas/messagecount");
 const xp = require('simply-xp');
 
 module.exports = {
@@ -17,176 +16,16 @@ module.exports = {
     // New XP System:
     xp.addXP(message, message.author.id, message.guild.id, 10)
 
-    //Activity Tiers!
-
-    let msgCountProfile;
-    msgCountProfile = await messagecountData.findOne({
-      UserID: message.author.id,
-    });
-    if (msgCountProfile === undefined || !msgCountProfile) {
-      console.log(`Made a new msgCountProfile! ${message.author.id}`);
-      msgCountProfile = new messagecountData({
-        UserID: message.author.id,
-        msgCount: 1,
-      });
-      await msgCountProfile.save().catch(console.error);
-    } else {
-      const oldCount = msgCountProfile.msgCount;
-      await messagecountData.findOneAndUpdate(
-        { UserID: `${message.author.id}` },
-        { $set: { msgCount: oldCount + 1 } }
-      );
-    }
-
-    msgCountProfile = await messagecountData.findOne({
-      UserID: message.author.id,
-    });
-
-    // if (msgCountProfile.msgCount >= 300 && msgCountProfile.msgCount < 750) {
-    //   if (!member.roles.cache.has("950846711209816094")) {
-    //     // Level 1
-    //     member.roles.add("950846711209816094"); // Level 1
-    //     message.channel.send(
-    //       `${member.user}, congratulations! You have reached Level 1!`
-    //     );
-    //   }
-    //  } else if (
-    //   msgCountProfile.msgCount >= 750 &&
-    //   msgCountProfile.msgCount < 1875
-    // ) {
-    //   if (!member.roles.cache.has("950846711209816094")) {
-    //     // Level 2
-    //     member.roles.add("950846711209816094"); // Level 2
-    //     if (member.roles.cache.has("950846711209816094")) {
-    //       member.roles.remove("950846711209816094"); // Level 1
-    //     }
-    //     message.channel.send(
-    //       `${member.user}, congratulations! You have reached Level 2!`
-    //     );
-    //   }
-    // } else if (
-    //   msgCountProfile.msgCount >= 1875 &&
-    //   msgCountProfile.msgCount < 3750
-    // ) {
-    //   if (!member.roles.cache.has("950846792315068416")) {
-    //     // Level 3
-    //     member.roles.add("950846792315068416"); // Level 3
-    //     if (member.roles.cache.has("950846711209816094")) {
-    //       member.roles.remove("950846711209816094"); // Level 2
-    //     }
-    //     if (member.roles.cache.has("950846711209816094")) {
-    //       member.roles.remove("950846711209816094"); // Level 1
-    //     }
-    //     message.channel.send(
-    //       `${member.user}, congratulations! You have reached Level 3!`
-    //     );
-    //   }
-    // } else if (
-    //   msgCountProfile.msgCount >= 3750 &&
-    //   msgCountProfile.msgCount < 7500
-    // ) {
-    //   if (!member.roles.cache.has("950846854545965076")) {
-    //     // Level 4
-    //     member.roles.add("950846854545965076"); // Level 4
-    //     if (member.roles.cache.has("950846792315068416")) {
-    //       member.roles.remove("950846792315068416"); // Level 3
-    //     }
-    //     if (member.roles.cache.has("950846711209816094")) {
-    //       member.roles.remove("950846711209816094"); // Level 2
-    //     }
-    //     if (member.roles.cache.has("950846711209816094")) {
-    //       member.roles.remove("950846711209816094"); // Level 1
-    //     }
-    //     message.channel.send(
-    //       `${member.user}, congratulations! You have reached Level 4!`
-    //     );
-    //   }
-    // } else if (
-    //   msgCountProfile.msgCount >= 7500 &&
-    //   msgCountProfile.msgCount < 15000
-    // ) {
-    //   if (!member.roles.cache.has("950846886653337641")) {
-    //     // Level 5
-    //     member.roles.add("950846886653337641"); // Level 5
-    //     if (member.roles.cache.has("950846854545965076")) {
-    //       member.roles.remove("950846854545965076"); // Level 4
-    //     }
-    //     if (member.roles.cache.has("950846792315068416")) {
-    //       member.roles.remove("950846792315068416"); // Level 3
-    //     }
-    //     if (member.roles.cache.has("950846711209816094")) {
-    //       member.roles.remove("950846711209816094"); // Level 2
-    //     }
-    //     if (member.roles.cache.has("950846711209816094")) {
-    //       member.roles.remove("950846711209816094"); // Level 1
-    //     }
-    //     message.channel.send(
-    //       `${member.user}, congratulations! You have reached Level 5!`
-    //     );
-    //   }
-    // } else if (
-    //   msgCountProfile.msgCount >= 15000 &&
-    //   msgCountProfile.msgCount < 30000
-    // ) {
-    //   if (!member.roles.cache.has("950846892827377694")) {
-    //     // Level 6
-    //     member.roles.add("950846892827377694"); // Level 6
-    //     if (member.roles.cache.has("950846886653337641")) {
-    //       member.roles.remove("950846886653337641"); // Level 5
-    //     }
-    //     if (member.roles.cache.has("950846854545965076")) {
-    //       member.roles.remove("950846854545965076"); // Level 4
-    //     }
-    //     if (member.roles.cache.has("950846792315068416")) {
-    //       member.roles.remove("950846792315068416"); // Level 3
-    //     }
-    //     if (member.roles.cache.has("950846711209816094")) {
-    //       member.roles.remove("950846711209816094"); // Level 2
-    //     }
-    //     if (member.roles.cache.has("950846711209816094")) {
-    //       member.roles.remove("950846711209816094"); // Level 1
-    //     }
-    //     message.channel.send(
-    //       `${member.user}, congratulations! You have reached Level 6!`
-    //     );
-    //   }
-    // } else if (msgCountProfile.msgCount >= 30000) {
-    //   if (!member.roles.cache.has("950846899106238505")) {
-    //     // Level 7
-    //     member.roles.add("950846899106238505"); // Level 7
-    //     if (member.roles.cache.has("950846892827377694")) {
-    //       member.roles.remove("950846892827377694"); // Level 6
-    //     }
-    //     if (member.roles.cache.has("950846886653337641")) {
-    //       member.roles.remove("950846886653337641"); // Level 5
-    //     }
-    //     if (member.roles.cache.has("950846854545965076")) {
-    //       member.roles.remove("950846854545965076"); // Level 4
-    //     }
-    //     if (member.roles.cache.has("950846792315068416")) {
-    //       member.roles.remove("950846792315068416"); // Level 3
-    //     }
-    //     if (member.roles.cache.has("950846711209816094")) {
-    //       member.roles.remove("950846711209816094"); // Level 2
-    //     }
-    //     if (member.roles.cache.has("950846711209816094")) {
-    //       member.roles.remove("950846711209816094"); // Level 1
-    //     }
-    //     message.channel.send(
-    //       `${member.user}, congratulations! You have reached Level 7!`
-    //     );
-    //   }
-    // }
-
     //Trusted Member Status
 
     const status = await Date.now();
     const joined = await member.joinedTimestamp;
     const datetime = status - joined;
+    const userXP = xp.fetch(message.author.id, message.guild.id);
 
     if (
       member.roles.cache.has("909989200378601472") &&
-      msgCountProfile.msgCount >= 300 &&
+      userXP.level >= 6 &&
       datetime >= 1209600000
     ) {
       member.roles.add("775838439538425866").then(member.roles.remove("909989200378601472")).then(message.channel.send(
