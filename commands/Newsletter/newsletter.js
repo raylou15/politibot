@@ -55,20 +55,21 @@ const client = (module.exports = {
                 .setStyle(ButtonStyle.Danger)
             )
 
-            const prompt = interaction.reply({ embeds: [firstPrompt], components: [doneButton] }).then(m => {
-                m.react(interaction.guild.emojis.cache.get('1057383664524210216')) // CNN
-                m.react(interaction.guild.emojis.cache.get('1057383666139017306')) // Fox
-                m.react(interaction.guild.emojis.cache.get('1057383667565088819')) // NBC
-                m.react(interaction.guild.emojis.cache.get('1057383663463055530')) // CBS
-                m.react(interaction.guild.emojis.cache.get('1057383669792260106')) // NYT
-                m.react(interaction.guild.emojis.cache.get('1057383707289321542')) // WAPO
-                m.react(interaction.guild.emojis.cache.get('1057383675144183968')) // The Hill
-                m.react(interaction.guild.emojis.cache.get('1057383672845697145')) // POLITICO
-                m.react(interaction.guild.emojis.cache.get('1057383673990758470')) // Reuters
-                m.react(interaction.guild.emojis.cache.get('1057383668487827536')) // NPR
-                m.react(interaction.guild.emojis.cache.get('1057383705829724170')) // USA Today
-                m.react(interaction.guild.emojis.cache.get('1057384350607495280')) // AP News
-            })
+            const prompt = interaction.reply({ embeds: [firstPrompt], components: [doneButton] })
+
+            prompt.react(interaction.guild.emojis.cache.get('1057383664524210216')) // CNN
+            prompt.react(interaction.guild.emojis.cache.get('1057383666139017306')) // Fox
+            prompt.react(interaction.guild.emojis.cache.get('1057383667565088819')) // NBC
+            prompt.react(interaction.guild.emojis.cache.get('1057383663463055530')) // CBS
+            prompt.react(interaction.guild.emojis.cache.get('1057383669792260106')) // NYT
+            prompt.react(interaction.guild.emojis.cache.get('1057383707289321542')) // WAPO
+            prompt.react(interaction.guild.emojis.cache.get('1057383675144183968')) // The Hill
+            prompt.react(interaction.guild.emojis.cache.get('1057383672845697145')) // POLITICO
+            prompt.react(interaction.guild.emojis.cache.get('1057383673990758470')) // Reuters
+            prompt.react(interaction.guild.emojis.cache.get('1057383668487827536')) // NPR
+            prompt.react(interaction.guild.emojis.cache.get('1057383705829724170')) // USA Today
+            prompt.react(interaction.guild.emojis.cache.get('1057384350607495280')) // AP News
+
 
         }
 
