@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require("discord.js");
+const { EmbedBuilder, ChannelType } = require("discord.js");
 const { execute } = require("./ready");
 const xp = require('simply-xp');
 
@@ -10,7 +10,7 @@ module.exports = {
     member = message.guild.members.cache.get(message.author.id);
 
     //News
-    if (message.channel.type === ChannelType.GuildAnnouncement) {
+    if (message.channel.type === ChannelType.GuildAnnouncement ) {
       message.crosspost()
         .then(() => console.log('Crossposted message'))
         .catch(console.error);
