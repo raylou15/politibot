@@ -147,16 +147,8 @@ const client = (module.exports = {
                                     return interaction.update({ content: "Prompt cancelled.", embeds: [], components: [], fetchReply: false })
                                 } else {
                                     
-                                    newsletterData.findOne({ UserID: `${interaction.user.id}` }), async (err, data) => {
-                                        if (err) {
-                                            console.log(`❌Looks like there's an error: ${err}`);
-                                        }
-                                        if (data) {
-                                            console.log('yup')
-                                        } else {
-                                            console.log('nope')
-                                        }
-                                    }
+                                    const existingData = await newsletterData.findOne({ UserID: `${interaction.user.id}` })
+                                    console.log(existingData)
 
                                     let evemorArray = [];
 
