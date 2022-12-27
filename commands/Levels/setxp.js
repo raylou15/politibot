@@ -30,7 +30,7 @@ const xp = require('simply-xp')
         const target = interaction.options.getUser("target")
 
         xp.setXP(target.id, interaction.guild.id, level)
-        xp.lvlRole(interaction, target.id, guildID)
+        xp.lvlRole(interaction, target.id, interaction.guild.id)
 
         const notifEmbed = new EmbedBuilder()
             .setColor("White")
