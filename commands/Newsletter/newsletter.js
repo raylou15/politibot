@@ -56,7 +56,7 @@ const client = (module.exports = {
                 .setStyle(ButtonStyle.Danger)
             )
 
-            const prompt = await interaction.reply({ embeds: [firstPrompt], components: [doneButton], fetchReply: true, ephemeral: true })
+            const prompt = await interaction.reply({ embeds: [firstPrompt], components: [doneButton], fetchReply: true })
 
             prompt.react(interaction.guild.emojis.cache.get('1057383664524210216')) // CNN
             prompt.react(interaction.guild.emojis.cache.get('1057383666139017306')) // Fox
@@ -80,7 +80,7 @@ const client = (module.exports = {
 
                 if (buttonClicked === 'cancelnews') {
                     prompt.reactions.removeAll()
-                    return interaction.update({ content: "Prompt cancelled.", embeds: [], components: [], fetchReply: false, ephemeral: true })
+                    return interaction.update({ content: "Prompt cancelled.", embeds: [], components: [], fetchReply: false })
                 } else {
                     let chosenNews = [];
 
@@ -109,13 +109,13 @@ const client = (module.exports = {
                     )
 
                     prompt.reactions.removeAll()
-                    interaction.update({ embeds: [listed], components: [confirmdeny], fetchReply: false, ephemeral: true })
+                    interaction.update({ embeds: [listed], components: [confirmdeny], fetchReply: false })
 
                     prompt.awaitMessageComponent({ time: 180_000 }).then(async (interaction) => {
                         newButtonClicked = interaction.customId;
 
                         if (newButtonClicked === 'cancelnews') {
-                            return interaction.update({ content: "Prompt cancelled.", embeds: [], components: [], fetchReply: false, ephemeral: true })
+                            return interaction.update({ content: "Prompt cancelled.", embeds: [], components: [], fetchReply: false })
                         } else {
 
                             const onceortwice = new EmbedBuilder()
@@ -136,7 +136,7 @@ const client = (module.exports = {
                                 .setStyle(ButtonStyle.Danger)
                             )
 
-                            interaction.update({ embeds: [onceortwice], components: [oncetwiceDone], fetchReply: false, ephemeral: true })
+                            interaction.update({ embeds: [onceortwice], components: [oncetwiceDone], fetchReply: false })
                             prompt.react("🌅")
                             prompt.react("🛏️")
 
@@ -144,7 +144,7 @@ const client = (module.exports = {
                                 finalButtonClicked = interaction.customId
                                 
                                 if (newButtonClicked === 'cancelnews') {
-                                    return interaction.update({ content: "Prompt cancelled.", embeds: [], components: [], fetchReply: false, ephemeral: true })
+                                    return interaction.update({ content: "Prompt cancelled.", embeds: [], components: [], fetchReply: false })
                                 } else {
                                     
                                     const existingData = newsletterData.findOne({ GuildID: interaction.guild.id, UserID: interaction.user.id })
@@ -211,7 +211,7 @@ const client = (module.exports = {
                                     })
                                     await newData.save().catch(console.error);
                                     prompt.reactions.removeAll();
-                                    interaction.update({ content: "Your newsletter has been set up!", embeds: [], components: [], fetchReply: false, ephemeral: true });
+                                    interaction.update({ content: "Your newsletter has been set up!", embeds: [], components: [], fetchReply: false });
 
                                 }
 
@@ -230,7 +230,7 @@ const client = (module.exports = {
 
         if (interaction.options.getSubcommand() === 'unsubscribe') {
             const newsletterProfile = newsletterData.findOneAndDelete({ UserID: interaction.user.id })
-            interaction.reply({ content: "You have unsubscribed from your daily newsletter.", ephemeral: true})
+            interaction.reply({ content: "You have unsubscribed from your daily newsletter."})
         }
         
     },
