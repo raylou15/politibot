@@ -30,6 +30,7 @@ const xp = require('simply-xp')
         const target = interaction.options.getUser("target")
 
         xp.setXP(target.id, interaction.guild.id, level)
+        xp.lvlRole(interaction, target.id, guildID)
 
         interaction.reply({ content: `Done! Set ${target}'s XP to ${level}!`})
 
