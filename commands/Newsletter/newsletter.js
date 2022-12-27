@@ -80,7 +80,7 @@ const client = (module.exports = {
 
                 if (buttonClicked === 'cancelnews') {
                     prompt.reactions.removeAll()
-                    return interaction.update({ content: "Prompt cancelled.", embeds: [], components: [], fetchReply: false })
+                    return interaction.update({ content: "Prompt cancelled.", embeds: [], components: [], fetchReply: false, ephemeral: true })
                 } else {
                     let chosenNews = [];
 
@@ -109,13 +109,13 @@ const client = (module.exports = {
                     )
 
                     prompt.reactions.removeAll()
-                    interaction.update({ embeds: [listed], components: [confirmdeny], fetchReply: false })
+                    interaction.update({ embeds: [listed], components: [confirmdeny], fetchReply: false, ephemeral: true })
 
                     prompt.awaitMessageComponent({ time: 180_000 }).then(async (interaction) => {
                         newButtonClicked = interaction.customId;
 
                         if (newButtonClicked === 'cancelnews') {
-                            return interaction.update({ content: "Prompt cancelled.", embeds: [], components: [], fetchReply: false })
+                            return interaction.update({ content: "Prompt cancelled.", embeds: [], components: [], fetchReply: false, ephemeral: true })
                         } else {
 
                             const onceortwice = new EmbedBuilder()
@@ -136,7 +136,7 @@ const client = (module.exports = {
                                 .setStyle(ButtonStyle.Danger)
                             )
 
-                            interaction.update({ embeds: [onceortwice], components: [oncetwiceDone], fetchReply: false })
+                            interaction.update({ embeds: [onceortwice], components: [oncetwiceDone], fetchReply: false, ephemeral: true })
                             prompt.react("🌅")
                             prompt.react("🛏️")
 
@@ -144,7 +144,7 @@ const client = (module.exports = {
                                 finalButtonClicked = interaction.customId
                                 
                                 if (newButtonClicked === 'cancelnews') {
-                                    return interaction.update({ content: "Prompt cancelled.", embeds: [], components: [], fetchReply: false })
+                                    return interaction.update({ content: "Prompt cancelled.", embeds: [], components: [], fetchReply: false, ephemeral: true })
                                 } else {
                                     
                                     const existingData = newsletterData.findOne({ GuildID: interaction.guild.id, UserID: interaction.user.id })
@@ -210,7 +210,7 @@ const client = (module.exports = {
                                     })
                                     await newData.save().catch(console.error);
                                     prompt.reactions.removeAll();
-                                    interaction.update({ content: "Your newsletter has been set up!", embeds: [], components: [], fetchReply: false });
+                                    interaction.update({ content: "Your newsletter has been set up!", embeds: [], components: [], fetchReply: false, ephemeral: true });
 
                                 }
 
