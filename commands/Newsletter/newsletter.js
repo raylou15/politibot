@@ -79,7 +79,32 @@ const client = (module.exports = {
 
                 let chosenNews = [];
 
-                console.log(prompt.reactions)
+                prompt.reactions.cache.forEach(async (reaction) => {
+                    if (reaction.count > 1) {
+                        chosenNews.push(reaction)
+                    }
+                })
+
+                const listed = new EmbedBuilder()
+                .setColor("White")
+                .setTitle("🗞️  Daily Newsletter Subscription: Please confirm your selection")
+                .setDescription(listed.join("\n"))
+                .setFooter({ text: "All newsletter data provided courtesy of NewsCatcherAPI • Prompt Expires in 180 Seconds"})
+                .setTimestamp();
+
+                const confirmdeny = new ActionRowBuilder().addComponents(
+                    new ButtonBuilder()
+                    .setCustomId('confirm')
+                    .setLabel('Confirm')
+                    .setStyle(ButtonStyle.Success),
+                    new ButtonBuilder()
+                    .setCustomId('cancel')
+                    .setLabel('Cancel')
+                    .setStyle(ButtonStyle.Danger)
+                )
+
+                prompt.reactions.removeAll()
+                prompt.edit({ embeds: [listed], components: [confirmdeny] })
 
             })
 
