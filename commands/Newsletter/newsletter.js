@@ -148,7 +148,10 @@ const client = (module.exports = {
                                 } else {
                                     
                                     const existingData = await newsletterData.findOne({ UserID: `${interaction.user.id}` })
-                                    console.log(existingData)
+                                    if (existingData) {
+                                        console.log("Existing data found! Purging!")
+                                        await newsletterData.findOneAndDelete({ UserID: `${interaction.user.id}`})
+                                    }
 
                                     let evemorArray = [];
 
