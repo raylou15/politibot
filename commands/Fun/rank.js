@@ -22,14 +22,14 @@ const xp = require('simply-xp')
 
         const member = interaction.options.getMember("user") || interaction.user;
 
-        xp.rank(interaction, member.id, interaction.guild.id, {
+        const memberRank = xp.rank(interaction, member.id, interaction.guild.id, {
             background: 'https://cdn.discordapp.com/attachments/948001562444300328/1056677697419477042/nMZf4aT.png',
             color: "#096DD1",
             lvlbar: "#FF3FF3",
             lvlbarBg: "#FF7D33",
-        }).then(async (img) => {
-            await interaction.followUp({ files: [img] });
         })
+
+        interaction.followUp({ content: `Rank for ${member}`, files: [memberRank], ephemeral: true })
 
     },
   });
