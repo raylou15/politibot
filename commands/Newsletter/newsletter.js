@@ -57,7 +57,7 @@ const client = (module.exports = {
 
             const prompt = await interaction.reply({ embeds: [firstPrompt], components: [doneButton], fetchReply: true })
 
-            await prompt.react(interaction.guild.emojis.cache.get('1057383664524210216'))
+            prompt.react(interaction.guild.emojis.cache.get('1057383664524210216'))
             prompt.react(interaction.guild.emojis.cache.get('1057383666139017306')) // Fox
             prompt.react(interaction.guild.emojis.cache.get('1057383667565088819')) // NBC
             prompt.react(interaction.guild.emojis.cache.get('1057383663463055530')) // CBS
@@ -70,6 +70,18 @@ const client = (module.exports = {
             prompt.react(interaction.guild.emojis.cache.get('1057383705829724170')) // USA Today
             prompt.react(interaction.guild.emojis.cache.get('1057384350607495280')) // AP News
 
+            const filter = (i) => {
+                return i.user.id === interaction.user.id;
+            };
+
+            prompt.awaitMessageComponent({ time: 180_000 }).then(async (interaction) => {
+                buttonClicked = interaction.customId;
+
+                let chosenNews = [];
+
+                console.log(prompt.reactions)
+
+            })
 
         }
 
