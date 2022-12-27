@@ -27,7 +27,7 @@ const xp = require('simply-xp')
             color: "#096DD1",
             lvlbar: "#FF3FF3",
             lvlbarBg: "#FF7D33",
-        }).then(img => {
+        }).then(async (img) => {
             return interaction.followUp({ files: [img] })
         }) 
     },
