@@ -7,7 +7,7 @@ module.exports = {
   name: "messageCreate",
   async execute(message, data, role) {
 
-    message.reply("TEMPORARY: You've levelled up! (this is only for debugging purposes please ignore)")
+    console.log('oh no')
 
   }
 }
