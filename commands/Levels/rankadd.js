@@ -29,7 +29,7 @@ const xp = require('simply-xp')
         const role = interaction.options.getRole("role")
         const level = interaction.options.getNumber("level")
 
-        xp.roleSetup.add(client, guildID, {
+        xp.roleSetup.add(client, interaction.guild.id, {
             level: level,
             role: role.id
         });
