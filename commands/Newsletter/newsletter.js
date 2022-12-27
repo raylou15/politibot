@@ -55,7 +55,7 @@ const client = (module.exports = {
                 .setStyle(ButtonStyle.Danger)
             )
 
-            const prompt = interaction.reply({ embeds: [firstPrompt], components: [doneButton], fetchReply: true })
+            const prompt = await interaction.reply({ embeds: [firstPrompt], components: [doneButton], fetchReply: true })
 
             await prompt.react(interaction.guild.emojis.cache.get('1057383664524210216'))
             prompt.react(interaction.guild.emojis.cache.get('1057383666139017306')) // Fox
