@@ -32,7 +32,11 @@ const xp = require('simply-xp')
         xp.setXP(target.id, interaction.guild.id, level)
         xp.lvlRole(interaction, target.id, guildID)
 
-        interaction.reply({ content: `Done! Set ${target}'s XP to ${level}!`})
+        const notifEmbed = new EmbedBuilder()
+            .setColor("White")
+            .setDescription(`Done! Set ${target}'s XP to ${level}!`)
+
+        interaction.reply({ embeds: [notifEmbed] })
 
     },
 });
