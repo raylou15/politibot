@@ -46,11 +46,11 @@ const client = (module.exports = {
 
             const doneButton = new ActionRowBuilder().addComponents(
                 new ButtonBuilder()
-                .setCustomId('done')
+                .setCustomId('donenews')
                 .setLabel('Done')
                 .setStyle(ButtonStyle.Success),
                 new ButtonBuilder()
-                .setCustomId('cancel')
+                .setCustomId('cancelnews')
                 .setLabel('Cancel')
                 .setStyle(ButtonStyle.Danger)
             )
@@ -77,34 +77,51 @@ const client = (module.exports = {
             prompt.awaitMessageComponent({ time: 180_000 }).then(async (interaction) => {
                 buttonClicked = interaction.customId;
 
-                let chosenNews = [];
+                if (buttonClicked === 'cancelnews') {
+                    prompt.reactions.removeAll()
+                    return prompt.edit({ content: "Prompt cancelled.", embeds: [], components: [], fetchReply: false })
+                } else {
+                    let chosenNews = [];
 
-                prompt.reactions.cache.forEach(async (reaction) => {
-                    if (reaction.count > 1) {
-                        chosenNews.push(reaction.emoji.name)
-                    }
-                })
+                    prompt.reactions.cache.forEach(async (reaction) => {
+                        if (reaction.count > 1) {
+                            chosenNews.push(reaction.emoji.name)
+                        }
+                    })
 
-                const listed = new EmbedBuilder()
-                .setColor("White")
-                .setTitle("🗞️  Daily Newsletter Subscription: Please confirm your selection")
-                .setDescription(chosenNews.join("\n"))
-                .setFooter({ text: "All newsletter data provided courtesy of NewsCatcherAPI • Prompt Expires in 180 Seconds"})
-                .setTimestamp();
+                    const listed = new EmbedBuilder()
+                    .setColor("White")
+                    .setTitle("🗞️  Daily Newsletter Subscription: Please confirm your selection")
+                    .setDescription(chosenNews.join("\n"))
+                    .setFooter({ text: "All newsletter data provided courtesy of NewsCatcherAPI • Prompt Expires in 180 Seconds"})
+                    .setTimestamp();
 
-                const confirmdeny = new ActionRowBuilder().addComponents(
-                    new ButtonBuilder()
-                    .setCustomId('confirm')
-                    .setLabel('Confirm')
-                    .setStyle(ButtonStyle.Success),
-                    new ButtonBuilder()
-                    .setCustomId('cancel')
-                    .setLabel('Cancel')
-                    .setStyle(ButtonStyle.Danger)
-                )
+                    const confirmdeny = new ActionRowBuilder().addComponents(
+                        new ButtonBuilder()
+                        .setCustomId('confirmnews')
+                        .setLabel('Confirm')
+                        .setStyle(ButtonStyle.Success),
+                        new ButtonBuilder()
+                        .setCustomId('cancelnews')
+                        .setLabel('Cancel')
+                        .setStyle(ButtonStyle.Danger)
+                    )
 
-                prompt.reactions.removeAll()
-                prompt.edit({ embeds: [listed], components: [confirmdeny] })
+                    prompt.reactions.removeAll()
+                    prompt.edit({ embeds: [listed], components: [confirmdeny], fetchReply: false })
+
+                    prompt.awaitMessageComponent({ time: 180_000 }).then(async (interaction) => {
+                        newButtonClicked = interaction.customId;
+
+                        if (newButtonClicked === 'cancelnews') {
+                            return prompt.edit({ content: "Prompt cancelled.", embeds: [], components: [], fetchReply: false })
+                        } else {
+                            prompt.edit({ content: "Selection confirmed!", embeds: [], components: [], fetchReply: false })
+                        }
+
+                        
+                    })
+                }
 
             })
 
