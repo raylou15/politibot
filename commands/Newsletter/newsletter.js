@@ -94,9 +94,9 @@ const client = (module.exports = {
                     console.log(chosenNews.length)
                     console.log(`${chosenNews.join("\n")}`)
 
-                    // if (chosenNews.length = 0) {
-                    //     return interaction.update({ content: "You didn't choose anything.", embeds: [], components: [], fetchReply: false })
-                    // }
+                    if (chosenNews.length = 0) {
+                        return interaction.update({ content: "You didn't choose anything.", embeds: [], components: [], fetchReply: false })
+                    }
 
                     let listed = new EmbedBuilder()
                     .setColor("White")
