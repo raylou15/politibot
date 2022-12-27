@@ -23,7 +23,7 @@ const xp = require('simply-xp')
         const member = interaction.options.getUser("user") || interaction.user;
 
         xp.rank(interaction, member.id, interaction.guild.id, {
-            background: 'https://i.imgur.com/nMZf4aT.png',
+            background: 'https://ibb.co/JkBvcR1',
             color: "#096DD1",
             lvlbar: "#FF3FF3",
             lvlbarBg: "#FF7D33",
