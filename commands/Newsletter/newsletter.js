@@ -12,6 +12,7 @@ const fetch = require("node-fetch")
 const Parser = require("rss-parser")
 const parser = new Parser();
 const config = require("../../config.json");
+const newsletterData = require("../../schemas/newslettersubs");
 
 const client = (module.exports = {
     data: new SlashCommandBuilder()
@@ -79,7 +80,7 @@ const client = (module.exports = {
 
                 if (buttonClicked === 'cancelnews') {
                     prompt.reactions.removeAll()
-                    return prompt.edit({ content: "Prompt cancelled.", embeds: [], components: [], fetchReply: false })
+                    return interaction.update({ content: "Prompt cancelled.", embeds: [], components: [], fetchReply: false })
                 } else {
                     let chosenNews = [];
 
@@ -88,6 +89,10 @@ const client = (module.exports = {
                             chosenNews.push(reaction.emoji.name)
                         }
                     })
+
+                    if (chosenNews.length = 0) {
+                        return interaction.update({ content: "You didn't choose anything.", embeds: [], components: [], fetchReply: false })
+                    }
 
                     const listed = new EmbedBuilder()
                     .setColor("White")
@@ -114,9 +119,107 @@ const client = (module.exports = {
                         newButtonClicked = interaction.customId;
 
                         if (newButtonClicked === 'cancelnews') {
-                            return prompt.edit({ content: "Prompt cancelled.", embeds: [], components: [], fetchReply: false })
+                            return interaction.update({ content: "Prompt cancelled.", embeds: [], components: [], fetchReply: false })
                         } else {
-                            prompt.edit({ content: "Selection confirmed!", embeds: [], components: [], fetchReply: false })
+
+                            const onceortwice = new EmbedBuilder()
+                            .setColor("White")
+                            .setTitle("🗞️  Daily Newsletter Subscription")
+                            .setDescription("We can send you a newsletter in the morning or evening, or both, at 8 AM and 8 PM respectively. Please react with  🌅  for morning newsletters,  and  🛏️  for evening newsletters, then hit 'Done' to confirm your choice.")
+                            .setFooter({ text: "All newsletter data provided courtesy of NewsCatcherAPI • Prompt Expires in 180 Seconds"})
+                            .setTimestamp();
+
+                            const oncetwiceDone = new ActionRowBuilder().addComponents(
+                                new ButtonBuilder()
+                                .setCustomId('newsfinal')
+                                .setLabel('Done')
+                                .setStyle(ButtonStyle.Success),
+                                new ButtonBuilder()
+                                .setCustomId('cancelnews')
+                                .setLabel('Cancel')
+                                .setStyle(ButtonStyle.Danger)
+                            )
+
+                            interaction.update({ embeds: [onceortwice], components: [oncetwiceDone], fetchReply: false })
+                            prompt.react("🌅")
+                            prompt.react("🛏️")
+
+                            prompt.awaitMessageComponent({ time: 180_000 }).then(async (interaction) => {
+                                finalButtonClicked = interaction.customId
+                                
+                                if (newButtonClicked === 'cancelnews') {
+                                    return interaction.update({ content: "Prompt cancelled.", embeds: [], components: [], fetchReply: false })
+                                } else {
+                                    
+                                    const existingData = newsletterData.findOne({ GuildID: interaction.guild.id, UserID: interaction.user.id })
+                                    if (existingData) {
+                                        newsletterData.deleteOne({ GuildID: interaction.guild.id, UserID: interaction.user.id })
+                                    }
+
+                                    let evemorArray = [];
+
+                                    prompt.reactions.cache.forEach(async (reaction) => {
+                                        if (reaction.count > 1) {
+                                            evemorArray.push(reaction.emoji.name)
+                                        }
+                                    })
+
+                                    let cnnValue;
+                                    let foxValue;
+                                    let nytValue;
+                                    let thehillValue;
+                                    let nbcValue;
+                                    let cbsValue;
+                                    let politicoValue;
+                                    let nprValue;
+                                    let apValue;
+                                    let reutersValue;
+                                    let washpostValue;
+                                    let usatodayValue;
+                                    let morningValue;
+                                    let eveningValue;
+
+                                    if (chosenNews.includes('CNN')) { cnnValue = true } else { cnnValue = false }
+                                    if (chosenNews.includes('FoxNews')) { foxValue = true } else { foxValue = false }
+                                    if (chosenNews.includes('TheNewYorkTimes')) { nytValue = true } else { nytValue = false }
+                                    if (chosenNews.includes('TheHill')) { thehillValue = true } else { thehillValue = false }
+                                    if (chosenNews.includes('NBCNews')) { nbcValue = true } else { nbcValue = false }
+                                    if (chosenNews.includes('CBSNews')) { cbsValue = true } else { cbsValue = false }
+                                    if (chosenNews.includes('POLITICO')) { politicoValue = true } else { politicoValue = false }
+                                    if (chosenNews.includes('NPR')) { nprValue = true } else { nprValue = false }
+                                    if (chosenNews.includes('APNews')) { apValue = true } else { apValue = false }
+                                    if (chosenNews.includes('Reuters')) { reutersValue = true } else { reutersValue = false }
+                                    if (chosenNews.includes('TheWashingtonPost')) { washpostValue = true } else { washpostValue = false }
+                                    if (chosenNews.includes('USAToday')) { usatodayValue = true } else { usatodayValue = false }
+                                    if (evemorArray.includes(`sunrise`)) { morningValue = true } else { morningValue = false }
+                                    if (evemorArray.includes(`bed`)) { eveningValue = true } else { eveningValue = false }
+
+                                    let newData = new newsletterData({
+                                        GuildID: interaction.guild.id,
+                                        UserID: interaction.user.id,
+                                        CNN: cnnValue,
+                                        Fox: foxValue,
+                                        NyTimes: nytValue,
+                                        TheHill: thehillValue,
+                                        NBCNews: nbcValue,
+                                        CBSNews: cbsValue,
+                                        POLITICO: politicoValue,
+                                        NPR: nprValue,
+                                        APNews: apValue,
+                                        Reuters: reutersValue,
+                                        WashPost: washpostValue,
+                                        USAToday: usatodayValue,
+                                        MorningNewsletter: morningValue,
+                                        EveningNewsletter: eveningValue
+                                    })
+                                    await newData.save().catch(console.error);
+                                    prompt.reactions.removeAll();
+                                    interaction.update({ content: "Your newsletter has been set up!", embeds: [], components: [], fetchReply: false });
+
+                                }
+
+                            })
+
                         }
 
 

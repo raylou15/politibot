@@ -15,8 +15,8 @@ const newsLetterSchema = new Schema({
   Reuters: Boolean,
   WashPost: Boolean,
   USAToday: Boolean,
-  OnceADay: Boolean,
-  TwiceADay: Boolean,
+  MorningNewsletter: Boolean,
+  EveningNewsletter: Boolean
 });
 
 module.exports = model("newsletterData", newsLetterSchema, "newslettersubs");
