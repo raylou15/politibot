@@ -8,7 +8,7 @@ Operation Politibot is a bot designed for the [Operation Politics Discord Server
 
 This bot offers a wide variety of functionality ranging from Moderation, auto-Moderation, Premium Features, access to APIs for research and news, and much more.
 
-We give full credit to all of our information provided by APIs such as ProPublica, newscatcherapi, and more. Whenever you run a command that uses an API, you will be given an embed footer with necessary accreditation. Our bot makes gathering the information these APIs collect extremely easy and straightforward, and provides it in an easily-accessible Discord server for the public to use. 
+We give full credit to all of our information provided by APIs such as ProPublica, [newscatcherapi](https://newscatcherapi.com/), and more. Whenever you run a command that uses an API, you will be given an embed footer with necessary accreditation. Our bot makes gathering the information these APIs collect extremely easy and straightforward, and provides it in an easily-accessible Discord server for the public to use. 
 
 Some features may be locked behind Premium roles due to maintenance cost concerns for their usage.
 
