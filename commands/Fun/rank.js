@@ -20,9 +20,9 @@ const xp = require('simply-xp')
     async execute(interaction, client) {
         await interaction.deferReply();
 
-        const member = interaction.options.getMember("user") || interaction.user;
+        const member = interaction.options.getUser("user") || interaction.user;
 
-        xp.rank(interaction, member.id, interaction.guild.id, {
+        xp.rank(interaction, user.id, interaction.guild.id, {
             background: 'https://cdn.discordapp.com/attachments/948001562444300328/1056677697419477042/nMZf4aT.png',
             color: "#096DD1",
             lvlbar: "#FF3FF3",
