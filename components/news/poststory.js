@@ -25,7 +25,9 @@ const {
       
         const newsChannel = interaction.guild.channels.cache.get('775837560651120640')
 
-        newsChannel.send({ embeds: [interaction.message.embeds[0]] })
+        const newsmsg = newsChannel.send({ embeds: [interaction.message.embeds[0]] })
+
+        newsmsg.crosspost()
 
         interaction.reply("News Story Submitted!")
 
