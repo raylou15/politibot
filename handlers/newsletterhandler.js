@@ -212,7 +212,7 @@ const morningJob = schedule.scheduleJob(`0 0 8 * * *`, function() {
 })
 
 
-const eveningJob = schedule.scheduleJob(`0 0 20 * * *`, function() {
+schedule.scheduleJob(`15 8 * * *`, function() {
     console.log("It's time for the evening newsletter!")
 
     const mainURL = `https://api.newscatcherapi.com/v2/latest_headlines?page_size=25&when=24h&countries=US&topic=politics&lang=en&sources=cnn.com,nytimes.com,foxnews.com,nbcnews.com,politico.com,npr.org,apnews.com,reuters.com,thehill.com,usatoday.com,washingtonpost.com,cbsnews.com`;
