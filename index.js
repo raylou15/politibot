@@ -45,25 +45,25 @@ oneAM.tz = 'America/New_York'
 oneAM.second = 5;
 oneAM.minute = 0;
 oneAM.hour = 1;
-schedule.scheduleJob(oneAM, () => {bumpReminder(client)})
+schedule.scheduleJob(oneAM, () => {bumpReminder.bumpReminder(client)})
 const sevenAM = new schedule.RecurrenceRule();
 oneAM.tz = 'America/New_York'
 oneAM.second = 5;
 oneAM.minute = 0;
 oneAM.hour = 7;
-schedule.scheduleJob(sevenAM, () => {bumpReminder(client)})
+schedule.scheduleJob(sevenAM, () => {bumpReminder.bumpReminder(client)})
 const onePM = new schedule.RecurrenceRule();
 oneAM.tz = 'America/New_York'
 oneAM.second = 5;
 oneAM.minute = 0;
 oneAM.hour = 13;
-schedule.scheduleJob(onePM, () => {bumpReminder(client)})
+schedule.scheduleJob(onePM, () => {bumpReminder.bumpReminder(client)})
 const sevenPM = new schedule.RecurrenceRule();
 oneAM.tz = 'America/New_York'
 oneAM.second = 5;
 oneAM.minute = 0;
 oneAM.hour = 19;
-schedule.scheduleJob(sevenPM, () => {bumpReminder(client)})
+schedule.scheduleJob(sevenPM, () => {bumpReminder.bumpReminder(client)})
 
 
 // Setting up commands, events, and components.
