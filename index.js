@@ -39,31 +39,7 @@ schedule.scheduleJob(rule1, () => {newsletterhandler.MorningNews(client)});
 schedule.scheduleJob(rule2, () => {newsletterhandler.EveningNews(client)});
 
 // Bump Reminders
-const bumpReminder = require("./handlers/bumpreminders")
-const oneAM = new schedule.RecurrenceRule();
-oneAM.tz = 'America/New_York'
-oneAM.second = 5;
-oneAM.minute = 0;
-oneAM.hour = 1;
-schedule.scheduleJob(oneAM, () => {bumpReminder.bumpReminder(client)})
-const sevenAM = new schedule.RecurrenceRule();
-oneAM.tz = 'America/New_York'
-oneAM.second = 5;
-oneAM.minute = 0;
-oneAM.hour = 7;
-schedule.scheduleJob(sevenAM, () => {bumpReminder.bumpReminder(client)})
-const onePM = new schedule.RecurrenceRule();
-oneAM.tz = 'America/New_York'
-oneAM.second = 5;
-oneAM.minute = 0;
-oneAM.hour = 13;
-schedule.scheduleJob(onePM, () => {bumpReminder.bumpReminder(client)})
-const sevenPM = new schedule.RecurrenceRule();
-oneAM.tz = 'America/New_York'
-oneAM.second = 5;
-oneAM.minute = 0;
-oneAM.hour = 19;
-schedule.scheduleJob(sevenPM, () => {bumpReminder.bumpReminder(client)})
+
 
 
 // Setting up commands, events, and components.
