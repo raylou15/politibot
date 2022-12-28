@@ -32,7 +32,7 @@ const client = (module.exports = {
      */
     async execute(interaction, client) {
 
-        if (!interaction.guild) {
+        if (interaction.guild) {
 
             if (interaction.options.getSubcommand() === 'subscribe') {
 
