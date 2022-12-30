@@ -10,7 +10,7 @@ module.exports = {
         
         const vc = oldMember.channel
 
-        if (vc.members.size < 1) {
+        if (vc && vc.members.size < 1) {
             if (vc.name[0] === "⭐") {
                 return vc.delete()
             }

@@ -4,7 +4,7 @@ const { execute } = require("./ready");
 module.exports = {
   name: "messageDelete",
   async execute(message, client) {
-    if (message.channel.guild) {
+    if (message.channel.guild && message.author) {
       var msgDelete = new EmbedBuilder()
       .setAuthor({
         name: message.author.tag,

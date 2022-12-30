@@ -12,7 +12,6 @@ module.exports = {
     //News
     if (message.channel.type === ChannelType.GuildAnnouncement ) {
       message.crosspost()
-        .then(() => console.log('Crossposted message'))
         .catch(console.error);
     }
 
@@ -25,7 +24,7 @@ module.exports = {
 
     //Trusted Member Status
 
-    const status = await Date.now();
+    const status = Date.now();
     const joined = await member.joinedTimestamp;
     const datetime = status - joined;
     const userXP = xp.fetch(message.author.id, message.guild.id);
