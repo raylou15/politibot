@@ -10,7 +10,7 @@ module.exports = {
   execute(client) {
     client.user.setAvatar("https://i.imgur.com/UcvQvmT.png");
     client.user.setPresence({
-      activities: [{ name: "you.", type: ActivityType.Watching }],
+      activities: [{ name: "politics", type: ActivityType.Playing }],
     });
     console.log("The bot is now online!");
     loadCommands(client);
