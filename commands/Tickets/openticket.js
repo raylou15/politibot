@@ -23,7 +23,7 @@ const {
         const server = client.guilds.cache.get("760275642150420520");
         
         const memberDiscriminator1 = interaction.user.tag.replace("#", "-")
-        const memberDiscriminator = memberDiscriminator1.replace(" ", "-")
+        const memberDiscriminator = memberDiscriminator1.replace(" ", "_")
         const discrimLength = memberDiscriminator.length
 
         //Check to see if User has a ticket already!
@@ -34,7 +34,6 @@ const {
                         ticketsArray.push(element)
                 }
             })
-            console.log(ticketsArray[ticketsArray.length - 1])
 
             if (ticketsArray[ticketsArray.length - 1].archived === false) { // Active thread found! Error it out.
                 const alreadyOpenEmbed = new EmbedBuilder()

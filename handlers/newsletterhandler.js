@@ -113,7 +113,7 @@ function MorningNews(client) {
                     })
                     let joined = cnnStories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                    newsletterEmbed.addFields({ name: `Top CNN Headlines`, value: joined.substring(0, 1024) })
+                    newsletterEmbed.addFields({ name: `<:CNN:1057383664524210216>  Top CNN Headlines`, value: joined.substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want CNN!`)
                 }
@@ -125,7 +125,7 @@ function MorningNews(client) {
                     })
                     let joined = foxStories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                    newsletterEmbed.addFields({ name: `Top Fox News Headlines`, value: joined.substring(0, 1024) })
+                    newsletterEmbed.addFields({ name: `<:FoxNews:1057383666139017306>  Top Fox News Headlines`, value: joined.substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want Fox!`)
                 }
@@ -137,7 +137,7 @@ function MorningNews(client) {
                     })
                     let joined = nytimesstories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                    newsletterEmbed.addFields({ name: `Top New York Times Headlines`, value: joined.substring(0, 1024) })
+                    newsletterEmbed.addFields({ name: `<:TheNewYorkTimes:1057383669792260106>  Top New York Times Headlines`, value: joined.substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want NYT!`)
                 }
@@ -149,7 +149,7 @@ function MorningNews(client) {
                     })
                     let joined = hillStories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                        newsletterEmbed.addFields({ name: `Top The Hill Headlines`, value: joined.substring(0, 1024) })
+                        newsletterEmbed.addFields({ name: `<:TheHill:1057383675144183968>  Top The Hill Headlines`, value: joined.substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want The Hill!`)
                 }
@@ -161,7 +161,7 @@ function MorningNews(client) {
                     })
                     let joined = nbcStories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                    newsletterEmbed.addFields({ name: `Top NBC News Headlines`, value: joined.substring(0, 1024) })
+                    newsletterEmbed.addFields({ name: `<:NBCNews:1057383667565088819>  Top NBC News Headlines`, value: joined.substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want NBC News!`)
                 }
@@ -173,7 +173,7 @@ function MorningNews(client) {
                     })
                     let joined = cbsStories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                    newsletterEmbed.addFields({ name: `Top CBS News Headlines`, value: joined.substring(0, 1024) })
+                    newsletterEmbed.addFields({ name: `<:CBSNews:1057383663463055530>  Top CBS News Headlines`, value: joined.substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want CBS News!`)
                 }
@@ -185,7 +185,7 @@ function MorningNews(client) {
                     })
                     let joined = politicoStories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                    newsletterEmbed.addFields({ name: `Top POLITICO Headlines`, value: joined.substring(0, 1024) })
+                    newsletterEmbed.addFields({ name: `<:POLITICO:1057383672845697145>  Top POLITICO Headlines`, value: joined.substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want POLITICO!`)
                 }
@@ -197,7 +197,7 @@ function MorningNews(client) {
                     })
                     let joined = nprStories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                    newsletterEmbed.addFields({ name: `Top NPR Headlines`, value: joined.substring(0, 1024) })
+                    newsletterEmbed.addFields({ name: `<:NPR:1057383668487827536>  Top NPR Headlines`, value: joined.substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want NPR!`)
                 }
@@ -209,7 +209,7 @@ function MorningNews(client) {
                     })
                     let joined = apStories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                    newsletterEmbed.addFields({ name: `Top AP News Headlines`, value: joined.substring(0, 1024) })
+                    newsletterEmbed.addFields({ name: `<:APNews:1057384350607495280>  Top AP News Headlines`, value: joined.substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want AP News!`)
                 }
@@ -221,7 +221,7 @@ function MorningNews(client) {
                     })
                     let joined = reuStories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                    newsletterEmbed.addFields({ name: `Top Reuters Headlines`, value: joined.substring(0, 1024) })
+                    newsletterEmbed.addFields({ name: `<:Reuters:1057383673990758470>  Top Reuters Headlines`, value: joined.substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want Reuters!`)
                 }
@@ -233,7 +233,7 @@ function MorningNews(client) {
                     })
                     let joined = wapoStories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                    newsletterEmbed.addFields({ name: `Top Washington Post Headlines`, value: joined.substring(0, 1024) })
+                    newsletterEmbed.addFields({ name: `<:TheWashingtonPost:1057383707289321542>  Top Washington Post Headlines`, value: joined.substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want WaPo!`)
                 }
@@ -245,7 +245,7 @@ function MorningNews(client) {
                     })
                     let joined = usatodayStories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                    newsletterEmbed.addFields({ name: `Top USA Today Headlines`, value: joined.substring(0, 1024).substring(0, 1024) })
+                    newsletterEmbed.addFields({ name: `<:USAToday:1057383705829724170>  Top USA Today Headlines`, value: joined.substring(0, 1024).substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want USA Today!`)
                 }
@@ -370,7 +370,7 @@ function EveningNews(client) {
                     })
                     let joined = cnnStories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                    newsletterEmbed.addFields({ name: `Top CNN Headlines`, value: joined.substring(0, 1024) })
+                    newsletterEmbed.addFields({ name: `<:CNN:1057383664524210216>  Top CNN Headlines`, value: joined.substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want CNN!`)
                 }
@@ -382,7 +382,7 @@ function EveningNews(client) {
                     })
                     let joined = foxStories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                    newsletterEmbed.addFields({ name: `Top Fox News Headlines`, value: joined.substring(0, 1024) })
+                    newsletterEmbed.addFields({ name: `<:FoxNews:1057383666139017306>  Top Fox News Headlines`, value: joined.substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want Fox!`)
                 }
@@ -394,7 +394,7 @@ function EveningNews(client) {
                     })
                     let joined = nytimesstories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                    newsletterEmbed.addFields({ name: `Top New York Times Headlines`, value: joined.substring(0, 1024) })
+                    newsletterEmbed.addFields({ name: `<:TheNewYorkTimes:1057383669792260106>  Top New York Times Headlines`, value: joined.substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want NYT!`)
                 }
@@ -406,7 +406,7 @@ function EveningNews(client) {
                     })
                     let joined = hillStories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                        newsletterEmbed.addFields({ name: `Top The Hill Headlines`, value: joined.substring(0, 1024) })
+                        newsletterEmbed.addFields({ name: `<:TheHill:1057383675144183968>  Top The Hill Headlines`, value: joined.substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want The Hill!`)
                 }
@@ -418,7 +418,7 @@ function EveningNews(client) {
                     })
                     let joined = nbcStories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                    newsletterEmbed.addFields({ name: `Top NBC News Headlines`, value: joined.substring(0, 1024) })
+                    newsletterEmbed.addFields({ name: `<:NBCNews:1057383667565088819>  Top NBC News Headlines`, value: joined.substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want NBC News!`)
                 }
@@ -430,7 +430,7 @@ function EveningNews(client) {
                     })
                     let joined = cbsStories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                    newsletterEmbed.addFields({ name: `Top CBS News Headlines`, value: joined.substring(0, 1024) })
+                    newsletterEmbed.addFields({ name: `<:CBSNews:1057383663463055530>  Top CBS News Headlines`, value: joined.substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want CBS News!`)
                 }
@@ -442,7 +442,7 @@ function EveningNews(client) {
                     })
                     let joined = politicoStories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                    newsletterEmbed.addFields({ name: `Top POLITICO Headlines`, value: joined.substring(0, 1024) })
+                    newsletterEmbed.addFields({ name: `<:POLITICO:1057383672845697145>  Top POLITICO Headlines`, value: joined.substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want POLITICO!`)
                 }
@@ -454,7 +454,7 @@ function EveningNews(client) {
                     })
                     let joined = nprStories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                    newsletterEmbed.addFields({ name: `Top NPR Headlines`, value: joined.substring(0, 1024) })
+                    newsletterEmbed.addFields({ name: `<:NPR:1057383668487827536>  Top NPR Headlines`, value: joined.substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want NPR!`)
                 }
@@ -466,7 +466,7 @@ function EveningNews(client) {
                     })
                     let joined = apStories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                    newsletterEmbed.addFields({ name: `Top AP News Headlines`, value: joined.substring(0, 1024) })
+                    newsletterEmbed.addFields({ name: `<:APNews:1057384350607495280>  Top AP News Headlines`, value: joined.substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want AP News!`)
                 }
@@ -478,7 +478,7 @@ function EveningNews(client) {
                     })
                     let joined = reuStories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                    newsletterEmbed.addFields({ name: `Top Reuters Headlines`, value: joined.substring(0, 1024) })
+                    newsletterEmbed.addFields({ name: `<:Reuters:1057383673990758470>  Top Reuters Headlines`, value: joined.substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want Reuters!`)
                 }
@@ -490,7 +490,7 @@ function EveningNews(client) {
                     })
                     let joined = wapoStories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                    newsletterEmbed.addFields({ name: `Top Washington Post Headlines`, value: joined.substring(0, 1024) })
+                    newsletterEmbed.addFields({ name: `<:TheWashingtonPost:1057383707289321542>  Top Washington Post Headlines`, value: joined.substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want WaPo!`)
                 }
@@ -502,7 +502,7 @@ function EveningNews(client) {
                     })
                     let joined = usatodayStories.map(obj => `**[${obj.title}](${obj.link})**\n${obj.excerpt}`).join('\n\n');
                     if (joined.length === 0) { joined = "There were no major stories published within the last 24 hours."}
-                    newsletterEmbed.addFields({ name: `Top USA Today Headlines`, value: joined.substring(0, 1024).substring(0, 1024) })
+                    newsletterEmbed.addFields({ name: `<:USAToday:1057383705829724170>  Top USA Today Headlines`, value: joined.substring(0, 1024).substring(0, 1024) })
                 } else {
                     console.log(`${profile.UserID} did not want USA Today!`)
                 }

@@ -10,7 +10,7 @@ module.exports = {
     if (!message.guild) {
         if (!message.author.bot) {
             const memberDiscriminator1 = user.tag.replace("#", "-")
-            const memberDiscriminator = memberDiscriminator1.replace(" ", "-")
+            const memberDiscriminator = memberDiscriminator1.replace(" ", "_")
             const discrimLength = memberDiscriminator.length
 
             ticketsArray = [];
@@ -60,7 +60,8 @@ module.exports = {
         } else return
     }  else if (message.channel.parent === ticketsChannel && !message.author.bot) { // Reply functionality.
         const nameArgs = message.channel.name.split("-")
-        const targetDiscrim = `${nameArgs[0]}#${nameArgs[1]}`
+        const targetDiscrim1 = `${nameArgs[0]}#${nameArgs[1]}`
+        const targetDiscrim = targetDiscrim1.replace("_", " ")
         const targetUser = client.users.cache.find(u => u.tag === targetDiscrim)
 
         let staffID; // Setting up aliases for staff.
