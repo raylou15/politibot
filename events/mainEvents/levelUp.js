@@ -8,6 +8,7 @@ module.exports = {
 
     if (!message.author.bot) {
         console.log("TEMPORARY DEBUG: You have leveled up!")
+        xp.lvlRole(message, message.author.id, message.guild.id)
     }
 
   }
