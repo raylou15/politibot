@@ -5,7 +5,7 @@ const { execute } = require("./ready");
 module.exports = {
   name: "messageUpdate",
   async execute(oldMessage, newMessage, client) {
-    if (oldMessage.webhookId || oldMessage.author.bot || !oldMessage.channel.guild) {
+    if (oldMessage.webhookId || oldMessage.author?.bot || !oldMessage.channel.guild) {
       return
     } else {
       if (oldMessage.content === newMessage.content) return;
