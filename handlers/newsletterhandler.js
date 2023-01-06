@@ -259,6 +259,8 @@ function MorningNews(client) {
                 });
                 client.guilds.cache.get('760275642150420520').channels.cache.get('775494762216161341').send(`Sent a newsletter to ${user.displayName} - ${user.id}`)
     
+                user.send("Hey there! We know there have been some issues with the newsletter being a little... empty. Or, sometimes, just not showing up at all! We're not exactly sure what the issue is, but we're working on our own simple API that will accomplish what we're trying to do. This may mean that the Operation Politibot version of this Newsletter will get phased out and replaced with our other bot that is currently in development, but don't worry! The transition should be seamless on your end. This is just a heads up; the change should be coming in a few days!")
+
             }
         });
     })
@@ -516,6 +518,8 @@ function EveningNews(client) {
                 });
                 client.guilds.cache.get('760275642150420520').channels.cache.get('775494762216161341').send(`Sent a newsletter to ${user.displayName} - ${user.id}`)
     
+                user.send("Hey there! We know there have been some issues with the newsletter being a little... empty. Or, sometimes, just not showing up at all! We're not exactly sure what the issue is, but we're working on our own simple API that will accomplish what we're trying to do. This may mean that the Operation Politibot version of this Newsletter will get phased out and replaced with our other bot that is currently in development, but don't worry! The transition should be seamless on your end. This is just a heads up; the change should be coming in a few days!")
+
             }
         });
     })
