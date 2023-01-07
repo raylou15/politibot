@@ -3,7 +3,7 @@ const config = require("../../config.json")
 const TicketCountSchema = require("../../schemas/ticketcount");
 const ticketHandler = require("../../handlers/tickethandler");
 const client = module.exports = {
-    name: "appeals",
+    name: "moderation",
     /**
      *
      * @param {ButtonInteraction} interaction
@@ -40,9 +40,9 @@ const client = module.exports = {
         const submitEmbed = new EmbedBuilder()
         .setColor("Yellow")
         .setTitle('Operation Politics Modmail System')
-        .setDescription('Are you sure you want to submit this ticket to the Appeals category?')
+        .setDescription('Are you sure you want to submit this ticket to the Moderation category?')
         .addFields([
-            { name: "Category", value: "Appeals" },
+            { name: "Category", value: "Moderation" },
             { name: "Reason:", value: modalSubmitted.fields.getTextInputValue('reasoninput') }
         ]);
 
@@ -92,7 +92,7 @@ const client = module.exports = {
                     .setAuthor({ name: interaction.user.tag})
                     .setDescription(`A new ticket has been opened by ${interaction.user}`)
                     .setFields([
-                        { name: "Category", value: "Appeals" },
+                        { name: "Category", value: "Moderation" },
                         { name: "Reason:", value: modalSubmitted.fields.getTextInputValue('reasoninput') }
                     ])
                     .setFooter({ text: "Please claim the ticket before proceeding."})
@@ -103,7 +103,7 @@ const client = module.exports = {
                     .setAuthor({ name: interaction.user.tag})
                     .setDescription(`A new ticket has been opened by ${interaction.user}`)
                     .setFields([
-                        { name: "Category", value: "Appeals" },
+                        { name: "Category", value: "Moderation" },
                         { name: "Reason:", value: modalSubmitted.fields.getTextInputValue('reasoninput') }
                     ])
 
@@ -123,7 +123,7 @@ const client = module.exports = {
                 const memberDiscriminator1 = interaction.user.tag.replace("#", "-");
                 const memberDiscriminator = memberDiscriminator1.replace(" ", "_");
                 const ticketName = `${memberDiscriminator}-${ticketNum}`;
-                const ticketCat = "appeals";
+                const ticketCat = "moderation";
 
                 ticketHandler.TicketCreate(client, ticketName, ticketCat, ticketPreview, ticketButtons)
 
