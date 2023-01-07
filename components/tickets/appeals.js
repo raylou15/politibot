@@ -95,7 +95,7 @@ const client = module.exports = {
                     const ticketPreview = new EmbedBuilder()
                         .setColor('Green')
                         .setTitle('New Ticket Opened')
-                        .setAuthor(interaction.user.tag)
+                        .setAuthor({ name: interaction.user.tag})
                         .setDescription(`A new ticket has been opened by ${interaction.user}`)
                         .setFields([
                             { name: "Category", value: "Appeals" },
@@ -106,7 +106,7 @@ const client = module.exports = {
                     const ticketPreviewU = new EmbedBuilder()
                         .setColor('Green')
                         .setTitle('New Ticket Opened')
-                        .setAuthor(interaction.user.tag)
+                        .setAuthor({ name: interaction.user.tag})
                         .setDescription(`A new ticket has been opened by ${interaction.user}`)
                         .setFields([
                             { name: "Category", value: "Appeals" },
