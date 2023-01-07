@@ -1,4 +1,5 @@
 const config = require("../config.json");
+const { client } = require("discord.js");
 const ticketChannel = client.guilds.cache.get(config.guildID).channels.cache.get(config.ticketParent);
 
 async function TicketCreate(ticketName, ticketCat, ticketPreview, ticketButtons) {
