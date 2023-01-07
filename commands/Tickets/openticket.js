@@ -15,7 +15,7 @@ data: new SlashCommandBuilder()
         const firstEmbed = new EmbedBuilder()
         .setColor("Yellow")
         .setTitle("Operation Politics Modmail System")
-        .setDescription("Please choose the appropriate category below.\n\n`Appeals` are for appealing Moderation Action, `Moderation` is for reporting things or rule inquiries, `Bot Support` is for suggestions or inquiries about the bot, `Partnerships` is to get access to our <#> channel, and `Other` is for everything else.\n\nPlease be wary that abusing this system **will get you blocked**.");
+        .setDescription("Please choose the appropriate category below.\n\n`Appeals` are for appealing Moderation Action, `Moderation` is for reporting things or rule inquiries, `Bot Support` is for suggestions or inquiries about the bot, `Partnerships` is to get access to our <#888789135261859851> channel, and `Other` is for everything else.\n\nPlease be wary that abusing this system **will get you blocked**.");
 
         const buttonsRow = new ActionRowBuilder().addComponents(
             new ButtonBuilder().setCustomId('appeals').setLabel('Appeals').setStyle(ButtonStyle.Primary).setEmoji('⚖️'),
