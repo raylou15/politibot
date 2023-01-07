@@ -1,4 +1,4 @@
-const {ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder, Embed, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
+const {ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 const client = (module.exports = {
 data: new SlashCommandBuilder()
     .setName("openticket")

@@ -66,7 +66,6 @@ module.exports = {
       .toString();
 
     // Channels and stuff
-    var log = interaction.guild.channels.cache.get(client.config.logChannel);
     var sendChannel =
       interaction.guild.channels.cache.get("965271666684985454");
     var rayChannel = interaction.guild.channels.cache.get("775494762216161341");
