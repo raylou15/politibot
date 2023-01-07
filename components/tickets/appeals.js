@@ -101,7 +101,7 @@ const client = module.exports = {
                             { name: "Category", value: "Appeals" },
                             { name: "Reason:", value: modalSubmitted.fields.getTextInputValue('reasoninput') }
                         ])
-                        .setFooter("Please claim the ticket before proceeding.")
+                        .setFooter({ text: "Please claim the ticket before proceeding."})
 
                     const ticketPreviewU = new EmbedBuilder()
                         .setColor('Green')
