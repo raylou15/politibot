@@ -71,7 +71,7 @@ const client = module.exports = {
                 fetchReply: true
             })
 
-            confirmdeny.awaitMessageComponent({
+            ;(await confirmdeny).awaitMessageComponent({
                 time: 180000,
                 filter: i => i.user.id === interaction.user.id,
             }).then(async (interaction) => {
