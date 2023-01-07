@@ -138,7 +138,7 @@ const client = module.exports = {
 
             }).catch(error => {
                 console.error(error)
-                return interaction.message.edit({ content: "Interaction has failed. Prompt likely timed out.", embeds: [], components: [] })
+                return interaction.update({ content: "Interaction has failed. Prompt likely timed out.", embeds: [], components: [] })
             })
         }
 

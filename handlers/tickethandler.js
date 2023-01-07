@@ -17,12 +17,14 @@ async function TicketCreate(client, ticketName, ticketCat, ticketPreview, ticket
     }
 
     let tagArray = [];
-    if (element.name.toLowerCase() === `unclaimed`) {
-        tagArray.push(element.id)
-    }
-    if (element.name.toLowerCase() === `${ticketCat}`) {
-        tagArray.push(element.id)
-    }
+    ticketChannel.availableTags.forEach(element => {
+        if (element.name.toLowerCase() === `unclaimed`) {
+            tagArray.push(element.id)
+        }
+        if (element.name.toLowerCase() === `${ticketCat}`) {
+            tagArray.push(element.id)
+        }
+    });
     const chosenTag = tagArray[0]
     const unclaimedTag = tagArray[1]
     ticketChannel.threads.create({
