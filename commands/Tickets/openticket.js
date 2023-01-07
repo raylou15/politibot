@@ -11,8 +11,9 @@ data: new SlashCommandBuilder()
     async execute(interaction, client) {
 
         let truefalseVal = ticketHandler.TicketChecker(client, interaction)
+        console.log(truefalseVal)
 
-        if (truefalseVal === true) {
+        if (truefalseVal === 'true') {
             return interaction.reply({ content: "You already have a ticket open. Reply in your DMs to the Politibot.", ephemeral: true })
         }
 
