@@ -52,9 +52,11 @@ async function TicketChecker(client, interaction) {
         })
 
         if (ticketsArray[ticketsArray.length - 1].archived === false) { // Active thread found! Error it out.
-            return true
+            console.log("Active ticket found.")
+            return 'true'
         } else {
-            return false
+            console.log("No active ticket found.")
+            return 'false'
         }
     }
 }
