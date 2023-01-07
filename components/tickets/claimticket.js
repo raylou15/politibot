@@ -8,7 +8,7 @@ const client = module.exports = {
      */
     async execute(interaction, client) {
 
-        const nameArgs = message.channel.name.split("-")
+        const nameArgs = interaction.channel.name.split("-")
         const targetDiscrim1 = `${nameArgs[0]}#${nameArgs[1]}`
         const targetDiscrim = targetDiscrim1.replace("_", " ")
         const targetUser = client.users.cache.find(u => u.tag === targetDiscrim)
