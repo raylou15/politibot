@@ -83,8 +83,9 @@ const client = module.exports = {
                 const ticketNum = ticketCount[0].TicketCount + 1
                 await TicketCountSchema.findOneAndUpdate({
                     _id: "63b9fb11264cc64866585953",
-                    CaseCount: ticketNum,
+                    TicketCount: ticketNum,
                 });
+
 
                 const ticketPreview = new EmbedBuilder()
                     .setColor('Green')
