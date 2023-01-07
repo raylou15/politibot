@@ -35,6 +35,7 @@ async function TicketCreate(client, ticketName, ticketCat, ticketPreview, ticket
 }
 
 async function TicketChecker(interaction) {
+    const ticketChannel = client.guilds.cache.get(config.guildID).channels.cache.get(config.ticketParent);
 
     const memberDiscriminator1 = interaction.user.tag.replace("#", "-")
     const memberDiscriminator = memberDiscriminator1.replace(" ", "_")
