@@ -34,7 +34,7 @@ async function TicketCreate(client, ticketName, ticketCat, ticketPreview, ticket
     })
 }
 
-async function TicketChecker(interaction) {
+async function TicketChecker(client, interaction) {
     const ticketChannel = client.guilds.cache.get(config.guildID).channels.cache.get(config.ticketParent);
 
     const memberDiscriminator1 = interaction.user.tag.replace("#", "-")

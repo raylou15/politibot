@@ -10,7 +10,7 @@ const client = module.exports = {
      */
     async execute(interaction, client) {
 
-        let truefalseVal = ticketHandler.TicketChecker(interaction)
+        let truefalseVal = ticketHandler.TicketChecker(client, interaction)
       
         if (truefalseVal === true) {
             return interaction.reply({ content: 'A ticket is already open. Reply in your DMs with the Politibot.', ephemeral: true })
