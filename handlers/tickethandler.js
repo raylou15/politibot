@@ -1,8 +1,8 @@
 const config = require("../config.json");
-const { client } = require("discord.js");
-const ticketChannel = client.guilds.cache.get(config.guildID).channels.cache.get(config.ticketParent);
 
-async function TicketCreate(ticketName, ticketCat, ticketPreview, ticketButtons) {
+async function TicketCreate(client, ticketName, ticketCat, ticketPreview, ticketButtons) {
+    const ticketChannel = client.guilds.cache.get(config.guildID).channels.cache.get(config.ticketParent);
+
     let mentionVal; // Set up mentions
     if (ticketCat === "appeals") {
         mentionVal = "<@178689418415177729> <@&927318500614225920>"
@@ -35,6 +35,7 @@ async function TicketCreate(ticketName, ticketCat, ticketPreview, ticketButtons)
 }
 
 async function TicketChecker(interaction) {
+
     const memberDiscriminator1 = interaction.user.tag.replace("#", "-")
     const memberDiscriminator = memberDiscriminator1.replace(" ", "_")
     const discrimLength = memberDiscriminator.length

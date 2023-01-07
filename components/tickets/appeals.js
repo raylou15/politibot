@@ -132,7 +132,7 @@ const client = module.exports = {
                     const ticketCat = "appeals";
                     const ticketReason = modalSubmitted.fields.getTextInputValue('reasoninput');
 
-                    ticketHandler.TicketCreate(ticketName, ticketCat, ticketPreview, ticketButtons)
+                    ticketHandler.TicketCreate(client, ticketName, ticketCat, ticketPreview, ticketButtons)
 
                 }
 
