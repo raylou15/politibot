@@ -1,4 +1,5 @@
 const {ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
+const ticketHandler = require("../../handlers/tickethandler");
 const client = (module.exports = {
 data: new SlashCommandBuilder()
     .setName("openticket")
@@ -8,6 +9,13 @@ data: new SlashCommandBuilder()
      * @param {ChatInputCommandInteraction} interaction
      */
     async execute(interaction, client) {
+
+        let truefalseVal = ticketHandler.TicketChecker(client, interaction)
+
+        if (truefalseVal === true) {
+            return interaction.reply({ content: "You already have a ticket open. Reply in your DMs to the Politibot.", ephemeral: true })
+        }
+
         const dmErrorEmbed = new EmbedBuilder()
         .setColor("Red")
         .setDescription("You have to have your DMs open! All modmail discussions are done through DMs with the Politibot. [See how to open them here](https://www.technobezz.com/how-to-enable-direct-messages-on-discord/) - your settings must be set to 'everyone'");
