@@ -1,6 +1,6 @@
 const config = require("../config.json");
 
-async function TicketCreate(client, ticketName, ticketCat, ticketPreview, ticketButtons) {
+function TicketCreate(client, ticketName, ticketCat, ticketPreview, ticketButtons) {
     const ticketChannel = client.guilds.cache.get(config.guildID).channels.cache.get(config.ticketParent);
 
     let mentionVal; // Set up mentions
@@ -36,7 +36,7 @@ async function TicketCreate(client, ticketName, ticketCat, ticketPreview, ticket
     })
 }
 
-async function TicketChecker(client, interaction) {
+function TicketChecker(client, interaction) {
     const ticketChannel = client.guilds.cache.get(config.guildID).channels.cache.get(config.ticketParent);
 
     const memberDiscriminator1 = interaction.user.tag.replace("#", "-")
