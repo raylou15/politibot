@@ -8,7 +8,7 @@ const client = module.exports = {
      */
     async execute(interaction, client) {
 
-        const nameArgs = message.channel.name.split("-")
+        const nameArgs = interaction.channel.name.split("-")
         const targetDiscrim1 = `${nameArgs[0]}#${nameArgs[1]}`
         const targetDiscrim = targetDiscrim1.replace("_", " ")
         const targetUser = client.users.cache.find(u => u.tag === targetDiscrim)
@@ -47,10 +47,13 @@ const client = module.exports = {
             .setColor("Red")
             .setDescription("Your ticket has been closed.");
 
-            mainChannel.send(`This thread has been closed by ${interaction.user}.`)
+            interaction.update({ content: `This thread has been closed by ${interaction.user}.`, embeds: [], components: [] })
             targetUser.send({ embeds: [closeEmbed] })
             mainChannel.setArchived(true)
 
+        }).catch(error => {
+            console.log(error)
+            return prompt.edit({ content: "Prompt likely timed out.", embeds: [], components: [] })
         })
 
     },
