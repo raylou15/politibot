@@ -15,18 +15,18 @@ const client = module.exports = {
         const targetUser = client.users.cache.find(u => u.tag === targetDiscrim)
         
         const claimedEmbed = new EmbedBuilder()
-            .setColor("Green")
-            .setDescription(`This ticket has been claimed by ${interaction.user}!`)
+            .setColor("Red")
+            .setDescription(`This ticket has been unclaimed by ${interaction.user}!`)
 
         const claimedEmbed2 = new EmbedBuilder()
-            .setColor("Green")
-            .setDescription("Your ticket has been claimed and is now being reviewed.")
+            .setColor("Red")
+            .setDescription("Your ticket has been unclaimed and is now awaiting a new staff member.")
         
         const claimedButtons = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
-                .setCustomId('unclaimticket')
-                .setLabel('Unclaim Ticket')
-                .setStyle(ButtonStyle.Secondary),
+                .setCustomId('claimticket')
+                .setLabel('Claim Ticket')
+                .setStyle(ButtonStyle.Success),
             new ButtonBuilder()
                 .setCustomId('closeticket')
                 .setLabel('Close')
