@@ -50,7 +50,18 @@ const client = module.exports = {
         await targetUser.send({ embeds: [claimedEmbed2] })
         await interaction.message.edit({ embeds: [newEmbed], components: [claimedButtons] })
         
-        const tags = mainchannel.appliedTags
+        const tagArray = [];
+
+        ticketsChannel.availableTags.forEach(element => {
+            if (element.name.toLowerCase() === `${mainEmbed.fields[0].value}`) {
+                tagArray.push(element.id)
+            }
+            if (element.name.toLowerCase() === `claimed`) {
+                tagArray.push(element.id)
+            }
+        })
+
+        mainchannel.setAppliedTags(tagArray)
 
     },
   };
