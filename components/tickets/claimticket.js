@@ -56,7 +56,7 @@ const client = module.exports = {
         const tagArray = [];
 
         ticketsChannel.availableTags.forEach(element => {
-            if (element.name.toLowerCase() === `${mainEmbed.fields[0].value}`) {
+            if (element.name.toLowerCase() === `${mainEmbed.fields[0].value.toLowerCase()}`) {
                 tagArray.push(element.id)
             }
             if (element.name.toLowerCase() === `claimed`) {
