@@ -17,11 +17,8 @@ const client = new Client({
   partials: [User, Message, GuildMember, ThreadMember, Channel],
 });
 
-const {
-  loadEvents,
-  loadCommands,
-  loadComponents,
-} = require("./handlers/handler");
+const { loadEvents } = require("./handlers/handler");
+const { Google } = require("./handlers/googleauthorize")
 
 // Newsletter Rules
 const newsletterhandler = require("./handlers/newsletterhandler")
@@ -71,6 +68,9 @@ client.config = require("./config.json");
 client.events = new Collection();
 client.commands = new Collection();
 client.components = new Collection();
+
+// Google Auth
+Google()
 
 // SimplyXP Connection
 xp.connect(client.config.DatabaseURL, {}).then(() =>
