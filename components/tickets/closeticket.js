@@ -1,7 +1,7 @@
 const { ButtonInteraction, ModalBuilder, ActionRowBuilder, TextInputBuilder, TextInputStyle, EmbedBuilder, ButtonBuilder, ButtonStyle, IntentsBitField } = require("discord.js");
 const config = require("../../config.json")
 const client = module.exports = {
-    name: "claimticket",
+    name: "closeticket",
     /**
      *
      * @param {ButtonInteraction} interaction
