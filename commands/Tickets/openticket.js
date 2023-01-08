@@ -34,7 +34,7 @@ data: new SlashCommandBuilder()
             new ButtonBuilder().setCustomId('otherhelp').setLabel('Other').setStyle(ButtonStyle.Secondary).setEmoji('❔')
         );
 
-        await interaction.member.send({ embeds: [firstEmbed], components: [buttonsRow] }).catch(async (err) => {
+        await interaction.user.send({ embeds: [firstEmbed], components: [buttonsRow] }).catch(async (err) => {
             console.log(err);
             return interaction.reply({ embeds: [dmErrorEmbed], ephemeral: true });
         });
