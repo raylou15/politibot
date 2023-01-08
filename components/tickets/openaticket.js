@@ -1,5 +1,6 @@
 const { ButtonInteraction, ModalBuilder, ActionRowBuilder, TextInputBuilder, TextInputStyle, EmbedBuilder, ButtonBuilder, ButtonStyle, IntentsBitField } = require("discord.js");
 const config = require("../../config.json")
+const ticketHandler = require("../../handlers/tickethandler");
 const client = module.exports = {
     name: "openaticket",
     /**
