@@ -1,5 +1,6 @@
 const {ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, PermissionFlagsBits } = require("discord.js");
 const ticketHandler = require("../../handlers/tickethandler");
+const config = require("../../config.json")
 const client = (module.exports = {
 data: new SlashCommandBuilder()
     .setName("closeticket")
@@ -10,6 +11,10 @@ data: new SlashCommandBuilder()
      * @param {ChatInputCommandInteraction} interaction
      */
     async execute(interaction, client) {
+
+        if (interaction.channel.parent.id !== config.ticketParent) {
+            return interaction.reply({ content: "This command must be used in an active ticket.", ephemeral: true})
+        }
 
         const nameArgs = interaction.channel.name.split("-")
         const targetDiscrim1 = `${nameArgs[0]}#${nameArgs[1]}`
