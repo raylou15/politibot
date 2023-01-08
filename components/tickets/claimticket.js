@@ -8,7 +8,8 @@ const client = module.exports = {
      */
     async execute(interaction, client) {
 
-        const nameArgs = interaction.channel.name.split("-")
+        const mainchannel = interaction.channel
+        const nameArgs = mainchannel.name.split("-")
         const targetDiscrim1 = `${nameArgs[0]}#${nameArgs[1]}`
         const targetDiscrim = targetDiscrim1.replace("_", " ")
         const targetUser = client.users.cache.find(u => u.tag === targetDiscrim)
@@ -34,8 +35,10 @@ const client = module.exports = {
 
         await interaction.reply({ embeds: [claimedEmbed]})
         await targetUser.send({ embeds: [claimedEmbed2] })
-        interaction.message.edit({ components: [claimedButtons] })
-
+        await interaction.message.edit({ components: [claimedButtons] })
+        
+        const tags = mainchannel.appliedTags
+        console.log(tags)
 
     },
   };
