@@ -13,8 +13,9 @@ const client = module.exports = {
         const targetDiscrim = targetDiscrim1.replace("_", " ")
         const targetUser = client.users.cache.find(u => u.tag === targetDiscrim)
 
-        mainChannel = interaction.channel;
-        mainEmbed = interaction.message.embeds[0]
+        const mainChannel = interaction.channel;
+        const mainEmbed = interaction.message.embeds[0]
+        const mainMessage = interaction.message
 
         const confirmEmbed = new EmbedBuilder()
         .setColor("Red")
@@ -48,7 +49,7 @@ const client = module.exports = {
             .setDescription("Your ticket has been closed.");
 
             await interaction.update({ content: `This thread has been closed by ${interaction.user}.`, embeds: [], components: [] })
-            interaction.message.edit({ components: [] })
+            mainMessage.edit({ components: [] })
             targetUser.send({ embeds: [closeEmbed] })
             mainChannel.setArchived(true)
 
