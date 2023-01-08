@@ -6,16 +6,17 @@ function TicketCreate(client, ticketName, ticketCat, ticketPreview, ticketButton
     let mentionVal; // Set up mentions
     if (ticketCat === "appeals") {
         // mentionVal = "<@178689418415177729> <@&927318500614225920>"
-        mentionVal = "haha"
     } else if (ticketCat === "moderation") {
-        mentionVal = "<@178689418415177729> <@&927318500614225920> <@&854841000480079882> <@&893189360105689139>"
+        // mentionVal = "<@178689418415177729> <@&927318500614225920> <@&854841000480079882> <@&893189360105689139>"
     } else if (ticketCat === "bot support") {
-        mentionVal = "<@178689418415177729>"
+        // mentionVal = "<@178689418415177729>"
     } else if (ticketCat === "partnerships") {
-        mentionVal = "<@178689418415177729> <@&927316457233186846>"
+        // mentionVal = "<@178689418415177729> <@&927316457233186846>"
     } else if (ticketCat === "other") {
-        mentionVal = "<@178689418415177729> <@&927318500614225920> <@&854841000480079882> <@&893189360105689139> <@&1013285748012757053> <@&927317020867969074>"
+        // mentionVal = "<@178689418415177729> <@&927318500614225920> <@&854841000480079882> <@&893189360105689139> <@&1013285748012757053> <@&927317020867969074>"
     }
+    mentionVal = "haha"
+
 
     let tagArray = [];
     ticketChannel.availableTags.forEach(element => {
