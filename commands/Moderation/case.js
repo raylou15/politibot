@@ -90,9 +90,7 @@ module.exports = {
         }
         let typeInfo;
         if (logData.InfractionType === "Mute") {
-          typeInfo = `**Member muted for ${
-            logData.Duration
-          }:**\n🔇 ${await targetUser} (${logData.TargetID})`;
+          typeInfo = `**Member muted for ${logData.Duration}:**\n🔇 ${await targetUser} (${logData.TargetID})`;
         } else if (logData.InfractionType === "Incident") {
           typeInfo = `**Incident issued against member:**\n🚫 ${targetUser} (${logData.TargetID})`;
         } else if (logData.InfractionType === "Warn") {
@@ -101,6 +99,8 @@ module.exports = {
           typeInfo = `**Member kicked:**\n🥾 ${targetUser} (${logData.TargetID})`;
         } else if (logData.InfractionType === "Ban") {
           typeInfo = `**Member banned:**\n🔨 (${logData.TargetID})`;
+        } else if (logData.InfractionType === "VoiceMute") {
+          typeInfo = `**Member voice muted:\n🔇 ${await targetUser} (${logData.TargetID})`;
         } else {
           typeInfo = "ERROR";
         }
@@ -177,6 +177,8 @@ module.exports = {
         })`;
       } else if (logData.InfractionType === "Ban") {
         typeInfo = `**Member banned:**\n🔨 (${logData.TargetID})`;
+      } else if (logData.InfractionType === "VoiceMute") {
+        typeInfo = `**Member voice muted:\n🔇 ${await targetUser} (${logData.TargetID})`;
       } else {
         typeInfo = "ERROR";
       }
