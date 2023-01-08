@@ -101,7 +101,7 @@ data: new SlashCommandBuilder()
             const targetUser = client.users.cache.find(u => u.tag === targetDiscrim)
             const ticketsChannel = interaction.guild.channels.cache.get(config.ticketParent)
 
-            await interaction.message.pin()
+            await mainMessage.pin()
 
             const newEmbed = new EmbedBuilder()
             .setColor('Green')
