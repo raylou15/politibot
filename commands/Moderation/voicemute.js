@@ -101,7 +101,7 @@ const {
           CaseID: caseNumVal,
           TargetID: target.id,
           IssuerID: interaction.user.id,
-          InfractionType: "VoiceMute",
+          InfractionType: "Voice Mute",
           Date: Date.now(),
           Reason: reason,
         });
