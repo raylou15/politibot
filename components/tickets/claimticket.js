@@ -9,10 +9,23 @@ const client = module.exports = {
     async execute(interaction, client) {
 
         const mainchannel = interaction.channel
+        const mainEmbed = interaction.message.embeds[0]
         const nameArgs = mainchannel.name.split("-")
         const targetDiscrim1 = `${nameArgs[0]}#${nameArgs[1]}`
         const targetDiscrim = targetDiscrim1.replace("_", " ")
         const targetUser = client.users.cache.find(u => u.tag === targetDiscrim)
+
+        const newEmbed = new EmbedBuilder()
+        .setColor('Green')
+        .setTitle('New Ticket Opened')
+        .setAuthor(mainEmbed.author)
+        .setDescription(mainEmbed.description)
+        .setFields([
+            { name: mainEmbed.fields[0].name, value: mainEmbed.fields[0].value },
+            { name: mainEmbed.fields[1].name, value: mainEmbed.fields[1].value, inline: true },
+            { name: mainEmbed.fields[2].name, value: `${interaction.user}`, inline: true }
+        ])
+        .setFooter({ text: "This ticket has been claimed."});
         
         const claimedEmbed = new EmbedBuilder()
             .setColor("Green")
@@ -35,7 +48,7 @@ const client = module.exports = {
 
         await interaction.reply({ embeds: [claimedEmbed]})
         await targetUser.send({ embeds: [claimedEmbed2] })
-        await interaction.message.edit({ components: [claimedButtons] })
+        await interaction.message.edit({ embeds: [newEmbed], components: [claimedButtons] })
         
         const tags = mainchannel.appliedTags
 
