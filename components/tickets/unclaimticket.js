@@ -9,6 +9,7 @@ const client = module.exports = {
     async execute(interaction, client) {
 
         const mainchannel = interaction.channel
+        const mainEmbed = interaction.message.embeds[0]
         const nameArgs = mainchannel.name.split("-")
         const targetDiscrim1 = `${nameArgs[0]}#${nameArgs[1]}`
         const targetDiscrim = targetDiscrim1.replace("_", " ")
