@@ -17,12 +17,13 @@ data: new SlashCommandBuilder()
         const targetUser = client.users.cache.find(u => u.tag === targetDiscrim)
 
         const mainChannel = interaction.channel;
-        const mainEmbed = interaction.message.embeds[0]
         const fetchmessages = await interaction.channel.messages.fetch({
             after: 1,
             limit: 1
         });
         const mainMessage = fetchmessages.first()
+        const mainEmbed = mainMessage.embeds[0]
+
 
         const confirmEmbed = new EmbedBuilder()
         .setColor("Red")
