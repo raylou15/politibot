@@ -103,7 +103,6 @@ const {
           IssuerID: interaction.user.id,
           InfractionType: "VoiceMute",
           Date: Date.now(),
-          Duration: duration,
           Reason: reason,
         });
         await profileData.save().catch(console.error);
