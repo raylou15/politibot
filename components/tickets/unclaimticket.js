@@ -14,6 +14,7 @@ const client = module.exports = {
         const targetDiscrim1 = `${nameArgs[0]}#${nameArgs[1]}`
         const targetDiscrim = targetDiscrim1.replace("_", " ")
         const targetUser = client.users.cache.find(u => u.tag === targetDiscrim)
+        const ticketsChannel = interaction.guild.channels.cache.get(config.ticketParent)
 
         if (`<@${interaction.user.id}>` !== mainEmbed.fields[2].value) {
             console.log(mainEmbed.fields[2].value)
