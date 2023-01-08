@@ -43,14 +43,15 @@ const client = module.exports = {
             if (buttonClicked === 'cancelclose') {
                 return interaction.update({ content: "Cancelled.", embeds: [], components: [] })
             }
+            await mainMessage.edit({ embeds: [mainMessage.embeds[0]], components: [] })
 
             const closeEmbed = new EmbedBuilder()
             .setColor("Red")
             .setDescription(`Your ${mainEmbed.fields[0].value} ticket has been closed.`);
 
             await interaction.update({ content: `This thread has been closed by ${interaction.user}.`, embeds: [], components: [] })
-            targetUser.send({ embeds: [closeEmbed] })
-            mainMessage.edit({ embeds: [mainMessage.embeds[0]], components: [] }).then(mainChannel.setArchived(true))
+            await targetUser.send({ embeds: [closeEmbed] })
+            await mainChannel.setArchived(true)
 
         }).catch(error => {
             console.log(error)
