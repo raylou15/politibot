@@ -29,7 +29,7 @@ data: new SlashCommandBuilder()
         }
 
         //Close Command
-        if (interaction.getSubcommand() === 'close') {
+        if (interaction.options.getSubcommand() === 'close') {
             const nameArgs = interaction.channel.name.split("-")
             const targetDiscrim1 = `${nameArgs[0]}#${nameArgs[1]}`
             const targetDiscrim = targetDiscrim1.replace("_", " ")
@@ -87,7 +87,7 @@ data: new SlashCommandBuilder()
         }
 
         //Claim Command
-        if (interaction.getSubcommand() === 'claim') {
+        if (interaction.options.getSubcommand() === 'claim') {
             const mainchannel = interaction.channel
             const fetchmessages = await interaction.channel.messages.fetch({
                 after: 1,
@@ -153,7 +153,7 @@ data: new SlashCommandBuilder()
         }
 
         //Unclaim Command
-        if (interaction.getSubcommand() === 'unclaim') {
+        if (interaction.options.getSubcommand() === 'unclaim') {
             const mainchannel = interaction.channel
             const fetchmessages = await interaction.channel.messages.fetch({
                 after: 1,
