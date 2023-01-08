@@ -47,7 +47,7 @@ const client = module.exports = {
             .setColor("Red")
             .setDescription("Your ticket has been closed.");
 
-            interaction.update({ content: `This thread has been closed by ${interaction.user}.`, embeds: [], components: [] })
+            await interaction.update({ content: `This thread has been closed by ${interaction.user}.`, embeds: [], components: [] })
             targetUser.send({ embeds: [closeEmbed] })
             mainChannel.setArchived(true)
 
