@@ -15,7 +15,7 @@ const client = module.exports = {
         const targetDiscrim = targetDiscrim1.replace("_", " ")
         const targetUser = client.users.cache.find(u => u.tag === targetDiscrim)
 
-        if (interaction.user !== mainEmbed.fields[2].value) {
+        if (`<@${interaction.user.id}>` !== mainEmbed.fields[2].value) {
             console.log(mainEmbed.fields[2].value)
             return interaction.reply({ content: "This is not your ticket!", ephemeral: true })
         }
