@@ -136,7 +136,7 @@ data: new SlashCommandBuilder()
 
             await interaction.reply({ embeds: [claimedEmbed]})
             await targetUser.send({ embeds: [claimedEmbed2] })
-            await interaction.message.edit({ embeds: [newEmbed], components: [claimedButtons] })
+            await mainMessage.edit({ embeds: [newEmbed], components: [claimedButtons] })
             
             const tagArray = [];
 
@@ -205,7 +205,7 @@ data: new SlashCommandBuilder()
 
             await interaction.reply({ embeds: [claimedEmbed]})
             await targetUser.send({ embeds: [claimedEmbed2] })
-            await interaction.message.edit({ embeds: [newEmbed], components: [claimedButtons] })
+            await mainMessage.edit({ embeds: [newEmbed], components: [claimedButtons] })
             
             const tagArray = [];
 
