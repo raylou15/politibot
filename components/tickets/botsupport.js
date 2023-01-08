@@ -93,7 +93,8 @@ const client = module.exports = {
                     .setDescription(`A new ticket has been opened by ${interaction.user}`)
                     .setFields([
                         { name: "Category", value: "Bot Support" },
-                        { name: "Reason:", value: modalSubmitted.fields.getTextInputValue('reasoninput') }
+                        { name: "Reason:", value: modalSubmitted.fields.getTextInputValue('reasoninput'), inline: true },
+                        { name: "Claimed by:", value: "N/A", inline: true }
                     ])
                     .setFooter({ text: "Please claim the ticket before proceeding."})
 
