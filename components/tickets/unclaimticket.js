@@ -22,7 +22,7 @@ const client = module.exports = {
         .setFields([
             { name: mainEmbed.fields[0].name, value: mainEmbed.fields[0].value },
             { name: mainEmbed.fields[1].name, value: mainEmbed.fields[1].value, inline: true },
-            { name: mainEmbed.fields[2].name, value: `${interaction.user}`, inline: true }
+            { name: mainEmbed.fields[2].name, value: `N/A`, inline: true }
         ])
         .setFooter({ text: "Please claim the ticket before proceeding."});
         
