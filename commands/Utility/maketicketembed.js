@@ -31,12 +31,13 @@ const {
         new ButtonBuilder()
           .setCustomId("openaticket")
           .setLabel("Open a Ticket")
-          .setStyle(ButtonStyle.Success),
+          .setEmoji('📩')
+          .setStyle(ButtonStyle.Primary),
       );
   
       const buttonembed = new EmbedBuilder()
         .setTitle("Operation Politics Modmail System")
-        .setColor("White")
+        .setColor("Green")
         .setDescription("If you need to get in touch with staff, the best way to do it and receive a timely response is using our Modmail / ticket system. This allows you contact our whole team, or specific and relevant parts of our team, to get you the best answers as soon as possible.\n\nOf course, be sure to remember there are other ways of contacting staff for moderation issues, such as `/report` and right clicking a message -> Apps -> Report Message.\n\nYour DMs need to be open and able to accept DMs from bots for this to work. **People who abuse this system will be blacklisted from using it.**")
         .setFooter({
           text: "━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━",
