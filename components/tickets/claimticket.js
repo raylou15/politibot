@@ -15,6 +15,8 @@ const client = module.exports = {
         const targetDiscrim = targetDiscrim1.replace("_", " ")
         const targetUser = client.users.cache.find(u => u.tag === targetDiscrim)
 
+        await interaction.message.pin()
+
         const newEmbed = new EmbedBuilder()
         .setColor('Green')
         .setTitle('New Ticket Opened')
