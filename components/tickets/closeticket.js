@@ -49,7 +49,7 @@ const client = module.exports = {
 
             await interaction.update({ content: `This thread has been closed by ${interaction.user}.`, embeds: [], components: [] })
             targetUser.send({ embeds: [closeEmbed] })
-            // mainChannel.setArchived(true)
+            mainChannel.setArchived(true)
 
         }).catch(error => {
             console.log(error)
