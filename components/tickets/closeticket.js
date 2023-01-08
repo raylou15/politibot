@@ -49,9 +49,8 @@ const client = module.exports = {
             .setDescription(`Your ${mainEmbed.fields[0].value} ticket has been closed.`);
 
             await interaction.update({ content: `This thread has been closed by ${interaction.user}.`, embeds: [], components: [] })
-            mainMessage.edit({ embeds: [mainMessage.embeds[0]], components: [] })
             targetUser.send({ embeds: [closeEmbed] })
-            // mainChannel.setArchived(true)
+            mainMessage.edit({ embeds: [mainMessage.embeds[0]], components: [] }).then(mainChannel.setArchived(true))
 
         }).catch(error => {
             console.log(error)
