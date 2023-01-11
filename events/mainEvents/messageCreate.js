@@ -1,4 +1,4 @@
-const { EmbedBuilder, ChannelType } = require("discord.js");
+const { EmbedBuilder, ChannelType, AttachmentBuilder } = require("discord.js");
 const { execute } = require("./ready");
 const xp = require('simply-xp');
 
@@ -53,7 +53,7 @@ module.exports = {
       message.reply("https://www.youtube.com/watch?v=rgiC8YfytDw");
     }
 
-    const commiemp4 = require("../../otherfiles/commie.mp4")
+    const commiemp4 = new AttachmentBuilder('../../otherfiles/commie.mp4');
     if (message.content.toLowerCase().includes("sounds like commie") || message.content.toLowerCase().includes("sounds like some commie") || message.content.toLowerCase().includes("commie")) {
       message.reply({files: [commiemp4]})
     }
