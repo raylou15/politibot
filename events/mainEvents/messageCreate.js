@@ -52,8 +52,8 @@ module.exports = {
     if (message.content.toLowerCase().includes("socialism is when")) {
       message.reply("https://www.youtube.com/watch?v=rgiC8YfytDw");
     }
-
-    const commiemp4 = new AttachmentBuilder('../../otherfiles\commie.mp4');
+    
+    const commiemp4 = new AttachmentBuilder("../../otherfiles/commie.mp4");
     if (message.content.toLowerCase().includes("sounds like commie") || message.content.toLowerCase().includes("sounds like some commie") || message.content.toLowerCase().includes("commie")) {
       message.reply({files: [commiemp4]})
     }
