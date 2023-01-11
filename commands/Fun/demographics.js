@@ -6,7 +6,7 @@ const {
   } = require("discord.js");
   const client = (module.exports = {
     data: new SlashCommandBuilder()
-      .setName("demographocs")
+      .setName("demographics")
       .setDescription("Check the server's demographics!"),
     /**
      *
@@ -41,13 +41,33 @@ const {
         const constitutionparty = roles.get("1055211616066605106");
         const otherthirdparty = roles.get("775835486450090044");
         const independentparty = roles.get("775836454580125696");
+        const partyroletotal = democraticparty.members.size + republicanparty.members.size + greenparty.members.size + libertarianparty.members.size + forwardparty.members.size + solidarityparty.members.size + constitutionparty.members.size + otherthirdparty.members.size + independentparty.members.size
 
         const ideologyEmbed = new EmbedBuilder()
         .setColor("White")
         .setTitle("Operation Politics Demographics")
-        .setDescription("This command currently only displays statistics for the primary ideology roles and the political party roles. More data will be added later. For the ideology roles, each category has a number (total members) with a percentage (showing how much that group makes up of the total roled server population) and roles are shown in a similar way.")
+        .setDescription("This command currently only displays statistics for the primary ideology roles and the political party roles. More data will be added later. For the ideology roles, each category has a number (total members) with a percentage (showing how much that group makes up of the total roled server population) and roles are shown in a similar way. There are currently `" + `${ideorolestotal}` + "` people with ideology roles and `" + `${partyroletotal}` + "` people with party roles.")
         .setFields([
-            { name: `Left Wing (${leftwingtotal} / ${100*(leftwingtotal/(ideorolestotal))}%)`, value: `${communist} - ${communist.members.size} (${100*(communist.members.size/ideorolestotal)})` }
+            { 
+                name: `Left Wing (${leftwingtotal} / ${(100*(leftwingtotal/(ideorolestotal))).toFixed(2)}%)`, 
+                value: `${communist} - ${communist.members.size} (${(100*(communist.members.size/ideorolestotal)).toFixed(2)}%) \n${socialist} - ${socialist.members.size} (${(100*(socialist.members.size/ideorolestotal).toFixed(2))}%) \n${democraticsocialist} - ${democraticsocialist.members.size} (${(100*(democraticsocialist.members.size/ideorolestotal).toFixed(2))}%) \n${progressive} - ${progressive.members.size} (${(100*(progressive.members.size/ideorolestotal)).toFixed(2)}%) \n${liberal} - ${liberal.members.size} (${(100*(liberal.members.size/ideorolestotal).toFixed(2))}%)`, 
+                inline: true
+            },
+            { 
+                name: `Right Wing (${rightwingtotal} / ${(100*(rightwingtotal/(ideorolestotal))).toFixed(2)}%)`, 
+                value: `${nationalistpopulist} - ${nationalistpopulist.members.size} (${(100*(nationalistpopulist.members.size/ideorolestotal)).toFixed(2)}%) \n${classicalliberal} - ${classicalliberal.members.size} (${(100*(classicalliberal.members.size/ideorolestotal).toFixed(2))}%) \n${libertarian} - ${libertarian.members.size} (${(100*(libertarian.members.size/ideorolestotal).toFixed(2))}%) \n${paleoconservative} - ${paleoconservative.members.size} (${(100*(paleoconservative.members.size/ideorolestotal).toFixed(2))}%) \n${conservative} - ${conservative.members.size} (${(100*(conservative.members.size/ideorolestotal).toFixed(2))}%)`, 
+                inline: true
+            },
+            { 
+                name: `Moderates (${moderatetotal} / ${(100*(moderatetotal/(ideorolestotal))).toFixed(2)}%)`, 
+                value: `${moderateliberal} - ${moderateliberal.members.size} (${(100*(moderateliberal.members.size/ideorolestotal)).toFixed(2)}%) \n${moderate} - ${moderate.members.size} (${(100*(moderate.members.size/ideorolestotal).toFixed(2))}%) \n${moderateconservative} - ${moderateconservative.members.size} (${(100*(moderateconservative.members.size/ideorolestotal).toFixed(2))}%)`, 
+                inline: false
+            },
+            { 
+                name: `Political Party Data (${partyroletotal})`, 
+                value: `${democraticparty} - ${democraticparty.members.size} (${(100*(democraticparty.members.size/partyroletotal)).toFixed(2)}%) \n${independentparty} - ${independentparty.members.size} (${(100*(independentparty.members.size/partyroletotal)).toFixed(2)}%) \n${republicanparty} - ${republicanparty.members.size} (${(100*(republicanparty.members.size/partyroletotal)).toFixed(2)}%) \n${libertarianparty} - ${libertarianparty.members.size} (${(100*(libertarianparty.members.size/partyroletotal)).toFixed(2)}%) \n${greenparty} - ${greenparty.members.size} (${(100*(greenparty.members.size/partyroletotal)).toFixed(2)}%) \n${forwardparty} - ${forwardparty.members.size} (${(100*(forwardparty.members.size/partyroletotal)).toFixed(2)}%) \n${solidarityparty} - ${solidarityparty.members.size} (${(100*(solidarityparty.members.size/partyroletotal)).toFixed(2)}%) \n${constitutionparty} - ${constitutionparty.members.size} (${(100*(constitutionparty.members.size/partyroletotal)).toFixed(2)}%) \n${otherthirdparty} - ${otherthirdparty.members.size} (${(100*(otherthirdparty.members.size/partyroletotal)).toFixed(2)}%)`,
+                inline: false
+            },
         ])
 
         interaction.reply({ embeds: [ideologyEmbed] });
