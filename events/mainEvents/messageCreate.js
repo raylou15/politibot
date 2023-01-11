@@ -52,7 +52,7 @@ module.exports = {
     if (message.content.toLowerCase().includes("socialism is when")) {
       message.reply("https://www.youtube.com/watch?v=rgiC8YfytDw");
     }
-    if (message.content.toLowerCase().includes("sounds like commie") || message.content.toLowerCase().includes("sounds like some commie")) {
+    if (message.content.toLowerCase().includes("sounds like commie") || message.content.toLowerCase().includes("sounds like some commie") || message.content.toLowerCase().includes("commie")) {
       message.reply("https://cdn.discordapp.com/attachments/928407503690149939/1062530628257583104/commie.mp4")
     }
     if (
