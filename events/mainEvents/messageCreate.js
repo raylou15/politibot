@@ -31,7 +31,7 @@ module.exports = {
 
     if (
       member.roles.cache.has("909989200378601472") &&
-      userXP.level >= 6 &&
+      await userXP.level >= 6 &&
       datetime >= 1209600000
     ) {
       member.roles.add("775838439538425866").then(member.roles.remove("909989200378601472")).then(message.channel.send(
@@ -51,6 +51,9 @@ module.exports = {
 
     if (message.content.toLowerCase().includes("socialism is when")) {
       message.reply("https://www.youtube.com/watch?v=rgiC8YfytDw");
+    }
+    if (message.content.toLowerCase().includes("sounds like commie") || message.content.toLowerCase().includes("sounds like some commie")) {
+      message.reply("https://cdn.discordapp.com/attachments/928407503690149939/1062530628257583104/commie.mp4")
     }
     if (
       message.content.toLowerCase().includes("lets go brandon") ||
