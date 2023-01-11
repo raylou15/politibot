@@ -55,7 +55,7 @@ module.exports = {
 
     const commiemp4 = require("../../otherfiles/commie.mp4")
     if (message.content.toLowerCase().includes("sounds like commie") || message.content.toLowerCase().includes("sounds like some commie") || message.content.toLowerCase().includes("commie")) {
-      message.reply({files: [{ attachment: commiemp4, name: 'commie.mp4'}]})
+      message.reply({files: [commiemp4]})
     }
     if (
       message.content.toLowerCase().includes("lets go brandon") ||
