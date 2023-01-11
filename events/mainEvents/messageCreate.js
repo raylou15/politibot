@@ -1,4 +1,4 @@
-const { EmbedBuilder, ChannelType, AttachmentBuilder } = require("discord.js");
+const { EmbedBuilder, ChannelType } = require("discord.js");
 const { execute } = require("./ready");
 const xp = require('simply-xp');
 
@@ -52,9 +52,8 @@ module.exports = {
     if (message.content.toLowerCase().includes("socialism is when")) {
       message.reply("https://www.youtube.com/watch?v=rgiC8YfytDw");
     }
-
     if (message.content.toLowerCase().includes("sounds like commie") || message.content.toLowerCase().includes("sounds like some commie") || message.content.toLowerCase().includes("commie")) {
-      message.reply({files: ["./otherfiles/commie.mp4"]})
+      message.reply("https://cdn.discordapp.com/attachments/928407503690149939/1062530628257583104/commie.mp4")
     }
     if (
       message.content.toLowerCase().includes("lets go brandon") ||
