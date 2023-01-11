@@ -18,7 +18,6 @@ const client = new Client({
 });
 
 const { loadEvents } = require("./handlers/handler");
-const { Google } = require("./handlers/googleauthorize")
 
 // Newsletter Rules
 const newsletterhandler = require("./handlers/newsletterhandler")
@@ -62,15 +61,11 @@ sevenPM.minute = 0;
 sevenPM.hour = 19;
 schedule.scheduleJob(sevenPM, () => {bumpreminders.bumpReminder(client)})
 
-
 // Setting up commands, events, and components.
 client.config = require("./config.json");
 client.events = new Collection();
 client.commands = new Collection();
 client.components = new Collection();
-
-// Google Auth
-Google()
 
 // SimplyXP Connection
 xp.connect(client.config.DatabaseURL, {}).then(() =>
