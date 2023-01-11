@@ -44,7 +44,7 @@ const {
         const partyroletotal = democraticparty.members.size + republicanparty.members.size + greenparty.members.size + libertarianparty.members.size + forwardparty.members.size + solidarityparty.members.size + constitutionparty.members.size + otherthirdparty.members.size + independentparty.members.size
 
         const ideologyEmbed = new EmbedBuilder()
-        .setColor("White")
+        .setColor("Blue")
         .setTitle("Operation Politics Demographics")
         .setDescription("This command currently only displays statistics for the primary ideology roles and the political party roles. More data will be added later. For the ideology roles, each category has a number (total members) with a percentage (showing how much that group makes up of the total roled server population) and roles are shown in a similar way. There are currently `" + `${ideorolestotal}` + "` people with ideology roles and `" + `${partyroletotal}` + "` people with party roles.")
         .setFields([
