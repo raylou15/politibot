@@ -153,7 +153,7 @@ const {
                     const clubRole = interaction.guild.roles.cache.get(`${clubProfile.RoleID}`)
                     const ClubChannel = interaction.guild.channels.cache.get(`${clubProfile.ClubChannel}`)
 
-                    targetUser.send("you're my friend now :)")
+                    targetUser.send(`You have been added to a private club by ${interaction.user}`)
                     targetMember.roles.add(`${clubRole.id}`)
                     interaction.reply({ content: `<@${targetUser.id}> has been added to <#${ClubChannel.id}>!`, ephemeral: true})
                     return ClubChannel.send(`<@${targetUser.id}> welcome to <#${ClubChannel.id}>!`)
