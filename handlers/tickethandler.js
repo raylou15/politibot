@@ -5,8 +5,7 @@ function TicketCreate(client, ticketName, ticketCat, ticketPreview, ticketButton
 
     let mentionVal; // Set up mentions
     if (ticketCat === "appeals") {
-        // mentionVal = "<@178689418415177729> <@&927318500614225920>"
-        mentionVal = "haha"
+        mentionVal = "<@178689418415177729> <@&927318500614225920>"
     } else if (ticketCat === "moderation") {
         mentionVal = "<@178689418415177729> <@&927318500614225920> <@&854841000480079882> <@&893189360105689139>"
     } else if (ticketCat === "bot support") {
