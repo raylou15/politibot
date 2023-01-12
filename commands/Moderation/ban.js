@@ -71,7 +71,7 @@ module.exports = {
       .setColor("Red")
       .setAuthor({
         name: `${target.user.tag}`,
-        iconURL: `${target.user.avatarURL()}`,
+        iconURL: `${target.user.displayAvatarURL()}`,
       })
       .setDescription(`**Member banned:**\n🔨 ${target.user} (${target.id})`)
       .addFields(
@@ -80,7 +80,7 @@ module.exports = {
       )
       .setFooter({
         text: client.user.username,
-        iconURL: client.user.avatarURL(),
+        iconURL: client.user.displayAvatarURL(),
       })
       .setTimestamp();
 
@@ -94,7 +94,7 @@ module.exports = {
       .addFields({ name: "**Reason:**", value: reason })
       .setFooter({
         text: client.user.username,
-        iconURL: client.user.avatarURL(),
+        iconURL: client.user.displayAvatarURL(),
       })
       .setTimestamp();
 

@@ -112,7 +112,7 @@ const {
           .setColor("Red")
           .setAuthor({
             name: `${target.user.tag}`,
-            iconURL: `${target.user.avatarURL()}`,
+            iconURL: `${target.user.displayAvatarURL()}`,
           })
           .setDescription(
             `**Member voice muted:**\n🔇 ${target.user} (${target.id})`
@@ -123,7 +123,7 @@ const {
           )
           .setFooter({
             text: client.user.username,
-            iconURL: client.user.avatarURL(),
+            iconURL: client.user.displayAvatarURL(),
           });
   
         const timeoutDMEmbed = new EmbedBuilder()
@@ -136,7 +136,7 @@ const {
           .addFields({ name: "**Reason:**", value: reason })
           .setFooter({
             text: "Please use /openticket if you would like to appeal this decision.",
-            iconURL: client.user.avatarURL(),
+            iconURL: client.user.displayAvatarURL(),
           })
           .setTimestamp();
   

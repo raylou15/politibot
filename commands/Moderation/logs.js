@@ -34,7 +34,7 @@ module.exports = {
     if (target) {
       console.log("User is still in server!");
       targetUsername = `${target.username} (${target.id})`;
-      targetAvatar = target.avatarURL();
+      targetAvatar = target.displayAvatarURL();
     } else {
       console.log("User is no longer in server...");
       targetUsername = `USER LEFT SERVER ${target.id}`;

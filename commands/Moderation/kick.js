@@ -105,7 +105,7 @@ module.exports = {
       .setColor("Red")
       .setAuthor({
         name: `${target.user.tag}`,
-        iconURL: `${target.user.avatarURL()}`,
+        iconURL: `${target.user.displayAvatarURL()}`,
       })
       .setDescription(`**Member kicked:**\n🥾 ${target.user} (${target.id})`)
       .addFields(
@@ -114,7 +114,7 @@ module.exports = {
       )
       .setFooter({
         text: client.user.username,
-        iconURL: client.user.avatarURL(),
+        iconURL: client.user.displayAvatarURL(),
       })
       .setTimestamp();
 
@@ -135,7 +135,7 @@ module.exports = {
       .addFields({ name: "**Reason:**", value: reason })
       .setFooter({
         text: "Please rejoin the server and use /openticket to appeal.",
-        iconURL: client.user.avatarURL(),
+        iconURL: client.user.displayAvatarURL(),
       })
       .setTimestamp();
 

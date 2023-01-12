@@ -94,7 +94,7 @@ module.exports = {
       .setColor("Yellow")
       .setAuthor({
         name: `${target.user.tag}`,
-        iconURL: `${target.user.avatarURL()}`,
+        iconURL: `${target.user.displayAvatarURL()}`,
       })
       .setDescription(
         `**Member issued warning:**\n⚠️ ${target.user} (${target.id})`
@@ -105,7 +105,7 @@ module.exports = {
       )
       .setFooter({
         text: client.user.username,
-        iconURL: client.user.avatarURL(),
+        iconURL: client.user.displayAvatarURL(),
       })
       .setTimestamp();
 
@@ -119,7 +119,7 @@ module.exports = {
       .addFields({ name: "**Reason:**", value: reason })
       .setFooter({
         text: "Please use /openticket if you would like to appeal this decision.",
-        iconURL: client.user.avatarURL(),
+        iconURL: client.user.displayAvatarURL(),
       })
       .setTimestamp();
 
