@@ -72,7 +72,7 @@ module.exports = {
           console.log("User is still in server!");
           targetUser = interaction.guild.members.cache.get(logData.TargetID);
           targetUserTag = targetUser.user.tag;
-          targetUserAvatar = targetUser.user.avatarURL();
+          targetUserAvatar = targetUser.user.avatarURL({ dynamic: true });
         } else {
           console.log("User is no longer in server...");
           targetUser = "USER LEFT SERVER";
