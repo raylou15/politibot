@@ -14,7 +14,7 @@ const {
 } = require("discord.js");
 const verifyData = require("../../schemas/verificationdata");
 module.exports = {
-  name: "uniproceed",
+  name: "confirmuni",
   description: "rules test time baby",
   /**
    *
