@@ -14,19 +14,13 @@ const {
 } = require("discord.js");
 const verifyData = require("../../schemas/verificationdata");
 module.exports = {
-  name: "schoolident",
-  description: "Confirm your school.",
+  name: "uniproceed",
+  description: "rules test time baby",
   /**
    *
    * @param {SelectMenuInteraction} interaction
    */
   async execute(interaction) {
-    let response = interaction.values[0];
-    let verifyProfile;
-    verifyProfile = await verifyData.findOne({ UserID: interaction.user.id });
-    verifyProfile.StudentHub = response;
-    verifyProfile.save();
-
     var q1 = {
       question:
         "Which rule prohibits the spread of misinformation with the potential to cause harm?",
