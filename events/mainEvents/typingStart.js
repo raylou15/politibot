@@ -7,7 +7,7 @@ module.exports = {
     const ticketsChannel = client.channels.cache.get("1053882820684169266");
     const server = client.guilds.cache.get("760275642150420520");
     
-    if (typing.channel.type === "dm") {
+    if (typing.channel.isDMBased()) {
         const user = typing.user
         const memberDiscriminator1 = user.tag.replace("#", "-")
         const memberDiscriminator = memberDiscriminator1.replace(" ", "_")
