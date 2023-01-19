@@ -33,7 +33,8 @@ module.exports = {
         const targetDiscrim1 = `${nameArgs[0]}#${nameArgs[1]}`
         const targetDiscrim = targetDiscrim1.replace("_", " ")
         const targetUser = client.users.cache.find(u => u.tag === targetDiscrim)
-        return targetUser.sendTyping()
+        const targetUserChannel = targetUser.dmChannel
+        return targetUserChannel.sendTyping()
     }
     
   },
