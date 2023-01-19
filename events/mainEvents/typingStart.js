@@ -24,14 +24,17 @@ module.exports = {
             console.log(ticketsArray[ticketsArray.length - 1])
             if (ticketsArray[ticketsArray.length - 1].archived === false) { // Active thread found!
                 const currentChannel = ticketsArray[ticketsArray.length - 1]
-                currentChannel.sendTyping()
-                console.log(typing)
+                return currentChannel.sendTyping()
             }
         }
     }
-    // if (typing.channel.parent.id === "1053882820684169266") {
-
-    // }
+    if (typing.channel.parent.id === "1053882820684169266") {
+        const nameArgs = typing.channel.name.split("-")
+        const targetDiscrim1 = `${nameArgs[0]}#${nameArgs[1]}`
+        const targetDiscrim = targetDiscrim1.replace("_", " ")
+        const targetUser = client.users.cache.find(u => u.tag === targetDiscrim)
+        return targetUser.sendTyping()
+    }
     
   },
 };
