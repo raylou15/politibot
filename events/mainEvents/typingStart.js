@@ -24,13 +24,14 @@ module.exports = {
             console.log(ticketsArray[ticketsArray.length - 1])
             if (ticketsArray[ticketsArray.length - 1].archived === false) { // Active thread found!
                 const currentChannel = ticketsArray[ticketsArray.length - 1]
-                return currentChannel.sendTyping()
+                currentChannel.sendTyping()
+                console.log(typing)
             }
         }
     }
-    if (typing.channel.parent.id === "1053882820684169266") {
+    // if (typing.channel.parent.id === "1053882820684169266") {
 
-    }
+    // }
     
   },
 };
