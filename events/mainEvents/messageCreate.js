@@ -1,6 +1,7 @@
 const { EmbedBuilder, ChannelType } = require("discord.js");
 const { execute } = require("./ready");
 const xp = require("simply-xp");
+const ms = require('ms')
 
 module.exports = {
   name: "messageCreate",
