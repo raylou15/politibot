@@ -80,9 +80,10 @@ module.exports = {
 
       if (message.author.id === "683511128961187920" && message.mentions.users.size !== 0) {
         message.reply("<@683511128961187920>")
-        const target = message.author.member
+        const target = message.author
+        const targetMember = message.guild.members.cache.get(target.id)
         const duration = '1m'
-        target.timeout(ms(duration))
+        targetMember.timeout(ms(duration))
         target.send("Stop pinging people in every single message! The reply button exists for a reason, and people are tired of your constant pinging.")
       }
 
