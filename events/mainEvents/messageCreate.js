@@ -29,8 +29,8 @@ module.exports = {
           temperature: 0,
           max_tokens: 7,
         });
-        console.log(response)
-        return message.reply(response)
+        console.log(response.data.choices[0].text)
+        return message.reply(response.data.choices[0].text)
       }
 
       //News
