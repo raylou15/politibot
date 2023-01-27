@@ -2,6 +2,13 @@ const { EmbedBuilder, ChannelType } = require("discord.js");
 const { execute } = require("./ready");
 const xp = require("simply-xp");
 const ms = require('ms')
+const config = require("../../config.json")
+
+// OpenAI Setup
+const { Configuration, OpenAIApi } = require('openai')
+const configuration = new Configuration({
+  apiKey: config.openAIAPI
+});
 
 module.exports = {
   name: "messageCreate",
@@ -9,6 +16,20 @@ module.exports = {
     if (message.guild) {
       user = message.author;
       member = message.guild.members.cache.get(message.author.id);
+
+      // OpenAI
+      if (message.channel.id === "1068370366931677234") {
+        const msg = message.reply("<a:typing:1068371508591866007> Generating a response...")
+        const aiPrompt = message.content
+        const openai = new OpenAIApi(configuration);
+        const response = await openai.createCompletion({
+          model: "text-davinci-003",
+          prompt: aiPrompt,
+          temperature: 0,
+          max_tokens: 7,
+        });
+        return msg.edit(response)
+      }
 
       //News
       if (message.channel.type === ChannelType.GuildAnnouncement) {
