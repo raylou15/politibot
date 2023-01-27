@@ -28,7 +28,7 @@ module.exports = {
           temperature: 0,
           max_tokens: 7,
         });
-        return msg.reply(response)
+        return message.reply(response)
       }
 
       //News
