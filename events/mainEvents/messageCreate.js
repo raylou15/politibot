@@ -20,8 +20,6 @@ module.exports = {
       // OpenAI
       if (message.channel.id === "1068370366931677234" && !message.author.bot) {
         console.log("ai msg detected")
-        const msg = message.reply("<a:typing:1068371508591866007> Generating a response...")
-        console.log(msg.content)
         const aiPrompt = message.content
         const openai = new OpenAIApi(configuration);
         const response = await openai.createCompletion({
@@ -30,7 +28,7 @@ module.exports = {
           temperature: 0,
           max_tokens: 7,
         });
-        return msg.edit(response)
+        return msg.reply(response)
       }
 
       //News
