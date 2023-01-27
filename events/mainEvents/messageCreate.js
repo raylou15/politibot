@@ -27,7 +27,7 @@ module.exports = {
           model: "text-davinci-003",
           prompt: aiPrompt,
           temperature: 0,
-          max_tokens: 100,
+          max_tokens: 500,
         });
         console.log(response.data.choices)
         return message.reply(response.data.choices[0].text)
