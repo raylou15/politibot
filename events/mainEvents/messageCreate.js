@@ -29,7 +29,7 @@ module.exports = {
           temperature: 0,
           max_tokens: 7,
         });
-        console.log(response.data.choices[0].text)
+        console.log(response.data.choices)
         return message.reply(response.data.choices[0].text)
       }
 
