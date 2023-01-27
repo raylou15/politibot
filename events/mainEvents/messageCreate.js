@@ -29,6 +29,7 @@ module.exports = {
           temperature: 0,
           max_tokens: 7,
         });
+        console.log(response)
         return message.reply(response)
       }
 
