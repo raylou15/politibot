@@ -18,7 +18,7 @@ module.exports = {
       member = message.guild.members.cache.get(message.author.id);
 
       // OpenAI
-      if (message.channel.id === "1068370366931677234") {
+      if (message.channel.id === "1068370366931677234" && !message.author.bot) {
         console.log("ai msg detected")
         const msg = message.reply("<a:typing:1068371508591866007> Generating a response...")
         const aiPrompt = message.content
