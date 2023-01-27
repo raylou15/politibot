@@ -21,6 +21,7 @@ module.exports = {
       if (message.channel.id === "1068370366931677234" && !message.author.bot) {
         console.log("ai msg detected")
         const msg = message.reply("<a:typing:1068371508591866007> Generating a response...")
+        console.log(msg.content)
         const aiPrompt = message.content
         const openai = new OpenAIApi(configuration);
         const response = await openai.createCompletion({
