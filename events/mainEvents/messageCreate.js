@@ -19,6 +19,7 @@ module.exports = {
 
       // OpenAI
       if (message.channel.id === "1068370366931677234" && !message.author.bot) {
+        message.channel.sendTyping()
         console.log("ai msg detected")
         const aiPrompt = message.content
         const openai = new OpenAIApi(configuration);
