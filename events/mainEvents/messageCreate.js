@@ -106,9 +106,9 @@ module.exports = {
         message.reply("<@683511128961187920>")
         const target = message.author
         const targetMember = message.guild.members.cache.get(target.id)
-        const duration = '10m'
+        const duration = '15s'
         targetMember.timeout(ms(duration))
-        target.send("Stop pinging people in every single message! The reply button exists for a reason, and people are tired of your constant pinging.\n\nThe more you ping people, the more your timeout will go up.")
+        target.send("Stop pinging people in every single message! You can communicate without it.")
       }
 
       // Genocide
