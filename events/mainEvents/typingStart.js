@@ -32,7 +32,7 @@ module.exports = {
         const targetDiscrim1 = `${nameArgs[0]}#${nameArgs[1]}`
         const targetDiscrim = targetDiscrim1.replace("_", " ")
         const targetUser = client.users.cache.find(u => u.tag === targetDiscrim)
-        const targetUserChannel = await targetUser.dmChannel
+        const targetUserChannel = await targetUser.createDM()
         console.log(targetUser)
         console.log(await targetUserChannel)
         return targetUserChannel.sendTyping().catch(async (err) => {
