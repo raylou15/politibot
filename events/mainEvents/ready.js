@@ -8,7 +8,7 @@ module.exports = {
   name: "ready",
   once: true,
   execute(client) {
-    client.user.setAvatar("https://i.imgur.com/UcvQvmT.png");
+    // client.user.setAvatar("https://i.imgur.com/UcvQvmT.png");
     client.user.setPresence({
       activities: [{ name: "politics", type: ActivityType.Playing }],
     });
