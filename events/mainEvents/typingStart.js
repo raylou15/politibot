@@ -34,6 +34,7 @@ module.exports = {
         const targetUser = client.users.cache.find(u => u.tag === targetDiscrim)
         const targetUserChannel = targetUser.dmChannel
         console.log(targetUser)
+        console.log(targetUserChannel)
         return targetUserChannel.sendTyping().catch(async (err) => {
             console.log(err);
             console.log(`Error encountered trying to send a typing notification to ${targetUser.tag}`);
