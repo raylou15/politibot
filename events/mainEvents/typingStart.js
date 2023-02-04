@@ -33,7 +33,10 @@ module.exports = {
         const targetDiscrim = targetDiscrim1.replace("_", " ")
         const targetUser = client.users.cache.find(u => u.tag === targetDiscrim)
         const targetUserChannel = targetUser.dmChannel
-        return targetUserChannel.sendTyping()
+        return targetUserChannel.sendTyping().catch(async (err) => {
+            console.log(err);
+            console.log(`Error encountered trying to send a typing notification to ${targetUser.tag}`);
+          });
     }
     
   },
