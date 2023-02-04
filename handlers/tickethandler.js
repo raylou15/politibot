@@ -1,13 +1,15 @@
 const config = require("../config.json");
 
-function TicketCreate(client, ticketName, ticketCat, ticketPreview, ticketButtons) {
+function TicketCreate(client, ticketName, ticketCat, ticketPreview, ticketButtons, ticketContact, interaction) {
     const ticketChannel = client.guilds.cache.get(config.guildID).channels.cache.get(config.ticketParent);
 
     let mentionVal; // Set up mentions
     if (ticketCat === "appeals") {
         mentionVal = "<@178689418415177729> <@&927318500614225920>"
-    } else if (ticketCat === "moderation") {
+    } else if (ticketCat === "moderation" && ticketContact === false) {
         mentionVal = "<@178689418415177729> <@&927318500614225920> <@&854841000480079882> <@&893189360105689139>"
+    } else if (ticketCat === "moderation" && ticketContact === true) {
+        mentionVal = `${interaction.user}`
     } else if (ticketCat === "bot support") {
         mentionVal = "<@178689418415177729>"
     } else if (ticketCat === "partnerships") {

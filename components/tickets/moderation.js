@@ -125,8 +125,9 @@ const client = module.exports = {
                 const memberDiscriminator = memberDiscriminator1.replace(" ", "_");
                 const ticketName = `${memberDiscriminator}-${ticketNum}`;
                 const ticketCat = "moderation";
+                const ticketContact = false;
 
-                ticketHandler.TicketCreate(client, ticketName, ticketCat, ticketPreview, ticketButtons)
+                ticketHandler.TicketCreate(client, ticketName, ticketCat, ticketPreview, ticketButtons, ticketContact)
 
             }
 
