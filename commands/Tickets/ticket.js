@@ -2,7 +2,6 @@ const {ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder, ActionRow
 const ticketHandler = require("../../handlers/tickethandler");
 const config = require("../../config.json")
 const TicketCountSchema = require("../../schemas/ticketcount");
-const ticketHandler = require("../../handlers/tickethandler");
 const client = (module.exports = {
 data: new SlashCommandBuilder()
     .setName("ticket")
