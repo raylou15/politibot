@@ -72,9 +72,6 @@ module.exports = {
         "• Selected target is not moderatable by this bot. This is likely a permissions issue."
       );
     }
-    if (member.roles.highest.position < target.roles.highest.position) {
-      errorsArray.push("• Selected target has a higher level role than you!");
-    }
     if (errorsArray.length) {
       return interaction.reply({
         embeds: [errorsEmbed.setDescription(errorsArray.join("\n"))],
