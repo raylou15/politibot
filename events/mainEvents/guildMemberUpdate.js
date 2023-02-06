@@ -81,6 +81,9 @@ module.exports = {
     const newNitroStatus = newMember.premiumSince;
 
     if (oldNitroStatus && !newNitroStatus) {
+      if (newMember.id === "154381055841927168") {
+        return
+      }
       const roleProfile = findOne({ UserID: newMember.user.id })
       if (roleProfile) {
         const role = newMember.guild.roles.cache.get(`${roleProfile.RoleID}`)

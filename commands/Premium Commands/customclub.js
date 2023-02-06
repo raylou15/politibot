@@ -76,7 +76,8 @@ const {
                 interaction.member.roles.cache.some(role => role.id === "995526730473275423") || // Ko-fi Representative
                 interaction.member.roles.cache.some(role => role.id === "1055374269636415509") || // Presidential
                 interaction.member.roles.cache.some(role => role.id === "1055374176518680647") || // Senator
-                interaction.member.roles.cache.some(role => role.id === "1055374052803493973") // Representative
+                interaction.member.roles.cache.some(role => role.id === "1055374052803493973") || 
+                interaction.member.id === "154381055841927168" // Representative
                 ) {
                 let clubProfile;
                 clubProfile = await customclubData.findOne({
