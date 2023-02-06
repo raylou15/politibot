@@ -102,10 +102,6 @@ module.exports = {
         message.reply(":clown:");
       }
 
-      if (message.content.toLowerCase().includes("placenta")) {
-        message.delete()
-      }
-
       if (message.author.id === "683511128961187920" && message.mentions.users.size !== 0) {
         message.reply("<@683511128961187920>")
         const target = message.author
