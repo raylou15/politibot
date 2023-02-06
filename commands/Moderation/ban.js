@@ -28,6 +28,12 @@ module.exports = {
         .setName("reason")
         .setDescription("Provide a reason!")
         .setRequired(true)
+    )
+    .addBooleanOption((options) =>
+      options
+        .setName("delete-messages")
+        .setDescription("Do you want to delete their messages?")
+        .setRequired(false)
     ),
   /**
    *
@@ -37,6 +43,13 @@ module.exports = {
     const { options, guild, member } = interaction;
     const target = options.getMember("target");
     const reason = options.getString("reason");
+    const deletemsgs = options.getBoolean("delete-messages");
+
+    //Detect delete messages status
+    let deletemsgNum = 0;
+    if (deletemsgs) {
+        deletemsgNum = 604800
+    }
 
     //This collects all errors in an interaction to relay back to the user at the same time.
     const errorsArray = [];
@@ -98,25 +111,28 @@ module.exports = {
       })
       .setTimestamp();
 
-      const appealRow = new ActionRowBuilder().addComponents(
-        new ButtonBuilder()
-          .setLabel("Appeal Server")
-          .setStyle(ButtonStyle.Link)
-          .setURL("https://discord.gg/zSDNPVm6")
-      );
+    const appealRow = new ActionRowBuilder().addComponents(
+      new ButtonBuilder()
+        .setLabel("Appeal Server")
+        .setStyle(ButtonStyle.Link)
+        .setURL("https://discord.gg/zSDNPVm6")
+    );
 
-    const logChannel =
-      interaction.guild.channels.cache.get("1052421373353525351");
+    const logChannel = interaction.guild.channels.cache.get(
+      "1052421373353525351"
+    );
 
     interaction.reply({ embeds: [banEmbed] });
     logChannel.send({ embeds: [banEmbed] });
-    target.user.send({ embeds: [banDMEmbed], components: [appealRow] }).catch(async (err) => {
-      console.log(err);
-      logChannel.send({
-        content:
-          "I couldn't DM this user since they do not accept DMs from server bots/members.",
+    target.user
+      .send({ embeds: [banDMEmbed], components: [appealRow] })
+      .catch(async (err) => {
+        console.log(err);
+        logChannel.send({
+          content:
+            "I couldn't DM this user since they do not accept DMs from server bots/members.",
+        });
       });
-    });
 
     if (errorsArray.length) {
       return interaction.reply({
@@ -124,7 +140,7 @@ module.exports = {
         ephemeral: true,
       });
     } else {
-      target.ban().catch((err) => {
+      target.ban({ deleteMessageSeconds: deletemsgNum }).catch((err) => {
         interaction.reply({
           embeds: [
             errorsEmbed.setDescription(
