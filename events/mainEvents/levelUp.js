@@ -9,10 +9,10 @@ module.exports = {
     const member = role.guilds.cache.get(message.guildID).members.cache.get(message.userID)
 
     if (!member.user.bot) {
-      const roles = xp.roleSetup.fetch(client, message.guildID)
+      const roles = await xp.roleSetup.fetch(client, message.guildID)
       const currentLvl = message.level
       const chooseroles = [];
-      roles.array.forEach(element => {
+      roles.forEach(element => {
         console.log(element)
       });
 
