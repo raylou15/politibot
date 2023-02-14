@@ -16,9 +16,11 @@ module.exports = {
         if (element.lvl = currentLvl) {
           roles.forEach(element => {
             if (element.lvl !== currentLvl) {
+              console.log("removing " + element.role)
               member.roles.remove(element.role)
             }
             if (element.lvl === currentLvl) {
+              console.log("adding " + element.role)
               member.roles.add(element.role)
             }
           })
