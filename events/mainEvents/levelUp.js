@@ -14,7 +14,7 @@ module.exports = {
       console.log(currentLvl)
       const chooseroles = [];
       roles.forEach(element => {
-        if (element.lvl = currentLvl) {
+        if (element.lvl === currentLvl) {
           console.log("role match found")
         } else {
           console.log("not a match")
