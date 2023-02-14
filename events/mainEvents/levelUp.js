@@ -8,7 +8,11 @@ module.exports = {
 
     console.log(message)
 
-    if (message.author.bot) {
+    const user = client.guilds.cache.get(message.guildID).members.cache.get(message.userID).user
+    
+    console.log(user)
+
+    if (user.bot) {
       return 
     } else {
       console.log("TEMPORARY DEBUG: You have leveled up!")
