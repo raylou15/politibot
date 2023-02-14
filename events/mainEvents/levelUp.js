@@ -6,10 +6,12 @@ module.exports = {
   name: "levelUp",
   async execute(client, message, data, role) {
 
-    if (!message.author.bot) {
-        console.log("TEMPORARY DEBUG: You have leveled up!")
-        const roles = xp.roleSetup.fetch(client, message.guild.id)
-        console.log(roles)
+    if (message.author.bot) {
+      return 
+    } else {
+      console.log("TEMPORARY DEBUG: You have leveled up!")
+      const roles = xp.roleSetup.fetch(client, message.guild.id)
+      console.log(roles)
     }
 
   }
