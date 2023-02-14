@@ -8,7 +8,8 @@ module.exports = {
 
     if (!message.author.bot) {
         console.log("TEMPORARY DEBUG: You have leveled up!")
-        xp.lvlRole(message, message.author.id, message.guild.id)
+        const roles = xp.roleSetup.fetch(client, message.guild.id)
+        console.log(roles)
     }
 
   }
