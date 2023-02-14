@@ -13,7 +13,7 @@ module.exports = {
       const currentLvl = message.level
       const chooseroles = [];
       var bar = new Promise((resolve, reject) => {
-        chooseroles.forEach(role => {
+        roles.forEach(role => {
           console.log(role)
           member.roles.remove(role.role)
           if (role.lvl <= currentLvl) {
