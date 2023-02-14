@@ -6,8 +6,8 @@ module.exports = {
   name: "levelUp",
   async execute(client, message, data, role) {
 
-    const guild = role.guilds.cache.get(message.guildID)
-    console.log(guild)
+    const user = role.guilds.cache.get(message.guildID).members.cache.get(message.userID).user
+    console.log(user)
 
 
   }
