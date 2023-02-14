@@ -6,9 +6,13 @@ module.exports = {
   name: "levelUp",
   async execute(client, message, data, role) {
 
+    console.log('message')
     console.log(message)
+    console.log('data')
     console.log(data)
+    console.log('role')
     console.log(role)
+    console.log('ok')
 
   }
 }
