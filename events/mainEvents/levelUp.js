@@ -13,7 +13,16 @@ module.exports = {
       const currentLvl = message.level
       const chooseroles = [];
       roles.forEach(element => {
-        console.log(element)
+        if (element.lvl = currentLvl) {
+          roles.forEach(element => {
+            if (element.lvl !== currentLvl) {
+              member.roles.remove(element.role)
+            }
+            if (element.lvl === currentLvl) {
+              member.roles.add(element.role)
+            }
+          })
+        }
       });
 
       console.log("Roles updated for user on level up.")
