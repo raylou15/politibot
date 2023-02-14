@@ -4,7 +4,7 @@ const xp = require('simply-xp');
 
 module.exports = {
   name: "levelUp",
-  async execute(message, data, role) {
+  async execute(client, message, data, role) {
 
     if (!message.author.bot) {
         console.log("TEMPORARY DEBUG: You have leveled up!")
