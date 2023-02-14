@@ -12,19 +12,9 @@ module.exports = {
       const roles = xp.roleSetup.fetch(client, message.guildID)
       const currentLvl = message.level
       const chooseroles = [];
-      var bar = new Promise((resolve, reject) => {
-        roles.forEach(role => {
-          console.log(role)
-          member.roles.remove(role.role)
-          if (role.lvl <= currentLvl) {
-            chooseroles.push(role)
-            if (index === array.length -1) resolve();
-          }
-        })
-      })
-      bar.then(() => {
-        member.roles.add(Math.max(...chooseroles.map(role => role.lvl)))
-      })
+      roles.array.forEach(element => {
+        console.log(element)
+      });
 
       console.log("Roles updated for user on level up.")
 
