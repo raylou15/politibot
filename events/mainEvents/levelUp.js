@@ -14,8 +14,8 @@ module.exports = {
       const chooseroles = [];
       var bar = new Promise((resolve, reject) => {
         chooseroles.forEach(role => {
+          console.log(role)
           member.roles.remove(role.role)
-          console.log(role.role)
           if (role.lvl <= currentLvl) {
             chooseroles.push(role)
             if (index === array.length -1) resolve();
