@@ -78,7 +78,11 @@ const {
         new ButtonBuilder()
         .setCustomId('events')
         .setLabel('Events Roles')
-        .setStyle(ButtonStyle.Primary)
+        .setStyle(ButtonStyle.Success),
+        new ButtonBuilder()
+        .setCustomId('2024')
+        .setLabel('2024 Campaigns')
+        .setStyle(ButtonStyle.Success)
       );
 
       const msgR = await interaction.reply({ embeds: [mainembed], components: [buttons1, buttons2, buttons3], ephemeral: true});
@@ -157,7 +161,7 @@ const {
             const polpartiesEmbed = new EmbedBuilder()
             .setColor("White")
             .setTitle("Political Parties")
-            .setDescription('We have a several political party roles for you to choose from. We typically only allow political party roles which are of some notable significance in the United States, so that is what you see below:\n\n‣ <@&775835289364725840>\n‣ <@&775835324176662540>\n‣ <@&775835437901938740>\n‣ <@&775835409070555166>\n‣ <@&775835486450090044>\n‣ <@&775836454580125696>\n\nIf you think there is another third party of enough significance or popularity to warrant a role in this server, let server staff know!')
+            .setDescription('We have a several political party roles for you to choose from. We typically only allow political party roles which are of some notable significance in the United States, so that is what you see below:\n\n‣ <@&775835289364725840>\n‣ <@&775835324176662540>\n‣ <@&775835437901938740>\n‣ <@&775835409070555166>\n‣ <@&775835486450090044>\n‣ <@&775836454580125696>\n‣ <@&1009879930433179719>\n‣ <@&1009878785044254880>\n‣ <@&1055211616066605106>\n\nIf you think there is another third party of enough significance or popularity to warrant a role in this server, let server staff know!')
             .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
 
             interaction.update({ embeds: [polpartiesEmbed], components: [], ephemeral: true})
@@ -203,8 +207,36 @@ const {
             const econEmbed = new EmbedBuilder()
             .setColor("White")
             .setTitle("Economics Roles")
+            .setDescription("We offer a bunch of economics roles to help make a broad stance on your economics known. Check them out:")
             .addFields([
-                {  }
+                {
+                    name: 'Capitalist Economics',
+                    value: 'Capitalism is often thought of as an economic system in which private actors own and control property in accord with their interests, and demand and supply freely set prices in markets in a way that can serve the best interests of society. The essential feature of capitalism is the motive to make a profit.',
+                },
+                {
+                    name: 'Marxist Economics',
+                    value: 'Marxist economics focuses on the role of labor in the development of an economy and is critical of the classical approach to wages and productivity developed by Adam Smith. Marx argued that the specialization of the labor force, coupled with a growing population, pushes wages down, adding that the value placed on goods and services does not accurately account for the true cost of labor.'
+                },
+                {
+                    name: 'Socialist Economics',
+                    value: ' A socialist economic system is characterized by social ownership and operation of the means of production that may take the form of autonomous cooperatives or direct public ownership wherein production is carried out directly for use rather than for profit. Socialist systems that utilize markets for allocating capital goods and factors of production among economic units are designated market socialism.'
+                },
+                {
+                    name: 'Corporatist Economics',
+                    value: 'Corporatism is a collectivist political ideology which advocates the organization of society by corporate groups, such as agricultural, labour, military, business, scientific, or guild associations, on the basis of their common interests. The term is derived from the Latin corpus, or "body". **This has nothing to do with capitalist corporations.**'
+                },
+                {
+                    name: 'Keynesian Economics',
+                    value: 'Keynesian economics are the various macroeconomic theories and models of how aggregate demand strongly influences economic output and inflation. In the Keynesian view, aggregate demand does not necessarily equal the productive capacity of the economy. This follows the theories of John Maynard Keynes.'
+                },
+                {
+                    name: 'Laissez-Faire Economics',
+                    value: 'Laissez-faire is an economic philosophy of free-market capitalism that opposes government intervention. The theory of laissez-faire was developed by the French Physiocrats during the 18th century. Laissez-faire advocates that economic success is inhibited when governments are involved in business and markets.'
+                },
+                {
+                    name: 'Mixed Economics',
+                    value: 'A mixed economic system is a system that combines aspects of both capitalism and socialism. A mixed economic system protects private property and allows a level of economic freedom in the use of capital, but also allows for governments to interfere in economic activities in order to achieve social aims.'
+                },
             ])
             .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
 
@@ -213,8 +245,68 @@ const {
             const polstancesEmbed = new EmbedBuilder()
             .setColor("White")
             .setTitle("Political Stances")
+            .setDescription("Aside from the standard ideology roles we offer, we also offer several roles to give a little more depth to your political ideology.")
             .addFields([
-                {  }
+                {
+                    name: 'Classical Liberal',
+                    value: 'A political tradition and a branch of liberalism that advocates free market and laissez-faire economics; civil liberties under the rule of law with especial emphasis on individual autonomy, limited government, economic freedom, political freedom and freedom of speech.'
+                },
+                {
+                    name: 'Populist',
+                    value: 'Populism refers to a range of political stances that emphasize the idea of "the people" and often juxtapose this group against "the elite". It is frequently associated with anti-establishment and anti-political sentiment.'
+                },
+                {
+                    name: 'Nationalist',
+                    value: 'An ideology based on the premise that the individuals loyalty and devotion to the nation-state surpass other individual or group interests. Think of it as extraordinary patriotism.'
+                },
+                {
+                    name: 'Patriotism',
+                    value: 'Patriotism is the feeling of love, devotion, and sense of attachment to ones country. This attachment can be a combination of many different feelings, language relating to ones own homeland, including ethnic, cultural, political or historical aspects.'
+                },
+                {
+                    name: 'Anarchist',
+                    value: 'Anarchism is a political philosophy and movement that is skeptical of all justifications for authority and seeks to abolish the institutions it claims maintain unnecessary coercion and hierarchy, typically including, though not necessarily limited to, governments, nation states, and capitalism.'
+                },
+                {
+                    name: 'Monarchism',
+                    value: 'A political system based upon the sovereignty or rule of a single person. The term applies to states in which authority is vested in the monarch, an individual ruler who functions as the head of state and who achieves his or her position through heredity.'
+                },
+                {
+                    name: 'Environmentalism',
+                    value: 'A political and ethical movement that seeks to improve and protect the quality of the natural environment through changes to environmentally harmful human activities; through the adoption of forms of political, economic, and social organization that are thought to be necessary for, or at least conducive to, the benign treatment of the environment by humans; and through a reassessment of humanity’s relationship with nature.'
+                },
+                {
+                    name: 'Reactionary',
+                    value: 'A reactionary or a reactionist is a person who holds political views that favor a return to the status quo ante, the previous political state of society, which that person believes possessed positive characteristics absent from contemporary society.'
+                },
+                {
+                    name: 'Traditionalist',
+                    value: 'Traditionalists value social ties and the preservation of ancestral institutions above excessive individualism. The concepts of custom, convention, and tradition are heavily emphasized in traditionalist conservatism.'
+                },
+                {
+                    name: 'Skepticism',
+                    value: 'The attitude of doubting knowledge claims set forth in various areas. Skeptics have challenged the adequacy or reliability of these claims by asking what principles they are based upon or what they actually establish. They have questioned whether some such claims really are, as alleged, indubitable or necessarily true, and they have challenged the purported rational grounds of accepted assumptions.'
+                },
+                {
+                    name: 'Individualism',
+                    value: 'The opposite of Collectivism. Individualism encompasses a value system, a theory of human nature, and a belief in certain political, economic, social, and religious arrangements. According to the individualist, all values are human-centred, the individual is of supreme importance, and all individuals are morally equal.'
+                },
+                {
+                    name: 'Collectivism',
+                    value: 'The opposite of Individualism. A political or economic theory advocating collective control especially over production and distribution.'
+                },
+                {
+                    name: 'Utilitarianism',
+                    value: 'Similar to Collectivism. Utilitarianism is a theory of morality that advocates actions that foster happiness or pleasure and oppose actions that cause unhappiness or harm. When directed toward making social, economic, or political decisions, a utilitarian philosophy would aim for the betterment of society as a whole.'
+                },
+                {
+                    name: 'Integralism',
+                    value: 'This is an interpretation of Catholic social teaching that argues the principle that the Catholic faith should be the basis of public law and public policy within civil society, wherever the preponderance of Catholics within that society makes this possible.'
+                },
+                {
+                    name: 'Realpolitik',
+                    value: 'Realpolitik refers to enacting or engaging in diplomatic or political policies based primarily on considerations of given circumstances and factors, rather than strictly binding itself to explicit ideological notions or moral and ethical premises'
+                },
             ])
             .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
 
@@ -223,8 +315,28 @@ const {
             const religiousembed = new EmbedBuilder()
             .setColor("White")
             .setTitle("Religious Roles")
+            .setDescription("If you are religious and want to make it known, we have roles for that, too!")
             .addFields([
-                {  }
+                {
+                    name: 'Christian Faiths',
+                    value: '<@&922609744873676841> (just an overarching/non-denominational role)\n<@&922609707800223794>\n<@&922609806089535529>\n<@&922609876562214972>\n<@&922609947244646470>'
+                },
+                {
+                    name: 'Non-Religious',
+                    value: '<@&922609662396887130>\n<@&922609640355790948>\n<@&922609852344328362>'
+                },
+                {
+                    name: 'Eastern Religions',
+                    value: '<@&922609830861086772>\n<@&922609759914451044>\n<@&922609679144730664>\n<@&922609963665342525>'
+                },
+                {
+                    name: 'Judaism',
+                    value: '<@&922609790394433577>'
+                },
+                {
+                    name: 'Other Religions',
+                    value: '<@&922609915401486356>\n<@&922609984079024148> - A mixture of religions/religious philosophies\n<@&922610005444792380>'
+                },
             ])
             .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
 
@@ -232,9 +344,37 @@ const {
         } else if (buttonClicked === 'otherideo') {
             const otherideoEmbed = new EmbedBuilder()
             .setColor("White")
-            .setTitle("Other Ideological Roles")
+            .setTitle("Political Stances")
+            .setDescription("We offer a number of additional roles to make your stances on various positions known to help flesh out your beliefs even further.")
             .addFields([
-                {  }
+                {
+                    name: 'Abortion',
+                    value: '<@&922608228750213141>\n<@&1043607025575284906>\n<@&922608394119045181>'
+                },
+                {
+                    name: 'Gun Control / 2nd Amendment',
+                    value: '<@&922608409390510171>\n<@&922608484992823296>\n<@&922608502239797268>'
+                },
+                {
+                    name: 'Immigration Policy',
+                    value: '<@&922608526327676928>\n<@&922608556082098187>\n<@&922608574310535218>'
+                },
+                {
+                    name: 'Police Reform',
+                    value: '<@&922608597131755530>'
+                },
+                {
+                    name: 'LGBTQ+',
+                    value: '<@&922608625694933022>'
+                },
+                {
+                    name: 'Healthcare',
+                    value: '<@&922608657647153162>'
+                },
+                {
+                    name: 'Military',
+                    value: '<@&922608717344694375>\n<@&922608688517234768>'
+                },
             ])
             .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
 
@@ -243,9 +383,8 @@ const {
             const usgeoEmbed = new EmbedBuilder()
             .setColor("White")
             .setTitle("Geographical Roles - USA")
-            .addFields([
-                {  }
-            ])
+            .setDescription("We base our geographical roles on the US Census map.")
+            .setImage('https://i.imgur.com/PYmfcpi.png')
             .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
 
             interaction.update({ embeds: [usgeoEmbed], components: [], ephemeral: true})
@@ -253,9 +392,7 @@ const {
             const eugeoEmbed = new EmbedBuilder()
             .setColor("White")
             .setTitle("Geographical Roles - Europe")
-            .addFields([
-                {  }
-            ])
+            .setImage('https://i.imgur.com/tLurv00.png')
             .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
 
             interaction.update({ embeds: [eugeoEmbed], components: [], ephemeral: true})
@@ -263,9 +400,7 @@ const {
             const othergeoEmbed = new EmbedBuilder()
             .setColor("White")
             .setTitle("Geographical Roles - Other")
-            .addFields([
-                {  }
-            ])
+            .setDescription("We don't have a map for these roles right now, but pick the one that you think best suits where you live!")
             .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
 
             interaction.update({ embeds: [othergeoEmbed], components: [], ephemeral: true})
@@ -273,9 +408,15 @@ const {
             const eventsEmbed = new EmbedBuilder()
             .setColor("White")
             .setTitle("Events and Ping Roles")
-            .addFields([
-                {  }
-            ])
+            .setDescription("WIP")
+            .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
+
+            interaction.update({ embeds: [eventsEmbed], components: [], ephemeral: true})
+        } else if (buttonClicked === '2024') {
+            const eventsEmbed = new EmbedBuilder()
+            .setColor("Green")
+            .setTitle("2024 Campaign Roles")
+            .setDescription("These are temporary roles we're offering for people who want to support particular major candidates. These roles may fluctuate and change over time, so we're not keeping a set list here. Head over to roleypoly to find out what we offer!")
             .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
 
             interaction.update({ embeds: [eventsEmbed], components: [], ephemeral: true})
