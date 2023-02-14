@@ -6,6 +6,8 @@ module.exports = {
   name: "levelUp",
   async execute(client, message, data, role) {
 
+    console.log(message.author)
+
     if (message.author.bot) {
       return 
     } else {
