@@ -7,9 +7,10 @@ module.exports = {
   async execute(client, message, data, role) {
 
     console.log(message)
+    console.log(client)
 
     const user = client.guilds.cache.get(message.guildID).members.cache.get(message.userID).user
-    
+
     console.log(user)
 
     if (user.bot) {
