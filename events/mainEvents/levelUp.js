@@ -7,7 +7,6 @@ module.exports = {
   async execute(client, message, data, role) {
 
     const member = role.guilds.cache.get(message.guildID).members.cache.get(message.userID)
-    console.log(user)
 
     if (!member.user.bot) {
       const roles = xp.roleSetup.fetch(client, message.guildID)
@@ -15,7 +14,8 @@ module.exports = {
       const chooseroles = [];
       var bar = new Promise((resolve, reject) => {
         chooseroles.forEach(role => {
-          member.roles.remove(role.role.toString())
+          member.roles.remove(role.role)
+          console.log(role.role)
           if (role.lvl <= currentLvl) {
             chooseroles.push(role)
             if (index === array.length -1) resolve();
