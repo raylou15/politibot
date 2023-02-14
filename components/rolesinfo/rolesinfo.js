@@ -78,7 +78,7 @@ const {
         new ButtonBuilder()
         .setCustomId('events')
         .setLabel('Events Roles')
-        .setStyle(ButtonStyle.Success),
+        .setStyle(ButtonStyle.Primary),
         new ButtonBuilder()
         .setCustomId('2024')
         .setLabel('2024 Campaigns')
@@ -408,7 +408,7 @@ const {
             const eventsEmbed = new EmbedBuilder()
             .setColor("White")
             .setTitle("Events and Ping Roles")
-            .setDescription("WIP")
+            .setDescription("We often have a lot of events and pings going on in this server, so here are ways to get notified of what you wanna know! We update these a lot, so we don't keep a set list here. If you have questions, feel free to <#999439440273473657>!")
             .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
 
             interaction.update({ embeds: [eventsEmbed], components: [], ephemeral: true})
