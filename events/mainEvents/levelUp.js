@@ -13,12 +13,19 @@ module.exports = {
       const currentLvl = message.level
       console.log(currentLvl)
       const chooseroles = [];
-      
+
       roles.forEach(element => {
         if (element.lvl === currentLvl) {
           console.log(`MATCH: ${currentLvl} : ${element.lvl} - ${element.role}`)
-        } else {
-          console.log(`No Match: ${currentLvl} : ${element.lvl} - ${element.role}`)
+          roles.forEach(role => {
+            if (element.lvl === currentLvl) {
+              console.log("adding new role")
+              member.roles.add(element.role)
+            } else if (member.roles.cache.includes(element.role)) {
+              console.log("removing a role")
+              member.roles.remove(element.role)
+            }
+          })
         }
       });
 
