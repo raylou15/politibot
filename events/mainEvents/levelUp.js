@@ -18,8 +18,9 @@ module.exports = {
         if (element.lvl === currentLvl) {
           console.log(`MATCH: ${currentLvl} : ${element.lvl} - ${element.role}`)
           member.roles.add(element.role)
-        } else {
-          member.roles.remove(element.role)
+          roles.forEach(element2 => {
+            member.roles.remove(element2.role)
+          })
         }
       });
 
