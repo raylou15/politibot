@@ -17,15 +17,9 @@ module.exports = {
       roles.forEach(element => {
         if (element.lvl === currentLvl) {
           console.log(`MATCH: ${currentLvl} : ${element.lvl} - ${element.role}`)
-          roles.forEach(role => {
-            if (element.lvl === currentLvl) {
-              console.log("adding new role")
-              member.roles.add(element.role)
-            } else if (member.roles.cache.find(r => r.id === element.role)) {
-              console.log("removing a role")
-              member.roles.remove(element.role)
-            }
-          })
+          member.roles.add(element.role)
+        } else {
+          member.roles.remove(element.role)
         }
       });
 
