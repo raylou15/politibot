@@ -21,7 +21,7 @@ module.exports = {
             if (element.lvl === currentLvl) {
               console.log("adding new role")
               member.roles.add(element.role)
-            } else if (member.roles.cache.includes(element.role)) {
+            } else if (member.roles.cache.some(role => role.id === element.role)) {
               console.log("removing a role")
               member.roles.remove(element.role)
             }
