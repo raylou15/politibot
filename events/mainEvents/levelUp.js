@@ -16,10 +16,13 @@ module.exports = {
 
       roles.forEach(element => {
         if (element.lvl === currentLvl) {
+          const chosenRole = element
           console.log(`MATCH: ${currentLvl} : ${element.lvl} - ${element.role}`)
           member.roles.add(element.role)
           roles.forEach(element2 => {
-            member.roles.remove(element2.role)
+            if (element2.role !== element.role) {
+              member.roles.remove(element2.role)
+            }
           })
         }
       });
