@@ -21,6 +21,13 @@ module.exports = {
     )
     .addStringOption((options) =>
       options
+        .setName("violation")
+        .setDescription("What rule(s) did they violate? You can type your own or choose from the menu")
+        .setAutocomplete(true)  
+        .setRequired(true)
+    )
+    .addStringOption((options) =>
+      options
         .setName("reason")
         .setDescription("Reason for incident log")
         .setRequired(true)
@@ -29,9 +36,23 @@ module.exports = {
    *
    * @param {ChatInputCommandInteraction} interaction
    */
+  async autocomplete(interaction) {
+    const focusedOption = interaction.options.getFocused(true);
+    let choices;
+
+    if (focusedOption.name === "violation") {
+      choices = ['Trolling', 'Misusing Channels', 'No Tolerance Policy', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6', 'R7', 'R8', 'R9', 'R10', 'R11', 'R12', 'R13', 'Discussing Moderation Actions', 'Link Spam', 'English Only'];
+    }
+
+		const filtered = choices.filter(choice => choice.startsWith(focusedOption.value));
+		await interaction.respond(
+			filtered.map(choice => ({ name: choice, value: choice })),
+		);
+  },
   async execute(interaction, client) {
     const { options, guild, member } = interaction;
     const target = options.getMember("target");
+    const violation = options.getString("violation");
     const reason = options.getString("reason");
 
     //This collects all errors in an interaction to relay back to the user at the same time.
@@ -78,7 +99,7 @@ module.exports = {
       IssuerID: interaction.user.id,
       InfractionType: "Incident",
       Date: Date.now(),
-      Reason: reason,
+      Reason: violation + " | " + reason,
     });
     await profileData.save().catch(console.error);
     console.log("New log created and saved!");
@@ -86,14 +107,14 @@ module.exports = {
     const incidentEmbed = new EmbedBuilder()
       .setColor("Yellow")
       .setAuthor({
-        name: `${target.user.tag}`,
+        name: `${target.user.username}`,
         iconURL: `${target.user.displayAvatarURL()}`,
       })
       .setDescription(
         `**Incident issued against member:**\n🚫 ${target.user} (${target.id})`
       )
       .addFields(
-        { name: "**Reason:**", value: reason },
+        { name: "**Reason:**", value: violation + " | " + reason },
         { name: "**Case ID:**", value: caseNumVal.toString() }
       )
       .setFooter({
