@@ -11,8 +11,8 @@ module.exports = {
     logEmbed = new EmbedBuilder()
       .setColor("Blue")
       .setAuthor({
-        name: newMember.user.tag,
-        iconURL: newMember.user.avatarURL(),
+        name: newMember.user.username,
+        iconURL: newMember.user.displayAvatarURL({dynamic: true}),
       })
       .setFooter({ text: `id: ${newMember.id}` })
       .setTimestamp();

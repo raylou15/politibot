@@ -11,9 +11,9 @@ const client = module.exports = {
         const mainchannel = interaction.channel
         const mainEmbed = interaction.message.embeds[0]
         const nameArgs = mainchannel.name.split("-")
-        const targetDiscrim1 = `${nameArgs[0]}#${nameArgs[1]}`
+        const targetDiscrim1 = `${nameArgs[0]}`
         const targetDiscrim = targetDiscrim1.replace("_", " ")
-        const targetUser = client.users.cache.find(u => u.tag === targetDiscrim)
+        const targetUser = client.users.cache.find(u => u.username === targetDiscrim)
         const ticketsChannel = interaction.guild.channels.cache.get(config.ticketParent)
 
         await interaction.message.pin()
@@ -47,10 +47,13 @@ const client = module.exports = {
                 .setCustomId('closeticket')
                 .setLabel('Close')
                 .setStyle(ButtonStyle.Danger),
+            new ButtonBuilder()
+                .setCustomId('takeover')
+                .setLabel('❗')
+                .setStyle(ButtonStyle.Secondary)
         )
 
         await interaction.reply({ embeds: [claimedEmbed]})
-        await targetUser.send({ embeds: [claimedEmbed2] })
         await interaction.message.edit({ embeds: [newEmbed], components: [claimedButtons] })
         
         const tagArray = [];
@@ -65,6 +68,17 @@ const client = module.exports = {
         })
 
         mainchannel.setAppliedTags(tagArray)
+
+        console.log(targetUser)
+
+        await targetUser.send({ embeds: [claimedEmbed2] }).catch(async (err) => {
+            console.log(err);
+            message.react('<:crossmark:965445798630416434>')
+            return logChannel.send({
+                content:
+                "Could not send DM. User may have left server.",
+            });
+        });
 
     },
   };

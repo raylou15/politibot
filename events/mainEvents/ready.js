@@ -8,9 +8,9 @@ module.exports = {
   name: "ready",
   once: true,
   execute(client) {
-    // client.user.setAvatar("https://i.imgur.com/UcvQvmT.png");
+    // client.user.setAvatar('https://i.imgur.com/qPhLAzg.png');
     client.user.setPresence({
-      activities: [{ name: "politics", type: ActivityType.Playing }],
+      activities: [{ name: "politics | /help", type: ActivityType.Playing }],
     });
     console.log("The bot is now online!");
     loadCommands(client);

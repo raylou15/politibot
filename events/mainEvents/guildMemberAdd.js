@@ -6,8 +6,14 @@ module.exports = {
   name: "guildMemberAdd",
   async execute(member, client) {
     console.log("Member joined!")
+
+    if (member.username.includes("habokek") || member.nickname.includes("habokek")) {
+      member.ban()
+      return
+    }
+
     const logChannel = member.guild.channels.cache.get("1052353564913172574");
-    const modChannel = member.guild.channels.cache.get("893189759474757693")
+    const modChannel = member.guild.channels.cache.get("1089619416653758564")
     const accountCreated = parseInt(member.user.createdTimestamp / 1000);
     const joinTime = parseInt(member.joinedAt / 1000);
     let riskColor;
@@ -34,7 +40,7 @@ module.exports = {
     }
 
     const joinEmbed = new EmbedBuilder()
-    .setAuthor({name: `${member.user.tag} | ${member.id}`, iconURL: member.displayAvatarURL({dynamic: true}) })
+    .setAuthor({name: `${member.user.username} | ${member.id}`, iconURL: member.displayAvatarURL({dynamic: true}) })
     .setColor(riskColor)
     .setThumbnail(member.user.displayAvatarURL({dynamic: true, size: 256}))
     .setDescription([
@@ -58,13 +64,13 @@ module.exports = {
         .setCustomId(`MemberLogging-Kick-${member.id}`)
         .setLabel("Kick")
         .setStyle(ButtonStyle.Danger),
-        new ButtonBuilder()
-        .setCustomId(`MemberLogging-Ban-${member.id}`)
-        .setLabel("Ban")
-        .setStyle(ButtonStyle.Danger),
+        // new ButtonBuilder()
+        // .setCustomId(`MemberLogging-Ban-${member.id}`)
+        // .setLabel("Ban")
+        // .setStyle(ButtonStyle.Danger),
       );
 
-      return modChannel.send({ content: "<@178689418415177729> <@&854841000480079882> <@&927318500614225920> A suspicious account has joined the server. Please evaluate:", 
+      return modChannel.send({ content: "A suspicious account has joined the server. Please evaluate:", 
       embeds: [joinEmbed], 
       components: [buttons]})
       .then(logChannel.send({ embeds: [joinEmbed]}));

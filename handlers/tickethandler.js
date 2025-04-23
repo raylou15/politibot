@@ -15,7 +15,7 @@ function TicketCreate(client, ticketName, ticketCat, ticketPreview, ticketButton
     } else if (ticketCat === "partnerships") {
         mentionVal = "<@178689418415177729> <@&927316457233186846>"
     } else if (ticketCat === "other") {
-        mentionVal = "<@178689418415177729> <@&927318500614225920> <@&854841000480079882> <@&893189360105689139> <@&1013285748012757053> <@&927317020867969074>"
+        mentionVal = "<@178689418415177729> <@&927318500614225920> <@&854841000480079882> <@&893189360105689139> <@&927317020867969074>"
     }
 
 
@@ -42,7 +42,7 @@ function TicketCreate(client, ticketName, ticketCat, ticketPreview, ticketButton
 function TicketChecker(client, interaction) {
     const ticketChannel = client.guilds.cache.get(config.guildID).channels.cache.get(config.ticketParent);
 
-    const memberDiscriminator1 = interaction.user.tag.replace("#", "-")
+    const memberDiscriminator1 = interaction.user.username.replace("#", "-")
     const memberDiscriminator = memberDiscriminator1.replace(" ", "_")
     const discrimLength = memberDiscriminator.length
     let ticketsArray = [];
