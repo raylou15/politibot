@@ -30,7 +30,7 @@ module.exports = {
     if (interaction.type === InteractionType.ApplicationCommandAutocomplete) {
       try {
         await command.autocomplete(interaction, client);
-
+        return console.log("autocomplete loaded for command")
       } catch (error) {
         return console.error(error)
       }
@@ -68,7 +68,7 @@ module.exports = {
             const logEmbed = new EmbedBuilder()
               .setColor("Red")
               .setAuthor({
-                name: interaction.user.tag,
+                name: interaction.user.username,
                 iconURL: interaction.user.avatarURL(),
               })
               .addFields(
@@ -109,16 +109,17 @@ module.exports = {
     
             switch(splitArray[1]) {
                 case "Kick" : {
-                    member.kick(`Kicked by ${interaction.user.tag} | New Member Filtering`).then(() => {
-                        interaction.reply({ embeds: [errorembed.setDescription(`${member} has been kicked by ${interaction.user.tag}`).setColor("DarkRed")]})
+                    member.user.send("You have been kicked by a moderator due to having a suspicious account. We do this based on factors such as your account join date, in order to help filter out bots from our server. If you think this was in error, please rejoin our server: discord.gg/operationpolitics")
+                    member.kick(`Kicked by ${interaction.user.username} | New Member Filtering`).then(() => {
+                        interaction.reply({ embeds: [errorembed.setDescription(`${member} has been kicked by ${interaction.user.username}`).setColor("DarkRed")]})
                     }).catch(() => {
                         interaction.reply({ embeds: [errorembed.setDescription(`${member} could not be kicked due to a rare error.`).setColor("DarkRed")], ephemeral: true})
                     })
                 }
                 break;
                 case "Ban" : {
-                    member.ban(`Banned by ${interaction.user.tag} | New Member Filtering`).then(() => {
-                        interaction.reply({ embeds: [errorembed.setDescription(`${member} has been banned by ${interaction.user.tag}`).setColor("DarkRed")]})
+                    member.ban(`Banned by ${interaction.user.username} | New Member Filtering`).then(() => {
+                        interaction.reply({ embeds: [errorembed.setDescription(`${member} has been banned by ${interaction.user.username}`).setColor("DarkRed")]})
                     }).catch(() => {
                         interaction.reply({ embeds: [errorembed.setDescription(`${member} could not be banned due to a rare error.`).setColor("DarkRed")], ephemeral: true})
                     })

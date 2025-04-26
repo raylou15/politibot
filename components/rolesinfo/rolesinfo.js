@@ -14,7 +14,6 @@ const {
     ComponentType,
     Embed,
   } = require("discord.js");
-  const verifyData = require("../../schemas/verificationdata");
   module.exports = {
     name: "rolesinfo",
     description: "info about our roles",
@@ -155,7 +154,7 @@ const {
             ])
             .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
 
-            interaction.update({ embeds: [ideoEmbed], components: [], ephemeral: true})
+            interaction.followUp({ embeds: [ideoEmbed], components: [], ephemeral: true})
 
         } else if (buttonClicked === 'polparties') {
             const polpartiesEmbed = new EmbedBuilder()
@@ -164,7 +163,7 @@ const {
             .setDescription('We have a several political party roles for you to choose from. We typically only allow political party roles which are of some notable significance in the United States, so that is what you see below:\n\n‣ <@&775835289364725840>\n‣ <@&775835324176662540>\n‣ <@&775835437901938740>\n‣ <@&775835409070555166>\n‣ <@&775835486450090044>\n‣ <@&775836454580125696>\n‣ <@&1009879930433179719>\n‣ <@&1009878785044254880>\n‣ <@&1055211616066605106>\n\nIf you think there is another third party of enough significance or popularity to warrant a role in this server, let server staff know!')
             .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
 
-            interaction.update({ embeds: [polpartiesEmbed], components: [], ephemeral: true})
+            interaction.followUp({ embeds: [polpartiesEmbed], components: [], ephemeral: true})
         } else if (buttonClicked === 'foreignaffairs') {
             const foreignEmbed = new EmbedBuilder()
             .setColor("White")
@@ -202,7 +201,7 @@ const {
             ])
             .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
 
-            interaction.update({ embeds: [foreignEmbed], components: [], ephemeral: true})
+            interaction.followUp({ embeds: [foreignEmbed], components: [], ephemeral: true})
         } else if (buttonClicked === 'economics') {
             const econEmbed = new EmbedBuilder()
             .setColor("White")
@@ -240,7 +239,7 @@ const {
             ])
             .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
 
-            interaction.update({ embeds: [econEmbed], components: [], ephemeral: true})
+            interaction.followUp({ embeds: [econEmbed], components: [], ephemeral: true})
         } else if (buttonClicked === 'polstances') {
             const polstancesEmbed = new EmbedBuilder()
             .setColor("White")
@@ -310,7 +309,7 @@ const {
             ])
             .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
 
-            interaction.update({ embeds: [polstancesEmbed], components: [], ephemeral: true})
+            interaction.followUp({ embeds: [polstancesEmbed], components: [], ephemeral: true})
         } else if (buttonClicked === 'religious') {
             const religiousembed = new EmbedBuilder()
             .setColor("White")
@@ -340,7 +339,7 @@ const {
             ])
             .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
 
-            interaction.update({ embeds: [religiousembed], components: [], ephemeral: true})
+            interaction.followUp({ embeds: [religiousembed], components: [], ephemeral: true})
         } else if (buttonClicked === 'otherideo') {
             const otherideoEmbed = new EmbedBuilder()
             .setColor("White")
@@ -378,7 +377,7 @@ const {
             ])
             .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
 
-            interaction.update({ embeds: [otherideoEmbed], components: [], ephemeral: true})
+            interaction.followUp({ embeds: [otherideoEmbed], components: [], ephemeral: true})
         } else if (buttonClicked === 'usgeographical') {
             const usgeoEmbed = new EmbedBuilder()
             .setColor("White")
@@ -387,7 +386,7 @@ const {
             .setImage('https://i.imgur.com/PYmfcpi.png')
             .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
 
-            interaction.update({ embeds: [usgeoEmbed], components: [], ephemeral: true})
+            interaction.followUp({ embeds: [usgeoEmbed], components: [], ephemeral: true})
         } else if (buttonClicked === 'eugeographical') {
             const eugeoEmbed = new EmbedBuilder()
             .setColor("White")
@@ -395,7 +394,7 @@ const {
             .setImage('https://i.imgur.com/tLurv00.png')
             .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
 
-            interaction.update({ embeds: [eugeoEmbed], components: [], ephemeral: true})
+            interaction.followUp({ embeds: [eugeoEmbed], components: [], ephemeral: true})
         } else if (buttonClicked === 'othergeographical') {
             const othergeoEmbed = new EmbedBuilder()
             .setColor("White")
@@ -403,7 +402,7 @@ const {
             .setDescription("We don't have a map for these roles right now, but pick the one that you think best suits where you live!")
             .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
 
-            interaction.update({ embeds: [othergeoEmbed], components: [], ephemeral: true})
+            interaction.followUp({ embeds: [othergeoEmbed], components: [], ephemeral: true})
         } else if (buttonClicked === 'events') {
             const eventsEmbed = new EmbedBuilder()
             .setColor("White")
@@ -411,7 +410,7 @@ const {
             .setDescription("We often have a lot of events and pings going on in this server, so here are ways to get notified of what you wanna know! We update these a lot, so we don't keep a set list here. If you have questions, feel free to <#999439440273473657>!")
             .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
 
-            interaction.update({ embeds: [eventsEmbed], components: [], ephemeral: true})
+            interaction.followUp({ embeds: [eventsEmbed], components: [], ephemeral: true})
         } else if (buttonClicked === '2024') {
             const eventsEmbed = new EmbedBuilder()
             .setColor("Green")
@@ -419,9 +418,9 @@ const {
             .setDescription("These are temporary roles we're offering for people who want to support particular major candidates. These roles may fluctuate and change over time, so we're not keeping a set list here. Head over to roleypoly to find out what we offer!")
             .setFooter({ text: '━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━' })
 
-            interaction.update({ embeds: [eventsEmbed], components: [], ephemeral: true})
-        } else return (interaction.update({ content: 'Something went wrong!', ephemeral: true}))
-      }).catch(err => interaction.update({ content: 'Prompt timed out.', embeds: [], components: [], ephemeral: true}))
+            interaction.followUp({ embeds: [eventsEmbed], components: [], ephemeral: true})
+        } else return (interaction.followUp({ content: 'Something went wrong!', ephemeral: true}))
+      }).catch(err => interaction.followUp({ content: 'Prompt timed out.', embeds: [], components: [], ephemeral: true}))
 
 
 

@@ -26,6 +26,10 @@ module.exports = {
     const channel = interaction.channel;
     const count = interaction.options.getNumber("count");
 
+    if (count > 100) {
+      return interaction.reply({ ephemeral: true, content: "You can only purge 100 messages at a time." })
+    }
+
     channel
       .bulkDelete(count)
       .then(

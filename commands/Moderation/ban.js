@@ -25,9 +25,17 @@ module.exports = {
     )
     .addStringOption((options) =>
       options
+        .setName("violation")
+        .setDescription("What rule(s) did they violate? You can type your own or choose from the menu")
+        .setAutocomplete(true)  
+        .setRequired(true)
+    )
+    .addStringOption((options) =>
+      options
         .setName("reason")
         .setDescription("Provide a reason!")
         .setRequired(true)
+        .setMaxLength(1000)
     )
     .addBooleanOption((options) =>
       options
@@ -39,9 +47,23 @@ module.exports = {
    *
    * @param {ChatInputCommandInteraction} interaction
    */
+  async autocomplete(interaction) {
+    const focusedOption = interaction.options.getFocused(true);
+    let choices;
+
+    if (focusedOption.name === "violation") {
+      choices = ['Trolling', 'Misusing Channels', 'No Tolerance Policy', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6', 'R7', 'R8', 'R9', 'R10', 'R11', 'R12', 'R13', 'Discussing Moderation Actions', 'Link Spam', 'English Only'];
+    }
+
+		const filtered = choices.filter(choice => choice.startsWith(focusedOption.value));
+		await interaction.respond(
+			filtered.map(choice => ({ name: choice, value: choice })),
+		);
+  },
   async execute(interaction, client) {
     const { options, guild, member } = interaction;
     const target = options.getMember("target");
+    const violation = options.getString("violation");
     const reason = options.getString("reason");
     const deletemsgs = options.getBoolean("delete-messages");
 
@@ -83,12 +105,12 @@ module.exports = {
     const banEmbed = new EmbedBuilder()
       .setColor("Red")
       .setAuthor({
-        name: `${target.user.tag}`,
+        name: `${target.user.username}`,
         iconURL: `${target.user.displayAvatarURL()}`,
       })
       .setDescription(`**Member banned:**\n🔨 ${target.user} (${target.id})`)
       .addFields(
-        { name: "**Reason:**", value: reason },
+        { name: "**Reason:**", value: violation + " | " + reason },
         { name: "**Case ID:**", value: caseNumVal.toString() }
       )
       .setFooter({
@@ -104,7 +126,7 @@ module.exports = {
         iconURL: interaction.guild.iconURL(),
       })
       .setTitle(`A moderator has **banned** you:`)
-      .addFields({ name: "**Reason:**", value: reason })
+      .addFields({ name: "**Reason:**", value: violation + " | " + reason })
       .setFooter({
         text: client.user.username,
         iconURL: client.user.displayAvatarURL(),
@@ -115,7 +137,7 @@ module.exports = {
       new ButtonBuilder()
         .setLabel("Appeal Server")
         .setStyle(ButtonStyle.Link)
-        .setURL("https://discord.gg/zSDNPVm6")
+        .setURL("https://discord.gg/fUYy57GRqT")
     );
 
     const logChannel = interaction.guild.channels.cache.get(
@@ -151,6 +173,10 @@ module.exports = {
         return console.log("Error occurred in ban.js", err);
       });
     }
+
+    const pubLogChannel = interaction.guild.channels.cache.get("1129110488274456577");
+    pubLogChannel.send({ embeds: [banEmbed]});
+
     //MongoDB: Handling the data behind the scenes!
     //This updates the Case Counter.
     await CaseCountSchema.findOneAndUpdate({
@@ -165,7 +191,7 @@ module.exports = {
       IssuerID: interaction.user.id,
       InfractionType: "Ban",
       Date: Date.now(),
-      Reason: reason,
+      Reason: violation + " | " + reason,
     });
     await profileData.save().catch(console.error);
     console.log("New log created and saved!");

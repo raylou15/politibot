@@ -35,7 +35,6 @@ module.exports = {
         { UserID: interaction.user.id },
         { $set: { Age: response } }
       );
-      await verifyProfile.save().catch(console.error);
       interaction.reply({ embeds: [ageEmbed], ephemeral: true });
     } else {
       //Continue to next thing!

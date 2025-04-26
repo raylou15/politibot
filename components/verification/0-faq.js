@@ -25,7 +25,7 @@ module.exports = {
       interaction.guild.channels.cache.get("984871497640321025");
     const logEmbed = new EmbedBuilder()
       .setColor("Green")
-      .setDescription(`${interaction.user.tag} has clicked the FAQ button!`);
+      .setDescription(`${interaction.user.username} has clicked the FAQ button!`);
 
     const faqEmbed = new EmbedBuilder()
       .setColor("White")

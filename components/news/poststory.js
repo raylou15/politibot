@@ -27,7 +27,8 @@ const {
 
         newsChannel.send({ embeds: [interaction.message.embeds[0]] })
 
-        interaction.reply("News Story Submitted!")
+        interaction.reply({ ephemeral: true, content: "News Story Submitted!"})
+        interaction.message.delete()
 
     },
   };

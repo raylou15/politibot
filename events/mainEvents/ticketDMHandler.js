@@ -1,4 +1,4 @@
-const { EmbedBuilder, ChannelType } = require("discord.js");
+const { EmbedBuilder, ChannelType, Attachment } = require("discord.js");
 const { execute } = require("../mainEvents/ready");
 
 module.exports = {
@@ -6,10 +6,11 @@ module.exports = {
   async execute(message, client) {
     const ticketsChannel = client.channels.cache.get("1053882820684169266");
     const server = client.guilds.cache.get("760275642150420520");
+    const banserver = client.guilds.cache.get("1019116649632256081");
     const user = message.author
     if (!message.guild) {
         if (!message.author.bot) {
-            const memberDiscriminator1 = user.tag.replace("#", "-")
+            const memberDiscriminator1 = user.username.replace("#", "-")
             const memberDiscriminator = memberDiscriminator1.replace(" ", "_")
             const discrimLength = memberDiscriminator.length
 
@@ -21,17 +22,24 @@ module.exports = {
                     }
                 })
 
-                console.log(ticketsArray[ticketsArray.length - 1])
                 if (ticketsArray[ticketsArray.length - 1].archived === false) { // Active thread found!
                     const currentChannel = ticketsArray[ticketsArray.length - 1]
+
+                    let msgContent = message.content.length > 0 ? message.content : " "
+
                     const msgEmbed = new EmbedBuilder()
-                    .setColor("Green")
-                    .setAuthor({ name: message.author.tag, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
-                    .setDescription(message.content)
-                    .setFooter({ text: message.author.id })
+                    .setColor("Blue")
+                    .setAuthor({ name: message.author.username, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
+                    .setDescription(msgContent)
+                    .setFooter({ text: `User ID: ${message.author.id} • ${message.id.slice(-8)}\n`})
                     .setTimestamp();
 
                     currentChannel.send({ embeds: [msgEmbed] })
+                    if (message.attachments.size > 0) {
+                        message.attachments.forEach(attachment => {
+                            currentChannel.send(`${attachment.url}`)
+                        })
+                    } 
                     message.react('<:tickmark:965445812123500665>')
 
                 } else { // No tickets found
@@ -60,38 +68,48 @@ module.exports = {
         } else return
     }  else if (message.channel.parent === ticketsChannel && !message.author.bot) { // Reply functionality.
         const nameArgs = message.channel.name.split("-")
-        const targetDiscrim1 = `${nameArgs[0]}#${nameArgs[1]}`
+        const targetDiscrim1 = `${nameArgs[0]}`
         const targetDiscrim = targetDiscrim1.replace("_", " ")
-        const targetUser = client.users.cache.find(u => u.tag === targetDiscrim)
 
-        let staffID; // Setting up aliases for staff.
-        if (message.author.id === "178689418415177729") { // Ray
-            staffID = "0001"
-        } else if (message.author.id === "233325738013491200") { // Emily
-            staffID = "0002"
-        } else if (message.author.id === "213534403459022848") { // Senior Mods (100x) Pierce
-            staffID = "1003"
-        } else if (message.author.id === "202165686607282176") { // Smug
-            staffID = "1004"
-        } else if (message.author.id === "176502287156379648") { // Moderators - Austein
-            staffID = "2005"
-        } else if (message.author.id === "154381055841927168") { // Sarah
-            staffID = "2006"
-        } else if (message.author.id === "201390071113449472") { // Vanguard
-            staffID = "2007"
-        } else if (message.author.id === "755594548507574446") { // Rushtonian
-            staffID = "2008"
-        } else if (message.author.id === "145997807432499200") { // Stwicksy (Events)
-            staffID = "3009"
-        } else if (message.author.id === "402923996607152138") { // Salamigod
-            staffID = "3010"
-        } else if (message.author.id === "186867094476816384") { // OG
-            staffID = "3011"
-        } else if (message.author.id === "226999841358610432") { // Jab (Community)
-            staffID = "4012"
-        } else { // None of the above!
-            staffID = "Unassigned"
+        const banmembers = banserver.members.fetch()
+        
+        await banmembers
+
+        // Unholy redundancy because discord is fucking stupid
+        let targetUser;
+        if (client.users.cache.find(u => u.username === targetDiscrim)) {
+            targetUser = client.users.cache.find(u => u.username === targetDiscrim)
+
+        } else if (client.users.cache.find(u => u.username === nameArgs[0])) {
+            targetUser = client.users.cache.find(u => u.username === nameArgs[0])
+
+        } else {
+            const pinmsg = await message.channel.messages.fetchPinned()
+            const message = pinmsg.first()
+            const embed = message.embeds[0]
+            const regex = /<@(\d+)>/;
+            const userIDmatch = embed.description.match(regex);
+
+            if (banserver.members.fetch(m => m.user.username === targetDiscrim)) {
+                const targetMember = banserver.members.fetch(m => m.user.username === targetDiscrim)
+                targetUser = await targetMember.user
+    
+            } else if (banserver.members.fetch(m => m.user.username === nameArgs[0])) {
+                const targetMember = banserver.members.fetch(m => m.user.username === nameArgs[0])
+                targetUser = await targetMember.user
+    
+            } else if (client.users.cache.find(u => u.id === userIDmatch[0])) { 
+                targetUser = client.users.cache.find(u => u.id === userIDmatch[0])
+    
+            } else if (banserver.members.fetch(userIDmatch[0])) {
+                const targetMember = banserver.members.fetch(userIDmatch[0])
+                targetUser = await targetMember.user
+    
+            }
         }
+
+        await targetUser
+        let staffID = message.author.id.slice(-5) // Setting up aliases for staff.
 
         const tagID = message.channel.appliedTags[0]
         const tagArray = [];
@@ -106,12 +124,14 @@ module.exports = {
         } else {
             chosenTag = "Other"
         }
+
+        let msgContent = message.content.length > 0 ? message.content : " "
        
         const msgEmbed = new EmbedBuilder()
-        .setColor("Green")
-        .setAuthor({ name: "Operation Politics Staff Response", iconURL: message.guild.iconURL() })
-        .setDescription(`Ticket: ${message.channel.name} \n\n**Response:** ${message.content}`)
-        .setFooter({ text: `Staff ID: ${staffID}` })
+        .setColor("Blue")
+        .setAuthor({ name: "Operation Politics Staff Team", iconURL: message.guild.iconURL() })
+        .setDescription(`${msgContent}`)
+        .setFooter({ text: `Ticket: ${message.channel.name} • Staff ID: ${staffID}` })
         .setTimestamp();
 
         targetUser.send({ embeds: [msgEmbed] }).catch(async (err) => {
@@ -122,6 +142,18 @@ module.exports = {
                 "I couldn't DM this user since they do not accept DMs from server bots/members. It's recommended that you close this ticket now.",
             });
         });
+        if (message.attachments.size > 0) {
+            message.attachments.forEach(attachment => {
+                targetUser.send(`${attachment.url}`).catch(async (err) => {
+                    console.log(err);
+                    message.react('<:crossmark:965445798630416434>')
+                    return logChannel.send({
+                        content:
+                        "I couldn't DM this user since they do not accept DMs from server bots/members. It's recommended that you close this ticket now.",
+                    });
+                })
+            })
+        } 
 
         message.react('<:tickmark:965445812123500665>')
 

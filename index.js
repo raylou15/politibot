@@ -3,6 +3,7 @@ const {
   GatewayIntentBits,
   Partials,
   Collection,
+  EmbedBuilder,
 } = require("discord.js");
 const schedule = require("node-schedule");
 const xp = require("simply-xp");
@@ -19,47 +20,39 @@ const client = new Client({
 
 const { loadEvents } = require("./handlers/handler");
 
-// Newsletter Rules
-const newsletterhandler = require("./handlers/newsletterhandler")
-const rule1 = new schedule.RecurrenceRule();
-rule1.tz = 'America/New_York'
-rule1.second = 5;
-rule1.minute = 0;
-rule1.hour = 8;
-const rule2 = new schedule.RecurrenceRule();
-rule2.tz = 'America/New_York'
-rule2.second = 5
-rule2.minute = 0
-rule2.hour = 20
-schedule.scheduleJob(rule1, () => {newsletterhandler.MorningNews(client)});
-schedule.scheduleJob(rule2, () => {newsletterhandler.EveningNews(client)});
-
 // Bump Reminders
 const bumpreminders = require("./handlers/bumpreminders")
 const oneAM = new schedule.RecurrenceRule();
 oneAM.tz = 'America/New_York'
 oneAM.second = 5;
 oneAM.minute = 0;
-oneAM.hour = 1;
+oneAM.hour = 2;
 schedule.scheduleJob(oneAM, () => {bumpreminders.bumpReminder(client)})
 const sevenAM = new schedule.RecurrenceRule();
 sevenAM.tz = 'America/New_York'
 sevenAM.second = 5;
 sevenAM.minute = 0;
-sevenAM.hour = 7;
+sevenAM.hour = 8;
 schedule.scheduleJob(sevenAM, () => {bumpreminders.bumpReminder(client)})
 const onePM = new schedule.RecurrenceRule();
 onePM.tz = 'America/New_York'
 onePM.second = 5;
 onePM.minute = 0;
-onePM.hour = 13;
+onePM.hour = 14;
 schedule.scheduleJob(onePM, () => {bumpreminders.bumpReminder(client)})
 const sevenPM = new schedule.RecurrenceRule();
 sevenPM.tz = 'America/New_York'
 sevenPM.second = 5;
 sevenPM.minute = 0;
-sevenPM.hour = 19;
+sevenPM.hour = 20;
 schedule.scheduleJob(sevenPM, () => {bumpreminders.bumpReminder(client)})
+
+// const randomTopicHandlers = require("./handlers/randomtopic")
+// const randomTopic = new schedule.RecurrenceRule();
+// randomTopic.tz = 'America/New_York'
+// randomTopic.second = 5;
+// randomTopic.minute = 0;
+// schedule.scheduleJob(randomTopic, () => {randomTopicHandlers.ChooseRandomTopic(client)})
 
 // Setting up commands, events, and components.
 client.config = require("./config.json");

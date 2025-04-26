@@ -7,7 +7,7 @@ module.exports = {
     const logChannel = member.guild.channels.cache.get("1052353564913172574");
 
     const leaveEmbed = new EmbedBuilder()
-      .setAuthor({ name: `${member.user.tag} | ${member.id}`, iconURL: member.displayAvatarURL({dynamic: true}) })
+      .setAuthor({ name: `${member.user.username} | ${member.id}`, iconURL: member.displayAvatarURL({dynamic: true}) })
       .setColor("Red")
       .setTitle("Member left!")
       .addFields({

@@ -7,8 +7,8 @@ module.exports = {
     if (message.channel.guild && message.author) {
       var msgDelete = new EmbedBuilder()
       .setAuthor({
-        name: message.author.tag,
-        iconURL: message.author.avatarURL(),
+        name: message.author.username,
+        iconURL: message.author.displayAvatarURL({dynamic: true}),
       })
       .setFooter({ text: `id: ` + message.author.id })
       .setTimestamp()
@@ -21,6 +21,36 @@ module.exports = {
       )
       .setColor("Blue");
 
+    // if (message.author.id === "1158816573751042118") {
+    //   message.channel.send({
+    //     embeds: [msgDelete]
+    //   }).catch(async (err) => {
+    //     console.log(err);
+    //     var msgDelete = new EmbedBuilder()
+    //       .setAuthor({
+    //         name: message.author.username,
+    //         iconURL: message.author.displayAvatarURL({dynamic: true}),
+    //       })
+    //       .setFooter({ text: `id: ` + message.author.id })
+    //       .setTimestamp()
+    //       .setFields(
+    //         {
+    //           name: "Message deleted:",
+    //           value: `The message content was too large to be logged in an embed, so I'm forwarding it below.`,
+    //         },
+    //         { name: `Channel:`, value: `${message.channel}` }
+    //       )
+    //       .setColor("Blue");
+
+    //     message.guild.channels.cache.get(client.config.messageDeleteLog).send({
+    //       embeds: [msgDelete],
+    //     });
+    //     message.guild.channels.cache
+    //       .get(client.config.messageDeleteLog)
+    //       .send(message.content);
+    //   });
+    // }
+
     message.guild.channels.cache
       .get("1052421938221432852")
       .send({
@@ -30,8 +60,8 @@ module.exports = {
         console.log(err);
         var msgDelete = new EmbedBuilder()
           .setAuthor({
-            name: message.author.tag,
-            iconURL: message.author.avatarURL(),
+            name: message.author.username,
+            iconURL: message.author.displayAvatarURL({dynamic: true}),
           })
           .setFooter({ text: `id: ` + message.author.id })
           .setTimestamp()

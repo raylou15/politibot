@@ -10,6 +10,7 @@ const {
 const ticketHandler = require("../../handlers/tickethandler");
 const config = require("../../config.json");
 const TicketCountSchema = require("../../schemas/ticketcount");
+const blacklistData = require("../../schemas/ticketblacklist");
 const client = (module.exports = {
   data: new SlashCommandBuilder()
     .setName("ticket")
@@ -24,6 +25,28 @@ const client = (module.exports = {
     .addSubcommand((subcommand) =>
       subcommand.setName("unclaim").setDescription("Unclaim an active ticket.")
     )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName("blacklist")
+        .setDescription("Block an individual user from being able to use the tickets system.")
+        .addUserOption((options) =>
+          options
+            .setName("target")
+            .setDescription("Who do you want to blacklist?")
+            .setRequired(true)
+        )
+    )
+    .addSubcommand((subcommand) =>
+    subcommand
+      .setName("unblacklist")
+      .setDescription("Unblock an individual user from being able to use the tickets system.")
+      .addUserOption((options) =>
+        options
+          .setName("target")
+          .setDescription("Who do you want to remove from the blacklist?")
+          .setRequired(true)
+      )
+  )
     .addSubcommand((subcommand) =>
       subcommand
         .setName("contact")
@@ -41,13 +64,14 @@ const client = (module.exports = {
    */
   async execute(interaction, client) {
     // Contact Command
+    
     if (interaction.options.getSubcommand() === "contact") {
       const targetUser = interaction.options.getUser("target");
 
       const notifEmbed = new EmbedBuilder()
         .setColor("Yellow")
         .setDescription(
-          "The Operation Politics Staff has opened a ticket with you. Please await a response below."
+          "The Operation Politics Staff has opened a ticket with you. Please await a response below. \n\nYou can reply to staff or communicate with them by DMing this bot. A green checkmark reaction indicates that the message has been successfully sent, whereas a red cross reaction indicates that the message has failed and you should try again. \n\nPlease note that we prefer message links over screenshots of messages whenever applicable or possible, but we can see any screenshots or videos you send us through here."
         )
         .setFooter({
           text: "If you do not receive a response after a while, please feel free to let us know.",
@@ -74,13 +98,13 @@ const client = (module.exports = {
       const ticketPreview = new EmbedBuilder()
         .setColor("Green")
         .setTitle("New Ticket Opened")
-        .setAuthor({ name: interaction.user.tag })
-        .setDescription(`A new ticket has been opened by ${interaction.user}`)
+        .setAuthor({ name: interaction.user.username })
+        .setDescription(`A moderator has opened a ticket to contact ${targetUser}`)
         .setFields([
           { name: "Category", value: "Moderation" },
           {
             name: "Reason:",
-            value: "First contact originated by a Moderator.",
+            value: `First contact originated by ${interaction.user}.`,
             inline: true,
           },
           { name: "Claimed by:", value: "N/A", inline: true },
@@ -95,10 +119,14 @@ const client = (module.exports = {
         new ButtonBuilder()
           .setCustomId("closeticket")
           .setLabel("Close")
-          .setStyle(ButtonStyle.Danger)
+          .setStyle(ButtonStyle.Danger),
+        new ButtonBuilder()
+          .setCustomId('takeover')
+          .setLabel('❗')
+          .setStyle(ButtonStyle.Secondary)
       );
 
-      const memberDiscriminator1 = targetUser.tag.replace("#", "-");
+      const memberDiscriminator1 = targetUser.username.replace("#", "-");
       const memberDiscriminator = memberDiscriminator1.replace(" ", "_");
       const ticketName = `${memberDiscriminator}-${ticketNum}`;
       const ticketCat = "moderation";
@@ -120,6 +148,61 @@ const client = (module.exports = {
       });
     }
 
+    // Blacklist Command
+    if (interaction.options.getSubcommand() === "blacklist") {
+      const blacklistUser = await interaction.options.getUser("target");
+
+      const firstCheck = await blacklistData.findOne({ UserID: blacklistUser.id })
+
+      if (firstCheck) {
+        return await interaction.reply({ephemeral: true, content: `${blacklistUser} is already blacklisted.`})
+      }
+
+      const notifEmbed = new EmbedBuilder()
+        .setColor("Red")
+        .setTitle("Operation Politics Modmail System")
+        .setDescription("You have been blacklisted from the Modmail system. You will no longer be able to open tickets unless you are contacted first. This is likely due to abuse of our system.")
+        .setFooter({text: "This is non-appealable. If you need to report a rule violation, use a different method."})
+
+      let blacklist = new blacklistData({
+        UserID: blacklistUser.id
+      });
+      await blacklist.save().catch(console.error);
+
+      await interaction.reply({
+        content: `${blacklistUser} has been blacklisted from the Tickets system. You can still contact them, but they cannot contact us.`
+      })
+
+      return await blacklistUser.send({ embeds: [notifEmbed] })
+
+    }
+
+    // Unblacklist Command
+    if (interaction.options.getSubcommand() === "unblacklist") {
+      const blacklistUser = interaction.options.getUser("target");
+
+      const foundData = await blacklistData.findOne({ UserID: blacklistUser.id })
+
+      if (foundData) {
+        
+        await blacklistData.findOneAndDelete({ UserID: blacklistUser.id })
+        const notifEmbed = new EmbedBuilder()
+        .setColor("Yellow")
+        .setTitle("Operation Politics Modmail System")
+        .setDescription("You have been removed from the blacklist for the Modmail system. You can now open tickets if you need to. Do not abuse it.")
+
+        await interaction.reply({
+          content: `${blacklistUser} has been removed from the Tickets system blacklist. They will now be able to contact us.`
+        })
+
+        return await blacklistUser.send({ embeds: [notifEmbed]})
+
+      } else {
+          return interaction.reply({ ephemeral: true, content: `${blacklistUser} is not blacklisted from the Modmail system.`})
+      }
+
+    }
+
     if (interaction.channel.parent.id !== config.ticketParent) {
       return interaction.reply({
         content: "This command must be used in an active ticket.",
@@ -130,10 +213,10 @@ const client = (module.exports = {
     // Close Command
     if (interaction.options.getSubcommand() === "close") {
       const nameArgs = interaction.channel.name.split("-");
-      const targetDiscrim1 = `${nameArgs[0]}#${nameArgs[1]}`;
-      const targetDiscrim = targetDiscrim1.replace("_", " ");
+      const targetDiscrim1 = `${nameArgs[0]}`
+      const targetDiscrim = targetDiscrim1.replace("_", " ")
       const targetUser = client.users.cache.find(
-        (u) => u.tag === targetDiscrim
+        (u) => u.username === targetDiscrim
       );
 
       const mainChannel = interaction.channel;
@@ -222,7 +305,7 @@ const client = (module.exports = {
       const targetDiscrim1 = `${nameArgs[0]}#${nameArgs[1]}`;
       const targetDiscrim = targetDiscrim1.replace("_", " ");
       const targetUser = client.users.cache.find(
-        (u) => u.tag === targetDiscrim
+        (u) => u.username === targetDiscrim
       );
       const ticketsChannel = interaction.guild.channels.cache.get(
         config.ticketParent
@@ -308,7 +391,7 @@ const client = (module.exports = {
       const targetDiscrim1 = `${nameArgs[0]}#${nameArgs[1]}`;
       const targetDiscrim = targetDiscrim1.replace("_", " ");
       const targetUser = client.users.cache.find(
-        (u) => u.tag === targetDiscrim
+        (u) => u.username === targetDiscrim
       );
       const ticketsChannel = interaction.guild.channels.cache.get(
         config.ticketParent
@@ -384,5 +467,6 @@ const client = (module.exports = {
 
       mainchannel.setAppliedTags(tagArray);
     }
+
   },
 });
