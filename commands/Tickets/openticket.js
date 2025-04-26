@@ -24,9 +24,18 @@ data: new SlashCommandBuilder()
         
         const firstEmbed = new EmbedBuilder()
         .setColor("Yellow")
-        .setTitle("Operation Politics Modmail System")
-        .setDescription("Please choose the appropriate category below. \n\n‣ **⚖️ Appeals** are for appealing Moderation Action of any kind. This will put you in touch with our senior staff, who can handle your appeals properly. Please use this if you need to report a staff member, as well. \n\n‣ **🔨 Moderation** is for reporting rule violation, asking about the rules, and general server inquiries. This will put you in touch with our moderation team. \n\n‣ **🤖 Bot Support** is to report issues with the bot, or to provide suggestions or comments about the bot's functionality. This will put you in touch with our bot developer. \n\n‣ **🤝 Partnerships** is to get access to our <#888789135261859851> channel. This will put you in touch with our partnership manager. \n\n‣ **❔ Other** is for anything that you aren't sure if it fits under one of the previous categories.\n\n\n**Please note that abusing the Modmail System in any way can and will get you blocked from using the system.**")
-
+        .setTitle("📨  Operation Politics Modmail System")
+        .setDescription([
+            "-# Please choose the appropriate category below. Choosing an incorrect category may lead to delayed or insufficient responses.",
+            "‣ **⚖️  Appeals** are for appealing Moderation Action of any kind. This will put you in touch with our senior staff, who can handle your appeals properly.",
+            "‣ **🔨  Moderation** is for reporting rule violation, asking about the rules, and general server inquiries. This will put you in touch with our moderation team.",
+            "‣ **🤖  Bot Support** is to report issues with the bot, or to provide suggestions or comments about the bot's functionality. This will put you in touch with our bot developer.",
+            "‣ **🤝  Partnerships** is to get access to our <#888789135261859851> channel. This will put you in touch with our partnership manager.",
+            "‣ **❔  Other** is for anything that you aren't sure if it fits under one of the previous categories. **DO NOT USE THIS FOR REPORTS, APPEALS, OR SUGGESTIONS.**",
+            "**-# Please note that abusing the Modmail System in any way can and will get you blocked from using the system.**"
+            ].join("\n\n")
+        )
+        
         const buttonsRow = new ActionRowBuilder().addComponents(
             new ButtonBuilder().setCustomId('appeals').setLabel('Appeals').setStyle(ButtonStyle.Primary).setEmoji('⚖️'),
             new ButtonBuilder().setCustomId('moderation').setLabel('Moderation').setStyle(ButtonStyle.Danger).setEmoji('🔨'),
