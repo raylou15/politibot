@@ -5,52 +5,58 @@
 <h1 align="center">Operation Politibot</h1>
 
 <p align="center">
-  <strong>A powerful, extensible moderation and information bot for the <a href="https://discord.gg/Axa8TXsHXc">Operation Politics Discord Server</a></strong><br/>
-  Built and maintained by <code>𝓻𝓪𝔂#4390</code>
+  <strong>A powerful, slash-command-only Discord bot for moderation, automation, and political data insights</strong><br/>
+  Developed and maintained by <code>𝓻𝓪𝔂#4390</code>
+</p>
+
+<p align="center">
+  <a href="https://discord.gg/operation-politics-760275642150420520">
+    <img src="https://img.shields.io/badge/Join%20Our%20Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Join our Discord"/>
+  </a>
 </p>
 
 ---
 
-## 🚨 About
+## 🧰 Features
 
-**Operation Politibot** is a custom-built moderation and auto-moderation bot designed exclusively for the [Operation Politics Discord Server](https://discord.gg/Axa8TXsHXc). It combines advanced moderation tools with public information access via API integrations.
+### ⚖️ Moderation & Auto-Moderation
+- Slash commands for all functionality — no prefixes required.
+- Ban, kick, mute, timeout, and manage members easily.
+- Message purging and automated spam detection.
+- Auto-moderation tools to enforce server rules without manual intervention.
+- Case logging and audit trails for administrative transparency.
 
-Features include:
+### 📡 API Integrations
+- Retrieves up-to-date political and civic information via trusted APIs.
+- Embeds display clean summaries and always credit the data source in the footer.
+- Simplifies public access to complex political data.
 
-- 🛡️ Robust moderation commands  
-- 🤖 Auto-moderation and rule enforcement  
-- 📊 Real-time data retrieval from external APIs  
-- ⚙️ Custom-built for a complex political discussion community  
-
-Whenever an external API is used, **Politibot** will automatically include a footer in the embed with the proper source credit.
-
----
-
-## ⚠️ Notice
-
-This bot **is not plug-and-play**. It is designed for **private deployment**, and sensitive configuration files are not included in this repository.
-
-You will need to:
-
-- Create and configure your own `.env` / `config.json` files  
-- Provide your own API keys, channel IDs, and other credentials  
-- Customize settings based on your server's specific needs  
+### 🛠️ Utility & Logging
+- Tracks key server events.
+- Maintains internal logs for moderation and bot actions.
+- Built specifically to support healthy and well-moderated discourse in political communities.
 
 ---
 
-## 📬 Support & Contact
+## 🛑 Disclaimer
 
-Have questions or want to get in touch?
+This repository is public for transparency and review, but **does not include the required configuration file (`config.json`)**. You must supply your own Discord token, API keys, and other sensitive credentials to deploy your own instance.
 
-- Join our community: [discord.gg/Axa8TXsHXc](https://discord.gg/Axa8TXsHXc)  
-- DM the creator: `ray4390` on Discord  
+This bot is custom-built for the **Operation Politics Discord Server** and is not a plug-and-play solution.
 
 ---
 
-## 🌐 Future Plans
+## 📞 Support
 
-A public version of Politibot may be released as a separate branch, with open-source usage in mind. Until then, this repository serves as the codebase for the **official** Operation Politics deployment.
+Need help or want to learn more?
 
-Stay tuned.
+- 🗳️ Join the community: [discord.gg/operation-politics-760275642150420520](https://discord.gg/operation-politics-760275642150420520)  
+- 📬 DM the creator on Discord: `ray4390`
+
+---
+
+## 📄 License
+
+Licensed under the [MIT License](LICENSE).
 
 ---
