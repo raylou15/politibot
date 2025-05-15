@@ -7,10 +7,10 @@ module.exports = {
   async execute(member, client) {
     console.log("Member joined!")
 
-    if (member.username.includes("habokek") || member.nickname.includes("habokek")) {
-      member.ban()
-      return
-    }
+    // if (member.username.includes("habokek") || member.nickname.includes("habokek")) {
+    //   member.ban()
+    //   return
+    // }
 
     const logChannel = member.guild.channels.cache.get("1052353564913172574");
     const modChannel = member.guild.channels.cache.get("1089619416653758564")

@@ -4,6 +4,9 @@ const {
   Partials,
   Collection,
   EmbedBuilder,
+  ContainerBuilder,
+  TextDisplayBuilder,
+  MessageFlags
 } = require("discord.js");
 const schedule = require("node-schedule");
 const xp = require("simply-xp");
@@ -12,11 +15,40 @@ const { Guilds, GuildMembers, GuildMessages, MessageContent, DirectMessages, Dir
   GatewayIntentBits;
 const { User, Message, GuildMember, ThreadMember, Channel } = Partials;
 const CaseCountDatabase = require("./schemas/infractions");
+const ERROR_LOG_CHANNEL_ID = "895052490574270484";
 
 const client = new Client({
   intents: [Guilds, GuildMembers, GuildMessages, MessageContent, DirectMessages, DirectMessageTyping, GuildMessageReactions, GuildMessageTyping, GuildVoiceStates],
   partials: [User, Message, GuildMember, ThreadMember, Channel],
 });
+
+async function sendErrorToDiscord(client, title, content) {
+  try {
+    const channel = await client.channels.fetch(ERROR_LOG_CHANNEL_ID);
+    if (!channel || !channel.isTextBased()) return;
+
+    const container = new ContainerBuilder()
+      .setAccentColor([255, 0, 0]) // 🔴 Red = Critical
+      .addTextDisplayComponents(
+        new TextDisplayBuilder().setContent(
+          [
+            `### ${title}`,
+            '```ansi',
+            content.slice(0, 1900),
+            '```'
+          ].join('\n')
+        )
+      );
+
+    await channel.send({
+      components: [container],
+      flags: [MessageFlags.IsComponentsV2]
+    });
+  } catch (e) {
+    console.error("❌ Failed to log error to Discord:", e);
+  }
+}
+
 
 const { loadEvents } = require("./handlers/handler");
 
@@ -73,3 +105,17 @@ connect(client.config.DatabaseURL, {}).then(() =>
 loadEvents(client);
 
 client.login(client.config.token);
+
+process.on('unhandledRejection', async (reason, promise) => {
+  const msg = reason instanceof Error ? reason.stack : String(reason);
+  console.error('❌ [Unhandled Rejection]', msg);
+  await sendErrorToDiscord(client, '❌ Unhandled Promise Rejection', msg);
+});
+
+process.on('uncaughtException', async (err) => {
+  const msg = err.stack || err.message || String(err);
+  console.error('💥 [Uncaught Exception]', msg);
+  await sendErrorToDiscord(client, '💥 Uncaught Exception', msg);
+  // Optional: process.exit(1);
+});
+
