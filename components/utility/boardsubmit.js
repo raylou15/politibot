@@ -1,4 +1,18 @@
-const { ButtonInteraction, ModalBuilder, ActionRowBuilder, TextInputBuilder, TextInputStyle, EmbedBuilder, ButtonBuilder, ButtonStyle, IntentsBitField, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ComponentType } = require("discord.js");
+const {
+  ButtonInteraction,
+  ModalBuilder,
+  ActionRowBuilder,
+  TextInputBuilder,
+  TextInputStyle,
+  EmbedBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  IntentsBitField,
+  StringSelectMenuBuilder,
+  StringSelectMenuOptionBuilder,
+  ComponentType,
+  MessageFlags
+} = require("discord.js");
 const config = require("../../config.json");
 const { sync } = require("glob");
 const client = module.exports = {
@@ -44,7 +58,7 @@ const client = module.exports = {
                     )
             )
 
-            const response = await interaction.reply({ components: [dropdown], ephemeral: true, fetchReply: true })
+            const response = await interaction.reply({ components: [dropdown], flags: [MessageFlags.Ephemeral], withResponse: true })
 
             const collector = response.createMessageComponentCollector({ filter: i => i.user.id === interaction.user.id, time: 3600000 });
 
@@ -131,21 +145,21 @@ const client = module.exports = {
                             const reportChannel = interaction.guild.channels.cache.get("1278149205122355282")
 
                             reportChannel.send({ content: `${mainEmbed.fields[0].value} ${mainEmbed.fields[1].value}`, embeds: [reportEmbed] })
-                            modalresponse.reply({ content: "Report submitted.", ephemeral: true })
+                            modalresponse.reply({ content: "Report submitted.", flags: [MessageFlags.Ephemeral] })
                             interaction.message.edit({ embeds: [mainEmbed], components: [] })
 
                         } else {
-                            modalresponse.reply({ content: `The votes in favor does not reach the 2/3rds majority threshold necessary to adopt this ruling. Please double check your count!`, ephemeral: true })
+                            modalresponse.reply({ content: `The votes in favor does not reach the 2/3rds majority threshold necessary to adopt this ruling. Please double check your count!`, flags: [MessageFlags.Ephemeral] })
                         }
                     } else {
-                        modalresponse.reply({ content: `Not all members are accounted for in the vote. You said there were ${totalVotes} votes, but there are ${totalMembers}. Please double check your count!`, ephemeral: true })
+                        modalresponse.reply({ content: `Not all members are accounted for in the vote. You said there were ${totalVotes} votes, but there are ${totalMembers}. Please double check your count!`, flags: [MessageFlags.Ephemeral] })
                     }
                 }
 
             })
 
         } else {
-            interaction.reply({ content: "You're not the Chairman! Only the Chairman can fill this out.", ephemeral: true })
+            interaction.reply({ content: "You're not the Chairman! Only the Chairman can fill this out.", flags: [MessageFlags.Ephemeral] })
         }
 
     },

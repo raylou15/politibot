@@ -1,22 +1,22 @@
 const {
-    SlashCommandBuilder,
-    ChatInputCommandInteraction,
-    PermissionFlagsBits,
-    EmbedBuilder,
-    ButtonBuilder,
-    ButtonStyle,
-    ActionRowBuilder,
-    AttachmentBuilder,
-    ContainerBuilder,
-    FileBuilder,
-    MessageFlags,
-    SectionBuilder,
-    SeparatorSpacingSize,
-    TextDisplayBuilder,
-    MediaGalleryBuilder,
-    MediaGalleryItemBuilder,
-    ThumbnailBuilder,
-  } = require("discord.js");
+  SlashCommandBuilder,
+  ChatInputCommandInteraction,
+  PermissionFlagsBits,
+  EmbedBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  ActionRowBuilder,
+  AttachmentBuilder,
+  ContainerBuilder,
+  FileBuilder,
+  MessageFlags,
+  SectionBuilder,
+  SeparatorSpacingSize,
+  TextDisplayBuilder,
+  MediaGalleryBuilder,
+  MediaGalleryItemBuilder,
+  ThumbnailBuilder
+} = require("discord.js");
   const infractionData = require("../../schemas/infractions");
   const ms = require("ms");
   
@@ -50,7 +50,7 @@ const {
       const embed2 = new EmbedBuilder()
       .setDescription("-# Note: If you need to use the ticket system for appeals or other matters but the button below is greyed out, run the `/openticket` command in DMs with <@1043691844145512458>.")
   
-      interaction.reply({ content: "thanks", ephemeral: true });
+      interaction.reply({ content: "thanks", flags: [MessageFlags.Ephemeral] });
       // targetChannel.send({ embeds: [buttonembed], components: [buttonRow] });
       interaction.channel.messages.fetch("1061462760615051334")
       .then(msg => (

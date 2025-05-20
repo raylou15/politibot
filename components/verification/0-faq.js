@@ -5,12 +5,13 @@ const {
   EmbedBuilder,
   ButtonComponent,
   Component,
-  SelectMenuBuilder,
+  StringSelectMenuBuilder,
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
   SelectMenuInteraction,
   ButtonInteraction,
+  MessageFlags
 } = require("discord.js");
 const verifyData = require("../../schemas/verificationdata");
 module.exports = {
@@ -70,7 +71,7 @@ module.exports = {
       )
       .setFooter({ text: "━━━━━━━━━━━━━━━━━ ★ ★ ★ ★ ★ ━━━━━━━━━━━━━━━━━" });
 
-    interaction.reply({ embeds: [faqEmbed], ephemeral: true });
+    interaction.reply({ embeds: [faqEmbed], flags: [MessageFlags.Ephemeral] });
     logChannel.send({ embeds: [logEmbed] });
   },
 };

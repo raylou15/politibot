@@ -1,4 +1,15 @@
-const { ButtonInteraction, ModalBuilder, ActionRowBuilder, TextInputBuilder, TextInputStyle, EmbedBuilder, ButtonBuilder, ButtonStyle, IntentsBitField } = require("discord.js");
+const {
+  ButtonInteraction,
+  ModalBuilder,
+  ActionRowBuilder,
+  TextInputBuilder,
+  TextInputStyle,
+  EmbedBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  IntentsBitField,
+  MessageFlags
+} = require("discord.js");
 const config = require("../../config.json")
 const client = module.exports = {
     name: "claimreport",
@@ -43,7 +54,7 @@ const client = module.exports = {
         )
 
         interaction.message.edit({ embeds: [newEmbed], components: [claimedButtons] })
-        interaction.reply({ephemeral: true, content: "Claimed report."})
+        interaction.reply({flags: [MessageFlags.Ephemeral], content: "Claimed report."})
         
     },
   };

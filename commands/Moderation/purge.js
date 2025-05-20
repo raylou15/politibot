@@ -3,6 +3,7 @@ const {
   ChatInputCommandInteraction,
   PermissionFlagsBits,
   EmbedBuilder,
+  MessageFlags
 } = require("discord.js");
 const ms = require("ms");
 
@@ -27,7 +28,7 @@ module.exports = {
     const count = interaction.options.getNumber("count");
 
     if (count > 100) {
-      return interaction.reply({ ephemeral: true, content: "You can only purge 100 messages at a time." })
+      return interaction.reply({ flags: [MessageFlags.Ephemeral], content: "You can only purge 100 messages at a time." })
     }
 
     channel

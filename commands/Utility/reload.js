@@ -3,6 +3,7 @@ const {
   SlashCommandBuilder,
   PermissionFlagsBits,
   Client,
+  MessageFlags
 } = require("discord.js");
 const { loadCommands, loadComponents } = require("../../handlers/handler");
 const { loadEvents } = require("../../handlers/handler");
@@ -35,7 +36,7 @@ module.exports = {
           for (const [key, value] of client.events)
             client.removeListener(`${key}`, value, true);
           loadEvents(client);
-          interaction.reply({ content: "🔄 Reloaded Events", ephemeral: true });
+          interaction.reply({ content: "🔄 Reloaded Events", flags: [MessageFlags.Ephemeral] });
         }
         break;
       case "commands":
@@ -43,7 +44,7 @@ module.exports = {
           loadCommands(client);
           interaction.reply({
             content: "🔄 Reloaded Commands",
-            ephemeral: true,
+            flags: [MessageFlags.Ephemeral],
           });
         }
         break;
@@ -51,7 +52,7 @@ module.exports = {
         loadComponents(client);
         interaction.reply({
           content: "🔄 Reloaded Buttons",
-          ephemeral: true,
+          flags: [MessageFlags.Ephemeral],
         });
       }
     }

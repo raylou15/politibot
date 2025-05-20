@@ -3,6 +3,7 @@ const {
   ChatInputCommandInteraction,
   PermissionFlagsBits,
   EmbedBuilder,
+  MessageFlags
 } = require("discord.js");
 const ms = require("ms");
 
@@ -60,13 +61,13 @@ module.exports = {
         channel.send({ embeds: [lockEmbed2] })
         interaction.reply({
           content: `${channel} has been locked.`,
-          ephemeral: true,
+          flags: [MessageFlags.Ephemeral],
         });
       } else {
         channel.send({ embeds: [lockEmbed] })
         interaction.reply({
           content: `${channel} has been locked.`,
-          ephemeral: true,
+          flags: [MessageFlags.Ephemeral],
         });
       }
     }
@@ -82,7 +83,7 @@ module.exports = {
       channel.send({ embeds: [lockEmbed] });
       interaction.reply({
         content: `${channel} has been unlocked.`,
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
       });
     }
 

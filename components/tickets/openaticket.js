@@ -1,4 +1,15 @@
-const { ButtonInteraction, ModalBuilder, ActionRowBuilder, TextInputBuilder, TextInputStyle, EmbedBuilder, ButtonBuilder, ButtonStyle, IntentsBitField } = require("discord.js");
+const {
+  ButtonInteraction,
+  ModalBuilder,
+  ActionRowBuilder,
+  TextInputBuilder,
+  TextInputStyle,
+  EmbedBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  IntentsBitField,
+  MessageFlags
+} = require("discord.js");
 const config = require("../../config.json")
 const ticketHandler = require("../../handlers/tickethandler");
 const blacklistData = require("../../schemas/ticketblacklist");
@@ -14,7 +25,7 @@ const client = module.exports = {
         console.log(truefalseVal)
 
         if (truefalseVal === 'true') {
-            return interaction.reply({ content: "You already have a ticket open. Reply in your DMs to the Politibot.", ephemeral: true })
+            return interaction.reply({ content: "You already have a ticket open. Reply in your DMs to the Politibot.", flags: [MessageFlags.Ephemeral] })
         }
 
         const foundData = await blacklistData.findOne({ UserID: interaction.user.id })
@@ -22,7 +33,7 @@ const client = module.exports = {
         console.log(foundData)
 
         if (foundData) {
-            return interaction.reply({ ephemeral: true, content: "You have been blacklisted from using the Modmail System." })
+            return interaction.reply({ flags: [MessageFlags.Ephemeral], content: "You have been blacklisted from using the Modmail System." })
         } else {
             console.log("Not blacklisted")
         }
@@ -54,10 +65,10 @@ const client = module.exports = {
 
         await interaction.user.send({ embeds: [firstEmbed], components: [buttonsRow] }).catch(async (err) => {
             console.log(err);
-            return interaction.reply({ embeds: [dmErrorEmbed], ephemeral: true });
+            return interaction.reply({ embeds: [dmErrorEmbed], flags: [MessageFlags.Ephemeral] });
         });
 
-        await interaction.reply({ content: "Check your DMs to proceed further!", ephemeral: true})
+        await interaction.reply({ content: "Check your DMs to proceed further!", flags: [MessageFlags.Ephemeral]})
 
     },
   };

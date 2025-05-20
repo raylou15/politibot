@@ -1,10 +1,11 @@
 const {
-    SlashCommandBuilder,
-    ChatInputCommandInteraction,
-    PermissionFlagsBits,
-    EmbedBuilder,
-    Embed,
-  } = require("discord.js");
+  SlashCommandBuilder,
+  ChatInputCommandInteraction,
+  PermissionFlagsBits,
+  EmbedBuilder,
+  Embed,
+  MessageFlags
+} = require("discord.js");
   const ms = require("ms");
   
   const wait = require('node:timers/promises').setTimeout;
@@ -58,7 +59,7 @@ const {
         const msg = await channel.send({ embeds: [lockEmbed] })
         interaction.reply({
         content: `${channel} has been put under a 120 second timeout.`,
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
         });
 
         

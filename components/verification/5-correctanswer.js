@@ -5,12 +5,13 @@ const {
   EmbedBuilder,
   ButtonComponent,
   Component,
-  SelectMenuBuilder,
+  StringSelectMenuBuilder,
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
   SelectMenuInteraction,
   ButtonInteraction,
+  MessageFlags
 } = require("discord.js");
 const verifyData = require("../../schemas/verificationdata");
 module.exports = {
@@ -42,7 +43,7 @@ module.exports = {
     interaction.update({
       embeds: [finalEmbed],
       components: [finalRow],
-      ephemeral: true,
+      flags: [MessageFlags.Ephemeral],
     });
   },
 };

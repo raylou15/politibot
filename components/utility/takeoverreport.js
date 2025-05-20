@@ -1,4 +1,15 @@
-const { ButtonInteraction, ModalBuilder, ActionRowBuilder, TextInputBuilder, TextInputStyle, EmbedBuilder, ButtonBuilder, ButtonStyle, IntentsBitField } = require("discord.js");
+const {
+  ButtonInteraction,
+  ModalBuilder,
+  ActionRowBuilder,
+  TextInputBuilder,
+  TextInputStyle,
+  EmbedBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  IntentsBitField,
+  MessageFlags
+} = require("discord.js");
 const config = require("../../config.json")
 const client = module.exports = {
     name: "takeoverreport",
@@ -13,14 +24,14 @@ const client = module.exports = {
         const regex = /<@(\d+)>/;
 
         if (embed.fields[1].value === "N/A") {
-            return interaction.reply({ephemeral: true, content: "This is not claimed by anyone."})
+            return interaction.reply({flags: [MessageFlags.Ephemeral], content: "This is not claimed by anyone."})
         }
 
         const claimedModID = embed.fields[1].value.match(regex)
         const claimedMod = await interaction.guild.members.fetch(claimedModID[1])
 
         if (interaction.user === claimedMod.user) {
-            return interaction.reply({ephemeral: true, content: "This is already claimed by you."})
+            return interaction.reply({flags: [MessageFlags.Ephemeral], content: "This is already claimed by you."})
         }
 
         const newEmbed = new EmbedBuilder()

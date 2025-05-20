@@ -19,7 +19,7 @@ const {
   MediaGalleryBuilder,
   MediaGalleryItemBuilder,
   MessageFlags,
-  SectionBuilder,
+  SectionBuilder
 } = require("discord.js");
 const ms = require("ms");
 

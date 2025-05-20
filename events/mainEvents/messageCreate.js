@@ -1,4 +1,8 @@
-const { EmbedBuilder, ChannelType } = require("discord.js");
+const {
+  EmbedBuilder,
+  ChannelType,
+  MessageFlags
+} = require("discord.js");
 const { execute } = require("./ready");
 const xp = require("simply-xp");
 const ms = require('ms');
@@ -111,9 +115,9 @@ module.exports = {
         message.content.toLowerCase().includes("sounds like commie") ||
         message.content.toLowerCase().includes("sounds like some commie") ||
         message.content.toLowerCase().includes("commie") ||
-        message.content.toLowerCase().includes("proletariat") ||
-        message.content.toLowerCase().includes("wagie") ||
-        message.content.toLowerCase().includes("bourgeoisie")
+        // message.content.toLowerCase().includes("proletariat") ||
+        message.content.toLowerCase().includes("wagie")
+        // || message.content.toLowerCase().includes("bourgeoisie")
       ) {
         message.reply(
           "https://cdn.discordapp.com/attachments/928407503690149939/1062530628257583104/commie.mp4"

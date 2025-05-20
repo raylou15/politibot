@@ -1,4 +1,8 @@
-const { EmbedBuilder, ChannelType } = require("discord.js");
+const {
+  EmbedBuilder,
+  ChannelType,
+  MessageFlags
+} = require("discord.js");
 const { execute } = require("../mainEvents/ready");
 
 module.exports = {

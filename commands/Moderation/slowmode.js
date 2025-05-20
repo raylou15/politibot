@@ -1,10 +1,11 @@
 const {
-    SlashCommandBuilder,
-    ChatInputCommandInteraction,
-    PermissionFlagsBits,
-    EmbedBuilder,
-    Embed,
-  } = require("discord.js");
+  SlashCommandBuilder,
+  ChatInputCommandInteraction,
+  PermissionFlagsBits,
+  EmbedBuilder,
+  MessageFlags,
+  Embed
+} = require("discord.js");
   const ms = require("ms");
   
   const wait = require('node:timers/promises').setTimeout;
@@ -52,7 +53,7 @@ const {
         .setFooter({ text: `This slowmode will expire after ${interaction.options.getInteger("length")/60} minutes. Interval is set to ${interval} seconds per message.` })
         channel.send({ embeds: [slowmodeEmbed] })
 
-        interaction.reply({ content: `This channel now has a ${interval} second slowmode enabled for ${interaction.options.getInteger("length")/60} minutes.`, ephemeral: true })
+        interaction.reply({ content: `This channel now has a ${interval} second slowmode enabled for ${interaction.options.getInteger("length")/60} minutes.`, flags: [MessageFlags.Ephemeral] })
 
         await wait(interaction.options.getInteger("length") * 1000)
 

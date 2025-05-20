@@ -1,5 +1,8 @@
 const { loadCommands, loadComponents } = require("../../handlers/handler");
-const { ActivityType } = require("discord.js");
+const {
+  ActivityType,
+  MessageFlags
+} = require("discord.js");
 const schedule = require("node-schedule");
 const MorningNews = require("../../handlers/newsletterhandler");
 const EveningNews = require("../../handlers/newsletterhandler");

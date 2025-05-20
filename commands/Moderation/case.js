@@ -4,7 +4,7 @@ const {
   PermissionFlagsBits,
   EmbedBuilder,
   AutoModerationRuleKeywordPresetType,
-  time,
+  MessageFlags
 } = require("discord.js");
 const infractionData = require("../../schemas/infractions");
 const ms = require("ms");
@@ -168,7 +168,7 @@ module.exports = {
         `${logData.TargetID}`
       );
       if (targetUser === undefined) {
-        return interaction.reply({ ephemeral: true, content: "This user has left the server."})
+        return interaction.reply({ flags: [MessageFlags.Ephemeral], content: "This user has left the server."})
       }
       const issuerUser = await interaction.guild.members.fetch(
         `${logData.IssuerID}`
@@ -243,7 +243,7 @@ module.exports = {
         `${logData.TargetID}`
       );
       if (targetUser === undefined) {
-        return interaction.reply({ ephemeral: true, content: "This user has left the server."})
+        return interaction.reply({ flags: [MessageFlags.Ephemeral], content: "This user has left the server."})
       }
       const issuerUser = await interaction.guild.members.fetch(
         `${logData.IssuerID}`
@@ -317,14 +317,14 @@ module.exports = {
 
       // Handle some preliminary errors.
       if (oldType === "Ban" || oldType === "Kick") {
-        return await interaction.reply({ephemeral: true, content: "Currently, you cannot downgrade a ban or a kick to a lower punishment. You will need to issue a new log, for now."})
+        return await interaction.reply({flags: [MessageFlags.Ephemeral], content: "Currently, you cannot downgrade a ban or a kick to a lower punishment. You will need to issue a new log, for now."})
       }
       if (newType === "Kick" || newType === "Ban" || newType === "Mute") {
-        return await interaction.reply({ ephemeral: true, content: "This command currently does not support changing logs to mutes, kicks, or bans."})
+        return await interaction.reply({ flags: [MessageFlags.Ephemeral], content: "This command currently does not support changing logs to mutes, kicks, or bans."})
       }
       
       if (oldType === newType) {
-        return await interaction.reply({ ephemeral: true, content: `You're trying to change a ${oldType} into a ${newType}... that's pointless!`})
+        return await interaction.reply({ flags: [MessageFlags.Ephemeral], content: `You're trying to change a ${oldType} into a ${newType}... that's pointless!`})
       }
 
       console.log(oldType)

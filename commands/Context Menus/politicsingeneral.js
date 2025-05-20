@@ -13,6 +13,7 @@ const {
   ButtonStyle,
   Embed,
   ComponentType,
+  MessageFlags
 } = require("discord.js");
 const ms = require("ms");
 
@@ -39,7 +40,7 @@ module.exports = {
       .setFooter({text: "Discussion of politics beyond this point, or arguing with this rule, will get you muted."})
 
     interaction.reply({
-      ephemeral: true,
+      flags: [MessageFlags.Ephemeral],
       content: "Embed Reminder Sent"
     })
 

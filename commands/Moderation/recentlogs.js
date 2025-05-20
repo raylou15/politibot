@@ -4,6 +4,7 @@ const {
   PermissionFlagsBits,
   EmbedBuilder,
   time,
+  MessageFlags
 } = require("discord.js");
 const infractionData = require("../../schemas/infractions");
 const CaseCountSchema = require("../../schemas/casecount");

@@ -6,6 +6,7 @@ const {
   ButtonBuilder,
   ButtonStyle,
   ActionRowBuilder,
+  MessageFlags
 } = require("discord.js");
 const infractionData = require("../../schemas/infractions");
 const ms = require("ms");
@@ -49,7 +50,7 @@ module.exports = {
       })
       .setThumbnail("https://i.imgur.com/kcdKk1U.png");
 
-    interaction.reply({ content: "thanks", ephemeral: true });
+    interaction.reply({ content: "thanks", flags: [MessageFlags.Ephemeral] });
     targetChannel.send({ embeds: [buttonembed], components: [buttonRow] });
   },
 };

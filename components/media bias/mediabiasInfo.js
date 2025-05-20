@@ -1,19 +1,20 @@
 const {
-    SlashCommandBuilder,
-    ChatInputCommandInteraction,
-    PermissionFlagsBits,
-    EmbedBuilder,
-    ButtonComponent,
-    Component,
-    SelectMenuBuilder,
-    ActionRowBuilder,
-    ButtonBuilder,
-    ButtonStyle,
-    SelectMenuInteraction,
-    ButtonInteraction,
-    ComponentType,
-    Embed,
-  } = require("discord.js");
+  SlashCommandBuilder,
+  ChatInputCommandInteraction,
+  PermissionFlagsBits,
+  EmbedBuilder,
+  ButtonComponent,
+  Component,
+  StringSelectMenuBuilder,
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  SelectMenuInteraction,
+  ButtonInteraction,
+  ComponentType,
+  Embed,
+  MessageFlags
+} = require("discord.js");
   const client = module.exports = {
     name: "mediabiasInfo",
     description: "Media Bias Tool Information",
@@ -22,6 +23,7 @@ const {
      * @param {ButtonInteraction} interaction
      */
     async execute(interaction, client) {
+        await interaction.deferReply({ ephemeral: true });
       
         const infoEmbed = new EmbedBuilder()
         .setColor("DarkBlue")
@@ -56,7 +58,7 @@ const {
         ])
         .setFooter({text: "Credit: Allsides, Media Bias/Fact Check, and Political Bias Database (Alberto Escobar)", iconURL: interaction.guild.iconURL()});
 
-        await interaction.reply({ embeds: [infoEmbed], ephemeral: true })
+        await interaction.update({ embeds: [infoEmbed], flags: [MessageFlags.Ephemeral] })
 
     },
   };

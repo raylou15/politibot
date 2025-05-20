@@ -13,7 +13,8 @@ const {
   ButtonStyle,
   Embed,
   ComponentType,
-  time,
+  MessageFlags,
+  time
 } = require("discord.js");
 const infractionData = require("../../schemas/infractions");
 const ms = require("ms");
@@ -325,13 +326,13 @@ module.exports = {
         return interaction.reply({
           embeds: [logDataEmbed],
           components: [naviButtons, paginationButtons],
-          ephemeral: true
+          flags: [MessageFlags.Ephemeral]
         });
       } else {
         return interaction.reply({
           embeds: [logDataEmbed],
           components: [naviButtons],
-          ephemeral: true
+          flags: [MessageFlags.Ephemeral]
         });
       }
     }

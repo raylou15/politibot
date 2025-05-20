@@ -5,7 +5,7 @@ const {
   EmbedBuilder,
   ButtonComponent,
   Component,
-  SelectMenuBuilder,
+  StringSelectMenuBuilder,
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
@@ -14,6 +14,7 @@ const {
   ComponentType,
   Embed,
   DataResolver,
+  MessageFlags
 } = require("discord.js");
 const infractionData = require("../../schemas/infractions");
 const verificationData = require("../../schemas/verificationdata");
@@ -99,7 +100,7 @@ module.exports = {
       targetAvatar = target.displayAvatarURL();
       targetMember = interaction.guild.members.cache.get(target.id);
       if (targetMember === undefined) {
-        return interaction.reply({ ephemeral: true, content: "This user is likely no longer part of the server." })
+        return interaction.reply({ flags: [MessageFlags.Ephemeral], content: "This user is likely no longer part of the server." })
       }
       targetUser = await targetMember.user;
     } else {
@@ -107,7 +108,7 @@ module.exports = {
       targetAvatar = embed1.author.iconURL;
       targetMember = interaction.guild.members.cache.get(target1);
       if (targetMember === undefined) {
-        return interaction.reply({ ephemeral: true, content: "This user is likely no longer part of the server." })
+        return interaction.reply({ flags: [MessageFlags.Ephemeral], content: "This user is likely no longer part of the server." })
       }
       targetUser = await targetMember.user;
     }

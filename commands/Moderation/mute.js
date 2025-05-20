@@ -7,6 +7,7 @@ const {
   ButtonBuilder,
   ButtonStyle,
   Events,
+  MessageFlags
 } = require("discord.js");
 const infractionData = require("../../schemas/infractions");
 const CaseCountSchema = require("../../schemas/casecount");
@@ -42,7 +43,7 @@ module.exports = {
         .setName("reason")
         .setDescription("Provide a reason!")
         .setRequired(true)
-        .setMaxLength(1000)
+        .setMaxLength(950)
     ), // Remember to remove this comma
   // .addBooleanOption((options) =>
   //   options
@@ -84,7 +85,7 @@ module.exports = {
         embeds: [
           errorsEmbed.setDescription("• Member has likely left the server."),
         ],
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
       });
     if (!ms(duration) || ms(duration) > ms("28d")) {
       errorsArray.push("• Time provided is invalid or over the 28d limit.");
@@ -97,7 +98,7 @@ module.exports = {
     if (errorsArray.length) {
       return interaction.reply({
         embeds: [errorsEmbed.setDescription(errorsArray.join("\n"))],
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
       });
     } else {
       target.timeout(ms(duration)).catch((err) => {

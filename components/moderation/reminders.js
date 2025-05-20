@@ -5,7 +5,7 @@ const {
   EmbedBuilder,
   ButtonComponent,
   Component,
-  SelectMenuBuilder,
+  StringSelectMenuBuilder,
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
@@ -14,6 +14,7 @@ const {
   ComponentType,
   Embed,
   time,
+  MessageFlags
 } = require("discord.js");
 const infractionData = require("../../schemas/infractions");
 const ms = require("ms");

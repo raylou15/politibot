@@ -1,19 +1,20 @@
 const {
-    SlashCommandBuilder,
-    ChatInputCommandInteraction,
-    PermissionFlagsBits,
-    EmbedBuilder,
-    ButtonComponent,
-    Component,
-    SelectMenuBuilder,
-    ActionRowBuilder,
-    ButtonBuilder,
-    ButtonStyle,
-    SelectMenuInteraction,
-    ButtonInteraction,
-    ComponentType,
-    Embed,
-  } = require("discord.js");
+  SlashCommandBuilder,
+  ChatInputCommandInteraction,
+  PermissionFlagsBits,
+  EmbedBuilder,
+  ButtonComponent,
+  Component,
+  StringSelectMenuBuilder,
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  SelectMenuInteraction,
+  ButtonInteraction,
+  ComponentType,
+  Embed,
+  MessageFlags
+} = require("discord.js");
   const client = module.exports = {
     name: "chromeextension",
     description: "Chrome Extension Information",
@@ -30,7 +31,7 @@ const {
         .setImage('https://i.imgur.com/5iimIwJ.png')
         .setFooter({text: "Credit: Allsides, Media Bias/Fact Check, and Political Bias Database (Alberto Escobar)", iconURL: interaction.guild.iconURL()});
 
-        await interaction.reply({ embeds: [infoEmbed], ephemeral: true })
+        await interaction.reply({ embeds: [infoEmbed], flags: [MessageFlags.Ephemeral] })
 
     },
   };

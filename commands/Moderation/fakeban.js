@@ -1,13 +1,14 @@
 const {
-    SlashCommandBuilder,
-    ChatInputCommandInteraction,
-    PermissionFlagsBits,
-    EmbedBuilder,
-    ActionRowBuilder,
-    ButtonBuilder,
-    ButtonStyle,
-    Events,
-  } = require("discord.js");
+  SlashCommandBuilder,
+  ChatInputCommandInteraction,
+  PermissionFlagsBits,
+  EmbedBuilder,
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  Events,
+  MessageFlags
+} = require("discord.js");
   const infractionData = require("../../schemas/infractions");
   const CaseCountSchema = require("../../schemas/casecount");
   const ms = require("ms");
@@ -82,7 +83,7 @@ const {
           embeds: [
             errorsEmbed.setDescription("• Member has likely left the server."),
           ],
-          ephemeral: true,
+          flags: [MessageFlags.Ephemeral],
         });
       if (!target.manageable || !target.moderatable) {
         errorsArray.push(
@@ -158,7 +159,7 @@ const {
       if (errorsArray.length) {
         return interaction.reply({
           embeds: [errorsEmbed.setDescription(errorsArray.join("\n"))],
-          ephemeral: true,
+          flags: [MessageFlags.Ephemeral],
         });
       } else {
         console.log("lol'd")

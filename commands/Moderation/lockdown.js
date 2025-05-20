@@ -3,6 +3,7 @@ const {
   ChatInputCommandInteraction,
   PermissionFlagsBits,
   EmbedBuilder,
+  MessageFlags
 } = require("discord.js");
 const ms = require("ms");
 
@@ -64,7 +65,7 @@ module.exports = {
         SendMessages: false,
       });
   
-      interaction.reply({ content: "Lockdown successful!", ephemeral: true });
+      interaction.reply({ content: "Lockdown successful!", flags: [MessageFlags.Ephemeral] });
     }
 
     if (interaction.options.getSubcommand() === "lift") {
@@ -86,7 +87,7 @@ module.exports = {
         }
       })
   
-      interaction.reply({ content: "Unlockdown successful!", ephemeral: true });
+      interaction.reply({ content: "Unlockdown successful!", flags: [MessageFlags.Ephemeral] });
     }
   },
 };

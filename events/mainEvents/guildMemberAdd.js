@@ -1,4 +1,11 @@
-const { EmbedBuilder, GuildMember, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
+const {
+  EmbedBuilder,
+  GuildMember,
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  MessageFlags
+} = require("discord.js");
 const { execute } = require("./ready");
 const moment = require("moment");
 

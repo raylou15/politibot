@@ -21,7 +21,7 @@ const {
   MediaGalleryBuilder,
   MediaGalleryItemBuilder,
   MessageFlags,
-  SectionBuilder,
+  SectionBuilder
 } = require("discord.js");
 const { loadCommands, loadComponents } = require("../../handlers/handler");
 const { loadEvents } = require("../../handlers/handler");

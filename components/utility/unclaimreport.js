@@ -1,4 +1,15 @@
-const { ButtonInteraction, ModalBuilder, ActionRowBuilder, TextInputBuilder, TextInputStyle, EmbedBuilder, ButtonBuilder, ButtonStyle, IntentsBitField } = require("discord.js");
+const {
+  ButtonInteraction,
+  ModalBuilder,
+  ActionRowBuilder,
+  TextInputBuilder,
+  TextInputStyle,
+  EmbedBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  IntentsBitField,
+  MessageFlags
+} = require("discord.js");
 const config = require("../../config.json")
 const client = module.exports = {
     name: "unclaimreport",
@@ -16,7 +27,7 @@ const client = module.exports = {
         const claimedMod = await interaction.guild.members.fetch(claimedModID[1])
 
         if (interaction.user !== claimedMod.user) {
-            return interaction.reply({ephemeral: true, content: "This is not your report."})
+            return interaction.reply({flags: [MessageFlags.Ephemeral], content: "This is not your report."})
         }
 
         const newEmbed = new EmbedBuilder()
@@ -47,7 +58,7 @@ const client = module.exports = {
         )
 
         interaction.message.edit({ embeds: [newEmbed], components: [claimedButtons] })
-        interaction.reply({ephemeral: true, content: "Unclaimed report."})
+        interaction.reply({flags: [MessageFlags.Ephemeral], content: "Unclaimed report."})
         
     },
   };

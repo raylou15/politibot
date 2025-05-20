@@ -3,7 +3,7 @@ const {
   SlashCommandBuilder,
   EmbedBuilder,
   PermissionFlagsBits,
-  Embed,
+  MessageFlags
 } = require("discord.js");
 const client = (module.exports = {
   data: new SlashCommandBuilder()
@@ -25,6 +25,6 @@ const client = (module.exports = {
 
 
 
-    interaction.reply({ embeds: [commandEmbed], ephemeral: true });
+    interaction.reply({ embeds: [commandEmbed], flags: [MessageFlags.Ephemeral] });
   },
 });

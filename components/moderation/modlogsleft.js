@@ -5,7 +5,7 @@ const {
   EmbedBuilder,
   ButtonComponent,
   Component,
-  SelectMenuBuilder,
+  StringSelectMenuBuilder,
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
@@ -15,6 +15,7 @@ const {
   Embed,
   time,
   ThreadChannel,
+  MessageFlags
 } = require("discord.js");
 const infractionData = require("../../schemas/infractions");
 const ms = require("ms");
@@ -124,7 +125,7 @@ module.exports = {
         if (pageNumber == 1) {
           return interaction.reply({
             content: "Reached first page.",
-            ephemeral: true,
+            flags: [MessageFlags.Ephemeral],
           });
         }
 

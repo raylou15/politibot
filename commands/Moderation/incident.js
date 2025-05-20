@@ -3,6 +3,7 @@ const {
   ChatInputCommandInteraction,
   PermissionFlagsBits,
   EmbedBuilder,
+  MessageFlags
 } = require("discord.js");
 const infractionData = require("../../schemas/infractions");
 const CaseCountSchema = require("../../schemas/casecount");
@@ -31,6 +32,7 @@ module.exports = {
         .setName("reason")
         .setDescription("Reason for incident log")
         .setRequired(true)
+        .setMaxLength(950)
     ),
   /**
    *
@@ -65,7 +67,7 @@ module.exports = {
         embeds: [
           errorsEmbed.setDescription("• Member has likely left the server."),
         ],
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
       });
     // if (!target.manageable || !target.moderatable) {
     //   errorsArray.push(
@@ -75,7 +77,7 @@ module.exports = {
     if (errorsArray.length) {
       return interaction.reply({
         embeds: [errorsEmbed.setDescription(errorsArray.join("\n"))],
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
       });
     }
     //MongoDB: Handling the data behind the scenes!
@@ -126,7 +128,7 @@ module.exports = {
     const logChannel =
       interaction.guild.channels.cache.get("1052421373353525351");
 
-    interaction.reply({ embeds: [incidentEmbed], ephemeral: true });
+    interaction.reply({ embeds: [incidentEmbed], flags: [MessageFlags.Ephemeral] });
     logChannel.send({ embeds: [incidentEmbed] });
   },
 };

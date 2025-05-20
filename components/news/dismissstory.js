@@ -1,19 +1,20 @@
 const {
-    SlashCommandBuilder,
-    ChatInputCommandInteraction,
-    PermissionFlagsBits,
-    EmbedBuilder,
-    ButtonComponent,
-    Component,
-    SelectMenuBuilder,
-    ActionRowBuilder,
-    ButtonBuilder,
-    ButtonStyle,
-    SelectMenuInteraction,
-    ButtonInteraction,
-    ComponentType,
-    Embed,
-  } = require("discord.js");
+  SlashCommandBuilder,
+  ChatInputCommandInteraction,
+  PermissionFlagsBits,
+  EmbedBuilder,
+  ButtonComponent,
+  Component,
+  StringSelectMenuBuilder,
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  SelectMenuInteraction,
+  ButtonInteraction,
+  ComponentType,
+  Embed,
+  MessageFlags
+} = require("discord.js");
   const client = module.exports = {
     name: "dismissstory",
     description: "Post a news story.",
@@ -23,7 +24,7 @@ const {
      */
     async execute(interaction, client) {
 
-      interaction.reply({ content: "News Story Dismissed!", ephemeral: true })
+      interaction.reply({ content: "News Story Dismissed!", flags: [MessageFlags.Ephemeral] })
       interaction.message.delete()
 
     },

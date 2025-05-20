@@ -14,7 +14,7 @@ const {
   TextDisplayBuilder,
   MediaGalleryBuilder,
   MediaGalleryItemBuilder,
-  ThumbnailBuilder,
+  ThumbnailBuilder
 } = require("discord.js");
 const client = (module.exports = {
   data: new SlashCommandBuilder()

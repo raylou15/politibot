@@ -2,6 +2,7 @@ const {
   ChatInputCommandInteraction,
   SlashCommandBuilder,
   PermissionFlagsBits,
+  MessageFlags
 } = require("discord.js");
 const client = (module.exports = {
   data: new SlashCommandBuilder()

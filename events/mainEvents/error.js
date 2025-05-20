@@ -1,7 +1,7 @@
 const {
-    ContainerBuilder,
-    TextDisplayBuilder,
-    MessageFlags
+  ContainerBuilder,
+  TextDisplayBuilder,
+  MessageFlags
 } = require("discord.js");
 
 module.exports = {

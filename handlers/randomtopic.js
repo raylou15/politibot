@@ -1,11 +1,12 @@
 const config = require("../config.json");
 const newsletterData = require("../schemas/newslettersubs");
 const {
-    EmbedBuilder,
-    ActionRowBuilder,
-    ButtonBuilder,
-    ButtonStyle,
-  } = require("discord.js");
+  EmbedBuilder,
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  MessageFlags
+} = require("discord.js");
 
 async function ChooseRandomTopic(client) {
     const topicArray = [

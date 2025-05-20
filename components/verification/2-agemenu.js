@@ -5,11 +5,12 @@ const {
   EmbedBuilder,
   ButtonComponent,
   Component,
-  SelectMenuBuilder,
+  StringSelectMenuBuilder,
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
   SelectMenuInteraction,
+  MessageFlags
 } = require("discord.js");
 const verifyData = require("../../schemas/verificationdata");
 module.exports = {
@@ -35,7 +36,7 @@ module.exports = {
         { UserID: interaction.user.id },
         { $set: { Age: response } }
       );
-      interaction.reply({ embeds: [ageEmbed], ephemeral: true });
+      interaction.reply({ embeds: [ageEmbed], flags: [MessageFlags.Ephemeral] });
     } else {
       //Continue to next thing!
       await verifyData.findOneAndUpdate(
@@ -134,7 +135,7 @@ module.exports = {
       interaction.update({
         embeds: [qEmbed],
         components: [qRow],
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
       });
     }
   },

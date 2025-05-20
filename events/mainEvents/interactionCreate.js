@@ -5,6 +5,7 @@ const {
   SelectMenuInteraction,
   EmbedBuilder,
   InteractionType,
+  MessageFlags
 } = require("discord.js");
 const { execute } = require("./ready");
 const verifyData = require("../../schemas/verificationdata");
@@ -41,7 +42,7 @@ module.exports = {
         return interaction.reply({
           content:
             "This command is outdated, or incomplete. Try refreshing discord (`ctrl+r`) to see if it fixes the issue.",
-          ephemeral: true,
+          flags: [MessageFlags.Ephemeral],
         });
       } else if (interaction.customId) {
         if (
@@ -104,7 +105,7 @@ module.exports = {
             
             if(errorArray.length) return interaction.reply({
                 embeds: [errorembed.setDescription(errorArray.join("\n"))],
-                ephemeral: true
+                flags: [MessageFlags.Ephemeral]
             });
     
             switch(splitArray[1]) {
@@ -113,7 +114,7 @@ module.exports = {
                     member.kick(`Kicked by ${interaction.user.username} | New Member Filtering`).then(() => {
                         interaction.reply({ embeds: [errorembed.setDescription(`${member} has been kicked by ${interaction.user.username}`).setColor("DarkRed")]})
                     }).catch(() => {
-                        interaction.reply({ embeds: [errorembed.setDescription(`${member} could not be kicked due to a rare error.`).setColor("DarkRed")], ephemeral: true})
+                        interaction.reply({ embeds: [errorembed.setDescription(`${member} could not be kicked due to a rare error.`).setColor("DarkRed")], flags: [MessageFlags.Ephemeral]})
                     })
                 }
                 break;
@@ -121,7 +122,7 @@ module.exports = {
                     member.ban(`Banned by ${interaction.user.username} | New Member Filtering`).then(() => {
                         interaction.reply({ embeds: [errorembed.setDescription(`${member} has been banned by ${interaction.user.username}`).setColor("DarkRed")]})
                     }).catch(() => {
-                        interaction.reply({ embeds: [errorembed.setDescription(`${member} could not be banned due to a rare error.`).setColor("DarkRed")], ephemeral: true})
+                        interaction.reply({ embeds: [errorembed.setDescription(`${member} could not be banned due to a rare error.`).setColor("DarkRed")], flags: [MessageFlags.Ephemeral]})
                     })
                 }
                 break;
@@ -144,7 +145,7 @@ module.exports = {
     // if (command.developer && interaction.user.id !== "178689418415177729")
     //   return interaction.reply({
     //     content: "This command is only available to the developer",
-    //     ephemeral: true,
+    //     flags: [MessageFlags.Ephemeral],
     //   });
   },
 };

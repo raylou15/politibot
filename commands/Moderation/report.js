@@ -6,6 +6,7 @@ const {
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
+  MessageFlags,
   time
 } = require("discord.js");
 const ms = require("ms");
@@ -28,48 +29,58 @@ module.exports = {
    * @param {ChatInputCommandInteraction} interaction
    */
   async execute(interaction, client) {
-    const bookmark = await interaction.channel.send("🔖");
+    let bookmark;
+    try {
+      bookmark = await interaction.channel.send("🔖");
+    } catch (err) {
+      console.error("❌ Failed to send bookmark message:", err);
+      return interaction.reply({
+        content: "Unable to create a bookmark. Make sure I'm allowed to speak in this channel.",
+        flags: [MessageFlags.Ephemeral],
+      }).catch(() => { });
+    }
+
     const reason = interaction.options.getString("reason");
 
     const reportEmbed = new EmbedBuilder()
-    .setAuthor({
-      name: interaction.user.username,
-      iconURL: interaction.user.displayAvatarURL(),
-    })
-    .setColor("Red")
-    .setTitle("Message Reported")
-    .setDescription(`A report has been filed by ${interaction.user}:`)
-    .addFields(
-      {
-        name: "Reason",
-        value: reason,
-        inline: true
-      },
-      {
-        name: "Claimed by:",
-        value: "N/A",
-        inline: true
-      },
-      {
-        name: "Information",
-        value: `Reported in ${interaction.channel.toString()} with ` + '`/report`' + ` ${time(date, 'R')} \n[Jump to Bookmark](${bookmark.url})`
-      }
-    )
-    .setFooter({ text: `Please claim this report before proceeding. You can use "Contact" below to open a ticket with the person who filed the report.` });
+      .setAuthor({
+        name: interaction.user.username,
+        iconURL: interaction.user.displayAvatarURL(),
+      })
+      .setColor("Red")
+      .setTitle("Message Reported")
+      .setDescription(`A report has been filed by ${interaction.user}:`)
+      .addFields(
+        {
+          name: "Reason",
+          value: reason,
+          inline: true
+        },
+        {
+          name: "Claimed by:",
+          value: "N/A",
+          inline: true
+        },
+        {
+          name: "Information",
+          value: `Reported in ${interaction.channel.toString()} with ` + '`/report`' + ` ${time(date, 'R')} \n[Jump to Bookmark](${bookmark.url})`
+        }
+      )
+      .setFooter({ text: `Please claim this report before proceeding. You can use "Contact" below to open a ticket with the person who filed the report.` });
 
     const reportButtons = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
-      .setCustomId('claimreport')
-      .setLabel("Claim")
-      .setStyle(ButtonStyle.Success),
+        .setCustomId('claimreport')
+        .setLabel("Claim")
+        .setStyle(ButtonStyle.Success),
       new ButtonBuilder()
-      .setCustomId("contactreport")
-      .setLabel("Contact")
-      .setStyle(ButtonStyle.Primary),
+        .setCustomId("contactreport")
+        .setLabel("Contact")
+        .setStyle(ButtonStyle.Primary),
       new ButtonBuilder()
-      .setCustomId("takeoverreport")
-      .setLabel("❗")
-      .setStyle(ButtonStyle.Secondary)
+        .setCustomId("takeoverreport")
+        .setLabel("❗")
+        .setStyle(ButtonStyle.Secondary)
     )
 
     const modChannel =
@@ -84,7 +95,7 @@ module.exports = {
     interaction.reply({
       content:
         "A report has been sent! We prefer you use other methods, such as opening a ticket or using the Context Menu (right click msg -> Apps -> Report Message), but this will work too! Thanks for helping keep the server tidy.",
-      ephemeral: true,
+      flags: [MessageFlags.Ephemeral],
     });
   },
 };

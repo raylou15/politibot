@@ -1,85 +1,112 @@
-const { ButtonInteraction, ModalBuilder, ActionRowBuilder, TextInputBuilder, TextInputStyle, EmbedBuilder, ButtonBuilder, ButtonStyle, IntentsBitField } = require("discord.js");
-const config = require("../../config.json")
+const {
+  ButtonInteraction,
+  EmbedBuilder,
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  MessageFlags
+} = require("discord.js");
+
+const config = require("../../config.json");
+
 const client = module.exports = {
-    name: "claimticket",
-    /**
-     *
-     * @param {ButtonInteraction} interaction
-     */
-    async execute(interaction, client) {
+  name: "claimticket",
 
-        const mainchannel = interaction.channel
-        const mainEmbed = interaction.message.embeds[0]
-        const nameArgs = mainchannel.name.split("-")
-        const targetDiscrim1 = `${nameArgs[0]}`
-        const targetDiscrim = targetDiscrim1.replace("_", " ")
-        const targetUser = client.users.cache.find(u => u.username === targetDiscrim)
-        const ticketsChannel = interaction.guild.channels.cache.get(config.ticketParent)
+  /**
+   * @param {ButtonInteraction} interaction
+   */
+  async execute(interaction, client) {
+    const mainchannel = interaction.channel;
+    const mainEmbed = interaction.message.embeds[0];
 
-        await interaction.message.pin()
+    const nameArgs = mainchannel.name.split("-");
+    const targetDiscrim = nameArgs[0].replace("_", " ");
 
-        const newEmbed = new EmbedBuilder()
-        .setColor('Green')
-        .setTitle('New Ticket Opened')
-        .setAuthor(mainEmbed.author)
-        .setDescription(mainEmbed.description)
-        .setFields([
-            { name: mainEmbed.fields[0].name, value: mainEmbed.fields[0].value },
-            { name: mainEmbed.fields[1].name, value: mainEmbed.fields[1].value, inline: true },
-            { name: mainEmbed.fields[2].name, value: `${interaction.user}`, inline: true }
-        ])
-        .setFooter({ text: "This ticket has been claimed."});
-        
-        const claimedEmbed = new EmbedBuilder()
-            .setColor("Green")
-            .setDescription(`This ticket has been claimed by ${interaction.user}!`)
+    let targetUser = client.users.cache.find(u => u.username === targetDiscrim);
+    if (!targetUser) {
+      try {
+        const guildMembers = await interaction.guild.members.fetch();
+        targetUser = guildMembers.find(m => m.user.username === targetDiscrim)?.user;
+      } catch (err) {
+        console.error("❌ Failed to find target user:", err);
+      }
+    }
 
-        const claimedEmbed2 = new EmbedBuilder()
-            .setColor("Green")
-            .setDescription("Your ticket has been claimed and is now being reviewed.")
-        
-        const claimedButtons = new ActionRowBuilder().addComponents(
-            new ButtonBuilder()
-                .setCustomId('unclaimticket')
-                .setLabel('Unclaim Ticket')
-                .setStyle(ButtonStyle.Secondary),
-            new ButtonBuilder()
-                .setCustomId('closeticket')
-                .setLabel('Close')
-                .setStyle(ButtonStyle.Danger),
-            new ButtonBuilder()
-                .setCustomId('takeover')
-                .setLabel('❗')
-                .setStyle(ButtonStyle.Secondary)
-        )
+    const ticketsChannel = interaction.guild.channels.cache.get(config.ticketParent);
+    await interaction.message.pin();
 
-        await interaction.reply({ embeds: [claimedEmbed]})
-        await interaction.message.edit({ embeds: [newEmbed], components: [claimedButtons] })
-        
-        const tagArray = [];
+    // Null-safe field access
+    const field0 = mainEmbed?.fields?.[0];
+    const field1 = mainEmbed?.fields?.[1];
+    const field2 = mainEmbed?.fields?.[2];
 
-        ticketsChannel.availableTags.forEach(element => {
-            if (element.name.toLowerCase() === `${mainEmbed.fields[0].value.toLowerCase()}`) {
-                tagArray.push(element.id)
-            }
-            if (element.name.toLowerCase() === `claimed`) {
-                tagArray.push(element.id)
-            }
-        })
+    const newEmbed = new EmbedBuilder()
+      .setColor("Green")
+      .setTitle("New Ticket Opened")
+      .setAuthor(mainEmbed.author)
+      .setDescription(mainEmbed.description)
+      .setFields([
+        { name: field0?.name ?? "Category", value: field0?.value ?? "Unknown" },
+        { name: field1?.name ?? "Type", value: field1?.value ?? "Unknown", inline: true },
+        { name: field2?.name ?? "Claimed By", value: `${interaction.user}`, inline: true }
+      ])
+      .setFooter({ text: "This ticket has been claimed." });
 
-        mainchannel.setAppliedTags(tagArray)
+    const claimedEmbed = new EmbedBuilder()
+      .setColor("Green")
+      .setDescription(`This ticket has been claimed by ${interaction.user}!`);
 
-        console.log(targetUser)
+    const claimedEmbed2 = new EmbedBuilder()
+      .setColor("Green")
+      .setDescription("Your ticket has been claimed and is now being reviewed.");
 
-        await targetUser.send({ embeds: [claimedEmbed2] }).catch(async (err) => {
-            console.log(err);
-            message.react('<:crossmark:965445798630416434>')
-            return logChannel.send({
-                content:
-                "Could not send DM. User may have left server.",
-            });
-        });
+    const claimedButtons = new ActionRowBuilder().addComponents(
+      new ButtonBuilder()
+        .setCustomId("unclaimticket")
+        .setLabel("Unclaim Ticket")
+        .setStyle(ButtonStyle.Secondary),
+      new ButtonBuilder()
+        .setCustomId("closeticket")
+        .setLabel("Close")
+        .setStyle(ButtonStyle.Danger),
+      new ButtonBuilder()
+        .setCustomId("takeover")
+        .setLabel("❗")
+        .setStyle(ButtonStyle.Secondary)
+    );
 
-    },
-  };
-  
+    // Safer reply logic
+    if (!interaction.replied && !interaction.deferred) {
+      await interaction.reply({ embeds: [claimedEmbed] });
+    } else {
+      await interaction.followUp({ embeds: [claimedEmbed], flags: [MessageFlags.Ephemeral] });
+    }
+
+    await interaction.message.edit({ embeds: [newEmbed], components: [claimedButtons] });
+
+    // Safe tag assignment
+    const tagArray = [];
+    const categoryTag = field0?.value?.toLowerCase();
+
+    ticketsChannel.availableTags.forEach(tag => {
+      if (categoryTag && tag.name.toLowerCase() === categoryTag) {
+        tagArray.push(tag.id);
+      }
+      if (tag.name.toLowerCase() === "claimed") {
+        tagArray.push(tag.id);
+      }
+    });
+
+    await mainchannel.setAppliedTags(tagArray);
+
+    // DM logic
+    console.log(targetUser);
+    if (targetUser) {
+      await targetUser.send({ embeds: [claimedEmbed2] }).catch(err => {
+        console.warn("⚠️ Could not DM user:", err.message);
+      });
+    } else {
+      console.warn("⚠️ targetUser is undefined — DM not sent.");
+    }
+  }
+};

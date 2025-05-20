@@ -5,8 +5,9 @@ const {
   EmbedBuilder,
   ButtonComponent,
   Component,
-  SelectMenuBuilder,
+  StringSelectMenuBuilder,
   ActionRowBuilder,
+  MessageFlags
 } = require("discord.js");
 const verifyData = require("../../schemas/verificationdata");
 
@@ -71,7 +72,7 @@ module.exports = {
           });
 
         const selectRow = new ActionRowBuilder().addComponents(
-          new SelectMenuBuilder()
+          new StringSelectMenuBuilder()
             .setCustomId("ageconfirmation")
             .setPlaceholder("Please select an option")
             .addOptions(
@@ -112,15 +113,15 @@ module.exports = {
         return interaction.reply({
           embeds: [initEmbed],
           components: [selectRow],
-          ephemeral: true,
+          flags: [MessageFlags.Ephemeral],
         });
       } else {
         //Uh oh! Underage!
-        return interaction.reply({ embeds: [ageEmbed], ephemeral: true });
+        return interaction.reply({ embeds: [ageEmbed], flags: [MessageFlags.Ephemeral] });
       }
     } else {
       //Too many attempts!
-      return interaction.reply({ embeds: [cancelEmbed], ephemeral: true });
+      return interaction.reply({ embeds: [cancelEmbed], flags: [MessageFlags.Ephemeral] });
     }
   },
 };

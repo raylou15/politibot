@@ -5,12 +5,13 @@ const {
   EmbedBuilder,
   ButtonComponent,
   Component,
-  SelectMenuBuilder,
+  StringSelectMenuBuilder,
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
   SelectMenuInteraction,
   ButtonInteraction,
+  MessageFlags
 } = require("discord.js");
 const verifyData = require("../../schemas/verificationdata");
 module.exports = {
@@ -60,7 +61,7 @@ module.exports = {
       answer3L: "No",
     };
     var q5 = {
-      question: "Is January 6th a prohibited topic?",
+      question: "Is January 6th a **prohibited** topic?",
       answer: "yesb",
       answerL: "Yes",
       answer2: "idkb",
@@ -112,7 +113,7 @@ module.exports = {
     interaction.update({
       embeds: [qEmbed],
       components: [qRow],
-      ephemeral: true,
+      flags: [MessageFlags.Ephemeral],
     });
   },
 };

@@ -1,4 +1,7 @@
-const { EmbedBuilder } = require("discord.js");
+const {
+  EmbedBuilder,
+  MessageFlags
+} = require("discord.js");
 const { execute } = require("./ready");
 
 module.exports = {

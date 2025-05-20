@@ -13,7 +13,7 @@ const {
   ButtonStyle,
   Embed,
   ComponentType,
-  time,
+  MessageFlags
 } = require("discord.js");
 const ticketHandler = require("../../handlers/tickethandler");
 const config = require("../../config.json");
@@ -50,7 +50,7 @@ module.exports = {
 
       await targetUser.send({ embeds: [notifEmbed] }).catch(async (err) => {
         console.log(err);
-        return interaction.reply({ embeds: [dmErrorEmbed], ephemeral: true });
+        return interaction.reply({ embeds: [dmErrorEmbed], flags: [MessageFlags.Ephemeral] });
       });
 
       const ticketCount = await TicketCountSchema.find({
@@ -111,7 +111,7 @@ module.exports = {
 
       await interaction.reply({
         content: "A new ticket has been opened.",
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
       });
 
   },

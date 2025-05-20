@@ -6,6 +6,7 @@ const {
   ButtonBuilder,
   ButtonStyle,
   PermissionFlagsBits,
+  MessageFlags
 } = require("discord.js");
 const ticketHandler = require("../../handlers/tickethandler");
 const config = require("../../config.json");
@@ -37,16 +38,16 @@ const client = (module.exports = {
         )
     )
     .addSubcommand((subcommand) =>
-    subcommand
-      .setName("unblacklist")
-      .setDescription("Unblock an individual user from being able to use the tickets system.")
-      .addUserOption((options) =>
-        options
-          .setName("target")
-          .setDescription("Who do you want to remove from the blacklist?")
-          .setRequired(true)
-      )
-  )
+      subcommand
+        .setName("unblacklist")
+        .setDescription("Unblock an individual user from being able to use the tickets system.")
+        .addUserOption((options) =>
+          options
+            .setName("target")
+            .setDescription("Who do you want to remove from the blacklist?")
+            .setRequired(true)
+        )
+    )
     .addSubcommand((subcommand) =>
       subcommand
         .setName("contact")
@@ -64,7 +65,7 @@ const client = (module.exports = {
    */
   async execute(interaction, client) {
     // Contact Command
-    
+
     if (interaction.options.getSubcommand() === "contact") {
       const targetUser = interaction.options.getUser("target");
 
@@ -83,7 +84,7 @@ const client = (module.exports = {
 
       await targetUser.send({ embeds: [notifEmbed] }).catch(async (err) => {
         console.log(err);
-        return interaction.reply({ embeds: [dmErrorEmbed], ephemeral: true });
+        return interaction.reply({ embeds: [dmErrorEmbed], flags: [MessageFlags.Ephemeral] });
       });
 
       const ticketCount = await TicketCountSchema.find({
@@ -144,7 +145,7 @@ const client = (module.exports = {
 
       await interaction.reply({
         content: "A new ticket has been opened.",
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
       });
     }
 
@@ -155,14 +156,14 @@ const client = (module.exports = {
       const firstCheck = await blacklistData.findOne({ UserID: blacklistUser.id })
 
       if (firstCheck) {
-        return await interaction.reply({ephemeral: true, content: `${blacklistUser} is already blacklisted.`})
+        return await interaction.reply({ flags: [MessageFlags.Ephemeral], content: `${blacklistUser} is already blacklisted.` })
       }
 
       const notifEmbed = new EmbedBuilder()
         .setColor("Red")
         .setTitle("Operation Politics Modmail System")
         .setDescription("You have been blacklisted from the Modmail system. You will no longer be able to open tickets unless you are contacted first. This is likely due to abuse of our system.")
-        .setFooter({text: "This is non-appealable. If you need to report a rule violation, use a different method."})
+        .setFooter({ text: "This is non-appealable. If you need to report a rule violation, use a different method." })
 
       let blacklist = new blacklistData({
         UserID: blacklistUser.id
@@ -184,21 +185,21 @@ const client = (module.exports = {
       const foundData = await blacklistData.findOne({ UserID: blacklistUser.id })
 
       if (foundData) {
-        
+
         await blacklistData.findOneAndDelete({ UserID: blacklistUser.id })
         const notifEmbed = new EmbedBuilder()
-        .setColor("Yellow")
-        .setTitle("Operation Politics Modmail System")
-        .setDescription("You have been removed from the blacklist for the Modmail system. You can now open tickets if you need to. Do not abuse it.")
+          .setColor("Yellow")
+          .setTitle("Operation Politics Modmail System")
+          .setDescription("You have been removed from the blacklist for the Modmail system. You can now open tickets if you need to. Do not abuse it.")
 
         await interaction.reply({
           content: `${blacklistUser} has been removed from the Tickets system blacklist. They will now be able to contact us.`
         })
 
-        return await blacklistUser.send({ embeds: [notifEmbed]})
+        return await blacklistUser.send({ embeds: [notifEmbed] })
 
       } else {
-          return interaction.reply({ ephemeral: true, content: `${blacklistUser} is not blacklisted from the Modmail system.`})
+        return interaction.reply({ flags: [MessageFlags.Ephemeral], content: `${blacklistUser} is not blacklisted from the Modmail system.` })
       }
 
     }
@@ -206,7 +207,7 @@ const client = (module.exports = {
     if (interaction.channel.parent.id !== config.ticketParent) {
       return interaction.reply({
         content: "This command must be used in an active ticket.",
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
       });
     }
 
@@ -215,9 +216,17 @@ const client = (module.exports = {
       const nameArgs = interaction.channel.name.split("-");
       const targetDiscrim1 = `${nameArgs[0]}`
       const targetDiscrim = targetDiscrim1.replace("_", " ")
-      const targetUser = client.users.cache.find(
-        (u) => u.username === targetDiscrim
-      );
+
+      let targetUser = client.users.cache.find(u => u.username === targetDiscrim);
+
+      if (!targetUser) {
+        try {
+          const guildMembers = await interaction.guild.members.fetch();
+          targetUser = guildMembers.find(m => m.user.username === targetDiscrim)?.user;
+        } catch (err) {
+          console.error("❌ Failed to find target user:", err);
+        }
+      }
 
       const mainChannel = interaction.channel;
       const fetchmessages = await interaction.channel.messages.fetch({
@@ -242,19 +251,20 @@ const client = (module.exports = {
           .setStyle(ButtonStyle.Danger)
       );
 
-      const confirmMsg = await interaction.reply({
+      const response = await interaction.reply({
         embeds: [confirmEmbed],
         components: [confirmRow],
-        fetchReply: true,
+        withResponse: true,
       });
 
-      confirmMsg
-        .awaitMessageComponent({
-          time: 180000,
-          filter: (i) => i.user.id === interaction.user.id,
-        })
+      const confirmMsg = response.resource.message;
+
+      await confirmMsg.awaitMessageComponent({
+        time: 180000,
+        filter: (i) => i.user.id === interaction.user.id,
+      })
         .then(async (interaction) => {
-          buttonClicked = interaction.customId;
+          const buttonClicked = interaction.customId;
 
           if (buttonClicked === "cancelclose") {
             return interaction.update({
@@ -284,12 +294,13 @@ const client = (module.exports = {
         })
         .catch((error) => {
           console.log(error);
-          return prompt.edit({
+          return confirmMsg.edit({
             content: "Prompt likely timed out.",
             embeds: [],
             components: [],
           });
         });
+
     }
 
     // Claim Command
@@ -304,9 +315,17 @@ const client = (module.exports = {
       const nameArgs = mainchannel.name.split("-");
       const targetDiscrim1 = `${nameArgs[0]}#${nameArgs[1]}`;
       const targetDiscrim = targetDiscrim1.replace("_", " ");
-      const targetUser = client.users.cache.find(
-        (u) => u.username === targetDiscrim
-      );
+      let targetUser = client.users.cache.find(u => u.username === targetDiscrim);
+
+      if (!targetUser) {
+        try {
+          const guildMembers = await interaction.guild.members.fetch();
+          targetUser = guildMembers.find(m => m.user.username === targetDiscrim)?.user;
+        } catch (err) {
+          console.error("❌ Failed to find target user:", err);
+        }
+      }
+
       const ticketsChannel = interaction.guild.channels.cache.get(
         config.ticketParent
       );
@@ -397,11 +416,12 @@ const client = (module.exports = {
         config.ticketParent
       );
 
-      if (`<@${interaction.user.id}>` !== mainEmbed.fields[2].value) {
+      const field2Value = mainEmbed?.fields?.[2]?.value ?? "N/A";
+      if (`<@${interaction.user.id}>` !== field2Value) {
         console.log(mainEmbed.fields[2].value);
         return interaction.reply({
           content: "This is not your ticket!",
-          ephemeral: true,
+          flags: [MessageFlags.Ephemeral],
         });
       }
 

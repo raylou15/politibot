@@ -13,6 +13,7 @@ const {
   ButtonStyle,
   Embed,
   ComponentType,
+  MessageFlags
 } = require("discord.js");
 const ms = require("ms");
 
@@ -39,7 +40,7 @@ module.exports = {
       .setFooter({text: "DMing moderators or staff regarding moderator actions are not permissible either — please use the official method described above. Discussion of moderator action beyond this point will get you muted."})
 
     interaction.reply({
-      ephemeral: true,
+      flags: [MessageFlags.Ephemeral],
       content: "Embed Reminder Sent"
     })
 

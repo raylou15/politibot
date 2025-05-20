@@ -1,11 +1,12 @@
 const config = require("../config.json");
 const newsletterData = require("../schemas/newslettersubs");
 const {
-    EmbedBuilder,
-    ActionRowBuilder,
-    ButtonBuilder,
-    ButtonStyle,
-  } = require("discord.js");
+  EmbedBuilder,
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  MessageFlags
+} = require("discord.js");
 
 function MorningNews(client) {
     console.log("It's time for the morning newsletter!")

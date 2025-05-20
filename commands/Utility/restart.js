@@ -3,6 +3,7 @@ const {
   SlashCommandBuilder,
   PermissionFlagsBits,
   Client,
+  MessageFlags
 } = require("discord.js");
 
 module.exports = {
@@ -15,7 +16,7 @@ module.exports = {
    * @param {ChatInputCommandInteraction} interaction
    */
   async execute(interaction) {
-    interaction.reply({ content: "🔄 Restarting...", ephemeral: true });
+    interaction.reply({ content: "🔄 Restarting...", flags: [MessageFlags.Ephemeral] });
 
     setTimeout(function () {
       process.exit();

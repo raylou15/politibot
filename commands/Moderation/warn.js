@@ -7,6 +7,7 @@ const {
   ButtonBuilder,
   ButtonStyle,
   Events,
+  MessageFlags
 } = require("discord.js");
 const infractionData = require("../../schemas/infractions");
 const CaseCountSchema = require("../../schemas/casecount");
@@ -35,7 +36,7 @@ module.exports = {
         .setName("reason")
         .setDescription("Provide a reason!")
         .setRequired(true)
-        .setMaxLength(1000)
+        .setMaxLength(950)
     ),
   /**
    *
@@ -70,7 +71,7 @@ module.exports = {
         embeds: [
           errorsEmbed.setDescription("• Member has likely left the server."),
         ],
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
       });
     // if (!target.manageable || !target.moderatable) {
     //   errorsArray.push(
@@ -80,7 +81,7 @@ module.exports = {
     if (errorsArray.length) {
       return interaction.reply({
         embeds: [errorsEmbed.setDescription(errorsArray.join("\n"))],
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
       });
     }
     //MongoDB: Handling the data behind the scenes!

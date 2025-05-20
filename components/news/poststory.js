@@ -1,19 +1,20 @@
 const {
-    SlashCommandBuilder,
-    ChatInputCommandInteraction,
-    PermissionFlagsBits,
-    EmbedBuilder,
-    ButtonComponent,
-    Component,
-    SelectMenuBuilder,
-    ActionRowBuilder,
-    ButtonBuilder,
-    ButtonStyle,
-    SelectMenuInteraction,
-    ButtonInteraction,
-    ComponentType,
-    Embed,
-  } = require("discord.js");
+  SlashCommandBuilder,
+  ChatInputCommandInteraction,
+  PermissionFlagsBits,
+  EmbedBuilder,
+  ButtonComponent,
+  Component,
+  StringSelectMenuBuilder,
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  SelectMenuInteraction,
+  ButtonInteraction,
+  ComponentType,
+  Embed,
+  MessageFlags
+} = require("discord.js");
   const client = module.exports = {
     name: "poststory",
     description: "Post a news story.",
@@ -27,7 +28,7 @@ const {
 
         newsChannel.send({ embeds: [interaction.message.embeds[0]] })
 
-        interaction.reply({ ephemeral: true, content: "News Story Submitted!"})
+        interaction.reply({ flags: [MessageFlags.Ephemeral], content: "News Story Submitted!"})
         interaction.message.delete()
 
     },

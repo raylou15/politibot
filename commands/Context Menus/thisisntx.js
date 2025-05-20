@@ -13,6 +13,7 @@ const {
   ButtonStyle,
   Embed,
   ComponentType,
+  MessageFlags
 } = require("discord.js");
 const ms = require("ms");
 
@@ -42,7 +43,7 @@ module.exports = {
 
     interaction.reply({
       content: "Thanks for sending this embed to the moron",
-      ephemeral: true,
+      flags: [MessageFlags.Ephemeral],
     });
     targetMsg.reply({ embeds: [thisisntXEmbed] });
   },

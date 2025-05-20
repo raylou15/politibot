@@ -1,4 +1,15 @@
-const { ButtonInteraction, ModalBuilder, ActionRowBuilder, TextInputBuilder, TextInputStyle, EmbedBuilder, ButtonBuilder, ButtonStyle, IntentsBitField } = require("discord.js");
+const {
+  ButtonInteraction,
+  ModalBuilder,
+  ActionRowBuilder,
+  TextInputBuilder,
+  TextInputStyle,
+  EmbedBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  IntentsBitField,
+  MessageFlags
+} = require("discord.js");
 const config = require("../../config.json")
 const TicketCountSchema = require("../../schemas/ticketcount")
 const ticketHandler = require("../../handlers/tickethandler")
@@ -18,14 +29,14 @@ const client = module.exports = {
         const claimedMod = interaction.guild.members.cache.get(claimedModID[1])
 
         if (interaction.user !== claimedMod.user) {
-            return interaction.reply({ephemeral: true, content: "This is not your report."})
+            return interaction.reply({flags: [MessageFlags.Ephemeral], content: "This is not your report."})
         }
 
         const match = embed.description.match(regex)
         const targetUser = interaction.guild.members.cache.get(match[1]).user
 
         if (!targetUser) {
-            return interaction.reply({ ephemeral: true, content: "The user who filed the report appears to have left the server." })
+            return interaction.reply({ flags: [MessageFlags.Ephemeral], content: "The user who filed the report appears to have left the server." })
         }
 
         const notifEmbed = new EmbedBuilder()
@@ -43,7 +54,7 @@ const client = module.exports = {
 
       await targetUser.send({ embeds: [notifEmbed] }).catch(async (err) => {
         console.log(err);
-        return interaction.reply({ embeds: [dmErrorEmbed], ephemeral: true });
+        return interaction.reply({ embeds: [dmErrorEmbed], flags: [MessageFlags.Ephemeral] });
       });
 
       const ticketCount = await TicketCountSchema.find({
@@ -104,7 +115,7 @@ const client = module.exports = {
 
       await interaction.reply({
         content: "A new ticket has been opened.",
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
       });
     }
   };

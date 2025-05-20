@@ -3,6 +3,7 @@ const {
   SlashCommandBuilder,
   EmbedBuilder,
   Embed,
+  MessageFlags
 } = require("discord.js");
 const client = (module.exports = {
   data: new SlashCommandBuilder()
@@ -31,7 +32,7 @@ const client = (module.exports = {
     await interaction.reply({
       content: "",
       embeds: [pingEmbed],
-      ephemeral: true,
+      flags: [MessageFlags.Ephemeral],
     });
   },
 });

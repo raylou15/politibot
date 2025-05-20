@@ -1,4 +1,7 @@
-const { IntegrationExpireBehavior } = require("discord.js");
+const {
+  IntegrationExpireBehavior,
+  MessageFlags
+} = require("discord.js");
 const { model, Schema } = require("mongoose");
 
 module.exports = model(

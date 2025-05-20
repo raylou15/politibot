@@ -5,12 +5,13 @@ const {
   EmbedBuilder,
   ButtonComponent,
   Component,
-  SelectMenuBuilder,
+  StringSelectMenuBuilder,
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
   SelectMenuInteraction,
   ButtonInteraction,
+  MessageFlags
 } = require("discord.js");
 const verifyData = require("../../schemas/verificationdata");
 module.exports = {
@@ -30,7 +31,7 @@ module.exports = {
         });
 
       const yesRow = new ActionRowBuilder().addComponents(
-        new SelectMenuBuilder()
+        new StringSelectMenuBuilder()
           .setCustomId("schoolident")
           .setPlaceholder("Please select an option")
           .addOptions(
@@ -76,7 +77,7 @@ module.exports = {
       interaction.update({
         embeds: [yesEmbed],
         components: [yesRow],
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
       });
     }
   },
